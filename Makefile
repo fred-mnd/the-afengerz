@@ -1,5 +1,5 @@
-output: hero.o gameController.o room.cpp
-	g++ hero.o gameController.o main.cpp -std=c++11 -pthread -o TheAFengerZ && ./TheAFengerZ
+output: hero.o gameController.o room.o
+	g++ hero.o gameController.o room.o main.cpp -std=c++11 -pthread -o TheAFengerZ && ./TheAFengerZ
 
 hero.o: model/heroes/Hero.cpp
 	g++ -c model/heroes/Hero.cpp

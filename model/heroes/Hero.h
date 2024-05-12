@@ -1,7 +1,7 @@
 #ifndef HERO_H
 #define HERO_H
 
-#include "vector"
+#include <vector>
 #include "../map/Room.h"
 #include <string>
 
@@ -17,6 +17,7 @@ public:
         hunger = 100;
         level = 1;
         bedroom = new Room(filename);
+        bedroom->addRelationship(13, 17, RoomNS::getRoom(RoomNS::LIVING_ROOM));
     }
 
     int getHealth() const{
@@ -40,19 +41,17 @@ public:
     }
 };
 
-enum heroName {
-    BLACK_WIDOW,
-    CAPTAIN_AMERICA,
-    HAWKEYE,
-    HULK,
-    IRON_MAN,
-    THOR
-};
-
 namespace HeroNS{
+    enum heroName {
+        BLACK_WIDOW,
+        CAPTAIN_AMERICA,
+        HAWKEYE,
+        HULK,
+        IRON_MAN,
+        THOR
+    };
     Hero* getHero(int index);
     void init();
-
 }
 
 #endif

@@ -2,6 +2,7 @@
 #define ROOM_CPP
 
 #include "Room.h"
+#include "../../controller/headers/gameController.h"
 
 namespace RoomNS{
     Room* rooms[6];
@@ -11,7 +12,13 @@ namespace RoomNS{
     }
 
     void init(){
-        
+        rooms[0] = new Room("living-room");
+
+        // connect
+    }
+
+    void changeBedroom(){
+        rooms[RoomNS::LIVING_ROOM]->addRelationship(1, 14, GameController::getCurrHero()->getBedroom());
     }
 }
 

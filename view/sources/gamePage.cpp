@@ -8,6 +8,8 @@
 #include "../../controller/headers/gameController.h"
 #include "../../etc/utils.h"
 #include "../../etc/globals.h"
+#include "../../model/spacebar/SpaceBar.h"
+#include "../../controller/headers/actionController.h"
 
 namespace GamePage{
 
@@ -33,24 +35,26 @@ namespace GamePage{
     }
 
     void control(){
-        std::string message;
         do{
             printHero();
             char key = tolower(getch());
             if(key == 'd'){
-                GameController::moveHero(1, 0, message);
+                GameController::moveHero(1, 0);
             }
             else if(key == 'a'){
-                GameController::moveHero(-1, 0, message);
+                GameController::moveHero(-1, 0);
             }
             else if(key == 'w'){
-                GameController::moveHero(0, -1, message);
+                GameController::moveHero(0, -1);
             }
             else if(key == 's'){
-                GameController::moveHero(0, 1, message);
+                GameController::moveHero(0, 1);
             }
-            if(!(message == "")) printMessage(message);
-            else clearMessage();
+            else if(key == ' '){
+                ActionController::action();
+            }
+            clearMessage();
+            if(SpaceBar* mess = ActionController::hasAction()) printMessage(mess->getMessage());
         } while(true);
     }
 

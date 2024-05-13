@@ -3,6 +3,8 @@
 
 #include "../../model/heroes/Hero.h"
 #include "../../etc/utils.h"
+#include "../../model/spacebar/actions/ChangeRoom.h"
+#include "../headers/actionController.h"
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -20,7 +22,6 @@ namespace GameController{
         RoomNS::init();
         HeroNS::init();
         currHero = HeroNS::getHero(std::rand() % 6);
-        // currHero = HeroNS::getHero(HeroNS::HULK);
         RoomNS::changeBedroom();
     }
 
@@ -40,7 +41,7 @@ namespace GameController{
 
     Room* checkNextRoom(short x, short y);
 
-    void moveHero(short x, short y, std::string& message){
+    void moveHero(short x, short y){
         COORD pos = currHero->getPos();
         Room* nextDoor = checkNextRoom(x, y);
         if(getCurrMap()[pos.Y + y][pos.X + x] != ' ' && !nextDoor) return;
@@ -50,9 +51,9 @@ namespace GameController{
         pos.Y += y;
         currHero->setPos(pos);
         if(nextDoor){
-            message = "Press Space to go to " + nextDoor->getName();
+            ActionController::setSpaceBar(new ChangeRoom("Press Space to go to " + nextDoor->getName(), nextDoor));
         }
-        else message = "";
+        else ActionController::setSpaceBar(NULL);
     }
 
     Room* checkNextRoom(short x, short y){
@@ -63,6 +64,7 @@ namespace GameController{
         }
         return NULL;
     }
+
 }
 
 #endif

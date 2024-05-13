@@ -38,14 +38,30 @@ namespace GameController{
         print += res;
     }
 
-    void moveHero(short x, short y){
+    Room* checkNextRoom(short x, short y);
+
+    void moveHero(short x, short y, std::string& message){
         COORD pos = currHero->getPos();
-        if(getCurrMap()[pos.Y + y][pos.X + x] != ' ') return;
+        Room* nextDoor = checkNextRoom(x, y);
+        if(getCurrMap()[pos.Y + y][pos.X + x] != ' ' && !nextDoor) return;
         Utils::changeCursorPos(pos);
-        printf(" ");
+        printf("%c", getCurrMap()[pos.Y][pos.X]);
         pos.X += x;
         pos.Y += y;
         currHero->setPos(pos);
+        if(nextDoor){
+            message = "Press Space to go to " + nextDoor->getName();
+        }
+        else message = "";
+    }
+
+    Room* checkNextRoom(short x, short y){
+        for(Connection* conn : currHero->getCurrRoom()->getConn()){
+            if(conn->door.X == currHero->getPos().X + x && conn->door.Y == currHero->getPos().Y + y){
+                return conn->room;
+            }
+        }
+        return NULL;
     }
 }
 

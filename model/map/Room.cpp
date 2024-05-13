@@ -13,10 +13,10 @@ namespace RoomNS{
     }
 
     void init(){
-        rooms[0] = new Room("living-room");
+        rooms[0] = new Room("living-room", "Living Room");
 
         // connect
-        rooms[RoomNS::LIVING_ROOM]->addRelationship(1, 14, NULL);
+        rooms[RoomNS::LIVING_ROOM]->addRelationship(14, 0, NULL);
     }
 
     void changeBedroom(){

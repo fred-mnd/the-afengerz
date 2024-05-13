@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <array>
+#include <windows.h>
 
 class Connection;
 class Room;
@@ -12,12 +13,10 @@ class Room;
 class Connection{
 public:
     Room* room;
-    int x;
-    int y;
+    COORD door;
 
-    Connection(int x, int y, Room* next){
-        this->x = x;
-        this->y = y;
+    Connection(short x, short y, Room* next){
+        door = {x, y};
         this->room = next;
     }
 };
@@ -26,8 +25,9 @@ class Room{
 private:
     std::array<std::array<char, 31>, 15> map;
     std::vector<class Connection*> connList;
+    std::string name;
 public:
-    Room(std::string filename){
+    Room(std::string filename, std::string name){
         char path[100];
         sprintf(path, "model/map/map-assets/%s.txt", filename.c_str());
         FILE* import = fopen(path, "r");
@@ -38,6 +38,8 @@ public:
                 map[i][j] = scanned[j];
             }
         }
+
+        this->name = name;
     }
 
     void addRelationship(int x, int y, Room* nextRoom){
@@ -50,6 +52,14 @@ public:
 
     std::array<std::array<char, 31>, 15> getMap(){
         return this->map;
+    }
+
+    std::vector<class Connection*> getConn(){
+        return connList;
+    }
+
+    std::string getName(){
+        return name;
     }
 };
 

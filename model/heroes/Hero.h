@@ -24,8 +24,8 @@ public:
         health = 100;
         hunger = 100;
         level = 1;
-        bedroom = new Room(filename);
-        bedroom->addRelationship(13, 17, RoomNS::getRoom(RoomNS::LIVING_ROOM));
+        bedroom = new Room(filename, "Bedroom");
+        bedroom->addRelationship(17, 14, RoomNS::getRoom(RoomNS::LIVING_ROOM));
         currRoom = bedroom;
 
         this->character = character;

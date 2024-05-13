@@ -4,6 +4,7 @@
 #include <array>
 #include <conio.h>
 #include <ctype.h>
+#include <windows.h>
 #include "../../controller/headers/gameController.h"
 #include "../../etc/utils.h"
 #include "../../etc/globals.h"
@@ -21,22 +22,35 @@ namespace GamePage{
         control();
     }
 
+    void printMessage(std::string message){
+        Utils::changeCursorPos({35, 2});
+        printf("%s", message.c_str());
+    }
+
+    void clearMessage(){
+        Utils::changeCursorPos({35, 2});
+        printf("\e[K");
+    }
+
     void control(){
+        std::string message;
         do{
             printHero();
             char key = tolower(getch());
             if(key == 'd'){
-                GameController::moveHero(1, 0);
+                GameController::moveHero(1, 0, message);
             }
             else if(key == 'a'){
-                GameController::moveHero(-1, 0);
+                GameController::moveHero(-1, 0, message);
             }
             else if(key == 'w'){
-                GameController::moveHero(0, -1);
+                GameController::moveHero(0, -1, message);
             }
             else if(key == 's'){
-                GameController::moveHero(0, 1);
+                GameController::moveHero(0, 1, message);
             }
+            if(!(message == "")) printMessage(message);
+            else clearMessage();
         } while(true);
     }
 

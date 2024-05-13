@@ -1,14 +1,12 @@
 #include <cstdlib>
 #include <ctime>
-#include "controller/headers/gameController.h"
 #include "view/headers/gamePage.h"
-#include <array>
+#include <iostream>
 
 using namespace std;
 
 int main(){
+    system(" ");
     srand(time(0));
-    GameController::init();
-    GamePage::printRoom();
-    
+    GamePage::init();
 }

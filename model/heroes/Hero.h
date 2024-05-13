@@ -4,22 +4,34 @@
 #include <vector>
 #include "../map/Room.h"
 #include <string>
+#include <windows.h>
 
 class Hero {
 private:
     int health;
     int hunger;
     int level;
+
     Room *bedroom;
     Room* currRoom;
+
+    char character;
+    int color;
+
+    COORD pos;
 public:
-    Hero(std::string filename){
+    Hero(std::string filename, char character, int color){
         health = 100;
         hunger = 100;
         level = 1;
         bedroom = new Room(filename);
         bedroom->addRelationship(13, 17, RoomNS::getRoom(RoomNS::LIVING_ROOM));
         currRoom = bedroom;
+
+        this->character = character;
+        this->color = color;
+
+        pos = {10, 10};
     }
 
     int getHealth() const{
@@ -48,6 +60,22 @@ public:
 
     void setCurrRoom(Room* room){
         currRoom = room;
+    }
+
+    COORD getPos(){
+        return pos;
+    }
+
+    void setPos(COORD newPos){
+        pos = newPos;
+    }
+
+    char getChar(){
+        return character;
+    }
+
+    int getColor(){
+        return color;
     }
 };
 

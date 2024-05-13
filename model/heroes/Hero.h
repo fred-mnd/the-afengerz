@@ -11,6 +11,7 @@ private:
     int hunger;
     int level;
     Room *bedroom;
+    Room* currRoom;
 public:
     Hero(std::string filename){
         health = 100;
@@ -18,6 +19,7 @@ public:
         level = 1;
         bedroom = new Room(filename);
         bedroom->addRelationship(13, 17, RoomNS::getRoom(RoomNS::LIVING_ROOM));
+        currRoom = bedroom;
     }
 
     int getHealth() const{
@@ -38,6 +40,14 @@ public:
 
     Room* getBedroom() const{
         return bedroom;
+    }
+
+    Room* getCurrRoom() const{
+        return currRoom;
+    }
+
+    void setCurrRoom(Room* room){
+        currRoom = room;
     }
 };
 

@@ -3,9 +3,10 @@
 
 #include <vector>
 #include "Hero.h"
+#include <array>
 
 namespace HeroNS{
-    Hero* heroes[6];
+    std::array<Hero*, 6> heroes;
 
     Hero* getHero(int index){
         return heroes[index];

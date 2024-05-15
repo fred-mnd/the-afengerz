@@ -11,6 +11,8 @@
 
 namespace GameController{
 
+    void changeBedroom();
+
     Hero* currHero;
 
     Hero* getCurrHero(){
@@ -22,7 +24,7 @@ namespace GameController{
         RoomNS::init();
         HeroNS::init();
         currHero = HeroNS::getHero(std::rand() % 6);
-        RoomNS::changeBedroom();
+        changeBedroom();
     }
 
     std::array<std::array<char, 31>,15> getCurrMap(){
@@ -51,7 +53,7 @@ namespace GameController{
         pos.Y += y;
         currHero->setPos(pos);
         if(nextDoor){
-            ActionController::setSpaceBar(new ChangeRoom("Press Space to go to " + nextDoor->getName(), nextDoor));
+            ActionController::setSpaceBar(new ChangeRoom(currHero, nextDoor));
         }
         else ActionController::setSpaceBar(NULL);
     }
@@ -63,6 +65,10 @@ namespace GameController{
             }
         }
         return NULL;
+    }
+
+    void changeBedroom(){
+        RoomNS::getRoom(RoomNS::LIVING_ROOM)->changeRelationship(0, GameController::getCurrHero()->getBedroom());
     }
 
 }

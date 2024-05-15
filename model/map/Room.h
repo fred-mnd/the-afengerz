@@ -74,7 +74,6 @@ namespace RoomNS{
     };
     Room* getRoom(int index);
     void init();
-    void changeBedroom();
 }
 
 #endif

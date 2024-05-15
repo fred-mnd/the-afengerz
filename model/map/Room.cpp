@@ -2,7 +2,6 @@
 #define ROOM_CPP
 
 #include "Room.h"
-#include "../../controller/headers/gameController.h"
 #include <array>
 
 namespace RoomNS{
@@ -30,10 +29,6 @@ namespace RoomNS{
 
         rooms[RoomNS::WORKSHOP]->addRelationship(24, 0, rooms[RoomNS::TRAINING_ROOM]);
 
-    }
-
-    void changeBedroom(){
-        rooms[RoomNS::LIVING_ROOM]->changeRelationship(0, GameController::getCurrHero()->getBedroom());
     }
 }
 

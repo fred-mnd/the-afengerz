@@ -10,6 +10,7 @@
 #include "../../etc/globals.h"
 #include "../../model/spacebar/SpaceBar.h"
 #include "../../controller/headers/actionController.h"
+#include "../headers/gamePage.h"
 
 namespace GamePage{
 
@@ -40,6 +41,14 @@ namespace GamePage{
         printf("\e[K");
     }
 
+    void updateUI(int index){
+        if(index == -1) return;
+
+        else if(index == GamePage::CHANGE_ROOM){
+            printRoom();
+        }
+    }
+
     void control(){
         do{
             printHero();
@@ -57,7 +66,7 @@ namespace GamePage{
                 GameController::moveHero(0, 1);
             }
             else if(key == ' '){
-                ActionController::action();
+                updateUI(ActionController::action());
             }
             clearText(Globals::ACTION_MESSAGE);
             if(SpaceBar* mess = ActionController::hasAction()) printText(Globals::ACTION_MESSAGE, mess->getMessage());

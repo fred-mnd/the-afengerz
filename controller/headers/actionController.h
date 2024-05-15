@@ -5,7 +5,7 @@
 
 namespace ActionController{
     void setSpaceBar(SpaceBar* space);
-    void action();
+    int action();
     SpaceBar* hasAction();
 }
 

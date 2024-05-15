@@ -8,13 +8,11 @@
 
 class ChangeRoom : public SpaceBar{
 private:
-    Hero* currHero;
     Room* nextRoom;
 public:
-    ChangeRoom(Hero* currHero, Room* room): SpaceBar(){
+    ChangeRoom(Hero* currHero, Room* room): SpaceBar(currHero){
         nextRoom = room;
         message = setMessage();
-        this->currHero = currHero;
     }
 
     Room* getRoom(){

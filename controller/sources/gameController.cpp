@@ -4,6 +4,7 @@
 #include "../../model/heroes/Hero.h"
 #include "../../etc/utils.h"
 #include "../../model/spacebar/actions/ChangeRoom.h"
+#include "../../model/spacebar/actions/Activities.h"
 #include "../headers/actionController.h"
 #include <iostream>
 #include <cstdlib>
@@ -25,6 +26,16 @@ namespace GameController{
         HeroNS::init();
         currHero = HeroNS::getHero(std::rand() % 6);
         changeBedroom();
+    }
+
+    Activities* getAct(){
+        COORD pos = currHero->getPos();
+        for(Features* feat : currHero->getCurrRoom()->getFeat()){
+            if(feat->checkNear(pos)){
+                return feat->getAct();
+            }
+        }
+        return NULL;
     }
 
     std::array<std::array<char, 31>,15> getCurrMap(){
@@ -53,7 +64,7 @@ namespace GameController{
         if(nextDoor){
             ActionController::setSpaceBar(new ChangeRoom(currHero, nextDoor));
         }
-        else ActionController::setSpaceBar(NULL);
+        else ActionController::setSpaceBar(getAct());
     }
 
     Room* checkNextRoom(short x, short y){

@@ -25,6 +25,10 @@ public:
     bool checkNear(COORD pos){
         return (pos.X >= start.X && pos.X <= end.X && pos.Y >= start.Y && pos.Y <= end.Y);
     }
+
+    Activities* getAct(){
+        return act;
+    }
 };
 
 class Connection{
@@ -82,6 +86,10 @@ public:
 
     std::string getName(){
         return name;
+    }
+
+    std::vector<Features*> getFeat(){
+        return featList;
     }
 };
 

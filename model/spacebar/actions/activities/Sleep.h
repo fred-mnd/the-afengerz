@@ -5,7 +5,7 @@
 
 class SleepAct : public Activities{
 public:
-    SleepAct() : Activities(){
+    SleepAct(Hero* currHero) : Activities(currHero){
         message = "sleep";
     }
 };

@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "../map/Room.h"
+#include "../spacebar/actions/activities/Sleep.h"
 #include <string>
 #include <windows.h>
 
@@ -32,6 +33,8 @@ public:
         this->color = color;
 
         pos = {10, 10};
+
+        bedroom->addFeatures({0,0}, {7,7}, new SleepAct());
     }
 
     int getHealth() const{

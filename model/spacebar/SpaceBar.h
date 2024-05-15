@@ -2,15 +2,12 @@
 #define SPACEBAR_H
 
 #include <string>
-#include "../heroes/Hero.h"
 
 class SpaceBar{
 protected:
-    Hero* currHero;
     std::string message;
 public:
-    SpaceBar(Hero* currHero){
-        this->currHero = currHero;
+    SpaceBar(){
     }
     std::string getMessage(){
         return this->message;

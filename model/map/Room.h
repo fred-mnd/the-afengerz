@@ -6,19 +6,21 @@
 #include <string>
 #include <array>
 #include <windows.h>
+#include "../spacebar/actions/Activities.h"
 
 class Connection;
 class Room;
-class Activities;
 
 class Features{
 private:
     COORD start;
     COORD end;
+    Activities* act;
 public:
-    Features(COORD start, COORD end){
+    Features(COORD start, COORD end, Activities* act){
         this->start = start;
         this->end = end;
+        this->act = act;
     }
     bool checkNear(COORD pos){
         return (pos.X >= start.X && pos.X <= end.X && pos.Y >= start.Y && pos.Y <= end.Y);
@@ -58,8 +60,8 @@ public:
         this->name = name;
     }
     
-    void addFeatures(COORD start, COORD end){
-        
+    void addFeatures(COORD start, COORD end, Activities* act){
+        featList.push_back(new Features(start, end, act));
     }
 
     void addRelationship(int x, int y, Room* nextRoom){

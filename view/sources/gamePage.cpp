@@ -16,21 +16,27 @@ namespace GamePage{
     void printRoom();
     void printHero();
     void control();
+    void show();
+    void clearText(COORD coor);
+
+    void printText(COORD coor, std::string message){
+        clearText(coor);
+        printf("%s", message.c_str());
+    }
 
     void init(){
         GameController::init();
+        show();
+    }
+
+    void show(){
         Utils::cls();
         printRoom();
         control();
     }
 
-    void printMessage(std::string message){
-        Utils::changeCursorPos({35, 2});
-        printf("%s", message.c_str());
-    }
-
-    void clearMessage(){
-        Utils::changeCursorPos({35, 2});
+    void clearText(COORD coor){
+        Utils::changeCursorPos(coor);
         printf("\e[K");
     }
 
@@ -53,11 +59,10 @@ namespace GamePage{
             else if(key == ' '){
                 ActionController::action();
             }
-            clearMessage();
-            if(SpaceBar* mess = ActionController::hasAction()) printMessage(mess->getMessage());
+            clearText(Globals::ACTION_MESSAGE);
+            if(SpaceBar* mess = ActionController::hasAction()) printText(Globals::ACTION_MESSAGE, mess->getMessage());
         } while(true);
     }
-
 
     void printRoom(){
         Utils::changeCursorPos(Globals::UP_LEFT);
@@ -65,6 +70,8 @@ namespace GamePage{
         for(int i=0;i<15;i++){
             printf("%s\n", map[i]);
         }
+
+        printText(Globals::ROOM_NAME, GameController::getCurrHero()->getCurrRoom()->getName().c_str());
     }
 
     void printHero(){

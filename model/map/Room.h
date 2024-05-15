@@ -67,9 +67,9 @@ public:
 namespace RoomNS{
     enum roomName{
         LIVING_ROOM,
-        WORKSHOP_ROOM,
-        TRAINING_ROOM,
         MEETING_ROOM,
+        TRAINING_ROOM,
+        WORKSHOP,
         RESTAURANT
     };
     Room* getRoom(int index);

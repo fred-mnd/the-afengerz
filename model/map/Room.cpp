@@ -16,11 +16,13 @@ namespace RoomNS{
         rooms[1] = new Room("meeting-room", "Meeting Room");
         rooms[2] = new Room("training-room", "Training Room");
         rooms[3] = new Room("workshop", "Workshop");
+        rooms[4] = new Room("restaurant", "Restaurant");
 
         // connect
         rooms[RoomNS::LIVING_ROOM]->addRelationship(14, 0, NULL);
         rooms[RoomNS::LIVING_ROOM]->addRelationship(10, 14, rooms[RoomNS::MEETING_ROOM]);
         rooms[RoomNS::LIVING_ROOM]->addRelationship(0, 9, rooms[RoomNS::TRAINING_ROOM]);
+        rooms[RoomNS::LIVING_ROOM]->addRelationship(29, 5, rooms[RoomNS::RESTAURANT]);
 
         rooms[RoomNS::MEETING_ROOM]->addRelationship(7, 0, rooms[RoomNS::LIVING_ROOM]);
 
@@ -28,6 +30,8 @@ namespace RoomNS{
         rooms[RoomNS::TRAINING_ROOM]->addRelationship(25, 14, rooms[RoomNS::WORKSHOP]);
 
         rooms[RoomNS::WORKSHOP]->addRelationship(24, 0, rooms[RoomNS::TRAINING_ROOM]);
+
+        rooms[RoomNS::RESTAURANT]->addRelationship(0, 11, rooms[RoomNS::LIVING_ROOM]);
 
     }
 }

@@ -15,7 +15,7 @@
 namespace GamePage{
 
     void printRoom();
-    void printHero();
+    void printHero(Hero* hero);
     void control();
     void show();
     void clearText(COORD coor);
@@ -49,21 +49,28 @@ namespace GamePage{
         }
     }
 
+    void moveHero(short x, short y){
+        COORD pos = GameController::getCurrHero()->getPos();
+        Utils::changeCursorPos(pos);
+        printf("%c", GameController::getCurrHero()->getCurrRoom()->getMap()[pos.Y][pos.X]);
+        GameController::moveHero(x, y);
+    }
+
     void control(){
         do{
-            printHero();
+            printHero(GameController::getCurrHero());
             char key = tolower(getch());
             if(key == 'd'){
-                GameController::moveHero(1, 0);
+                moveHero(1, 0);
             }
             else if(key == 'a'){
-                GameController::moveHero(-1, 0);
+                moveHero(-1, 0);
             }
             else if(key == 'w'){
-                GameController::moveHero(0, -1);
+                moveHero(0, -1);
             }
             else if(key == 's'){
-                GameController::moveHero(0, 1);
+                moveHero(0, 1);
             }
             else if(key == ' '){
                 updateUI(ActionController::action());
@@ -83,8 +90,8 @@ namespace GamePage{
         printText(Globals::ROOM_NAME, GameController::getCurrHero()->getCurrRoom()->getName().c_str());
     }
 
-    void printHero(){
-        Utils::changeCursorPos(GameController::getHeroPos(GameController::getCurrHero()));
+    void printHero(Hero* hero){
+        Utils::changeCursorPos(GameController::getHeroPos(hero));
         std::string print;
         GameController::getHeroPrintFormat(GameController::getCurrHero(), print);
         printf("%s", print.c_str());

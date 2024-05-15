@@ -9,6 +9,21 @@
 
 class Connection;
 class Room;
+class Activities;
+
+class Features{
+private:
+    COORD start;
+    COORD end;
+public:
+    Features(COORD start, COORD end){
+        this->start = start;
+        this->end = end;
+    }
+    bool checkNear(COORD pos){
+        return (pos.X >= start.X && pos.X <= end.X && pos.Y >= start.Y && pos.Y <= end.Y);
+    }
+};
 
 class Connection{
 public:
@@ -26,6 +41,7 @@ private:
     std::array<std::array<char, 31>, 15> map;
     std::vector<class Connection*> connList;
     std::string name;
+    std::vector<Features*> featList;
 public:
     Room(std::string filename, std::string name){
         char path[100];
@@ -40,6 +56,10 @@ public:
         }
 
         this->name = name;
+    }
+    
+    void addFeatures(COORD start, COORD end){
+        
     }
 
     void addRelationship(int x, int y, Room* nextRoom){

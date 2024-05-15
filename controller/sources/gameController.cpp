@@ -47,8 +47,6 @@ namespace GameController{
         COORD pos = currHero->getPos();
         Room* nextDoor = checkNextRoom(x, y);
         if(getCurrMap()[pos.Y + y][pos.X + x] != ' ' && !nextDoor) return;
-        Utils::changeCursorPos(pos);
-        printf("%c", getCurrMap()[pos.Y][pos.X]);
         pos.X += x;
         pos.Y += y;
         currHero->setPos(pos);

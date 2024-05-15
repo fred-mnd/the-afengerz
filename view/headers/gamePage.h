@@ -7,7 +7,6 @@ namespace GamePage{
     };
 
     void init();
-    void updateUI();
 }
 
 #endif

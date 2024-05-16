@@ -8,6 +8,14 @@ public:
     Activities(Hero* currHero) : SpaceBar(currHero){
 
     }
+
+    virtual void start(){
+        
+    }
+
+    virtual ~Activities(){
+
+    }
 };
 
 #endif

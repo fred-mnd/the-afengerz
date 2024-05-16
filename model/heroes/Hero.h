@@ -34,7 +34,7 @@ public:
 
         pos = {10, 10};
 
-        bedroom->addFeatures({0,0}, {7,7}, new SleepAct(this));
+        bedroom->addFeatures({0,0}, {7,7}, new SleepAct());
     }
 
     int getHealth() const{

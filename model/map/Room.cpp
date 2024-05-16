@@ -2,6 +2,8 @@
 #define ROOM_CPP
 
 #include "Room.h"
+#include "../spacebar/actions/activities/Training.h"
+#include "../spacebar/actions/activities/Upgrade.h"
 #include <array>
 
 namespace RoomNS{
@@ -32,6 +34,10 @@ namespace RoomNS{
         rooms[RoomNS::WORKSHOP]->addRelationship(24, 0, rooms[RoomNS::TRAINING_ROOM]);
 
         rooms[RoomNS::RESTAURANT]->addRelationship(0, 11, rooms[RoomNS::LIVING_ROOM]);
+
+        // features
+        rooms[RoomNS::TRAINING_ROOM]->addFeatures({22, 7}, {22, 7}, new TrainingAct());
+        rooms[RoomNS::WORKSHOP]->addFeatures({16, 7}, {16, 7}, new UpgradeAct());
 
     }
 }

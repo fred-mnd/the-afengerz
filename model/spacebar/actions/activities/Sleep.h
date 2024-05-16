@@ -5,8 +5,8 @@
 
 class SleepAct : public Activities{
 public:
-    SleepAct(Hero* currHero) : Activities(currHero){
-        message = "sleep";
+    SleepAct() : Activities(){
+        message = "Press Space to sleep";
     }
 };
 

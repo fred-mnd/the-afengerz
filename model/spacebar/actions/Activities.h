@@ -5,7 +5,7 @@
 
 class Activities : public SpaceBar{
 public:
-    Activities(Hero* currHero) : SpaceBar(currHero){
+    Activities() : SpaceBar(){
 
     }
 

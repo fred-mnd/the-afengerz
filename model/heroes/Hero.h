@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "../map/Room.h"
-#include "../spacebar/actions/activities/Sleep.h"
+#include "../../controller/spacebar/actions/activities/Sleep.h"
 #include <string>
 #include <windows.h>
 
@@ -32,7 +32,7 @@ public:
         this->character = character;
         this->color = color;
 
-        pos = {10, 10};
+        pos = {15, 8};
         if(filename.compare("hulk") == 0){
             bedroom->addFeatures({0,0}, {12,10}, new SleepAct());
         }

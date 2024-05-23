@@ -2,9 +2,9 @@
 #define CHANGE_ROOM_H
 
 #include "../SpaceBar.h"
-#include "../../map/Room.h"
+#include "../../../model/map/Room.h"
 #include "../../../view/headers/gamePage.h"
-#include "../../heroes/Hero.h"
+#include "../../../model/heroes/Hero.h"
 
 class ChangeRoom : public SpaceBar{
 private:

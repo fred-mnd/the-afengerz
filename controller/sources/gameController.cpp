@@ -3,9 +3,9 @@
 
 #include "../../model/heroes/Hero.h"
 #include "../../etc/utils.h"
-#include "../../model/spacebar/actions/ChangeRoom.h"
-#include "../../model/spacebar/actions/Activities.h"
-#include "../../model/spacebar/actions/activities/Upgrade.h"
+#include "../spacebar/actions/ChangeRoom.h"
+#include "../spacebar/actions/Activities.h"
+#include "../spacebar/actions/activities/Upgrade.h"
 #include "../headers/actionController.h"
 #include <iostream>
 #include <cstdlib>

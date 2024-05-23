@@ -6,7 +6,7 @@
 #include <string>
 #include <array>
 #include <windows.h>
-#include "../spacebar/actions/Activities.h"
+#include "../../controller/spacebar/actions/Activities.h"
 
 class Connection;
 class Room;

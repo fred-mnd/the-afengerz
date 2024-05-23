@@ -2,8 +2,8 @@
 #define ROOM_CPP
 
 #include "Room.h"
-#include "../spacebar/actions/activities/Training.h"
-#include "../spacebar/actions/activities/Upgrade.h"
+#include "../../controller/spacebar/actions/activities/Training.h"
+#include "../../controller/spacebar/actions/activities/Upgrade.h"
 #include <array>
 
 namespace RoomNS{

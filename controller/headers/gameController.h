@@ -2,7 +2,7 @@
 #define GAME_CONTROLLER_H
 
 #include "../../model/heroes/Hero.h"
-#include "../../model/spacebar/SpaceBar.h"
+#include "../spacebar/SpaceBar.h"
 #include <array>
 
 namespace GameController{

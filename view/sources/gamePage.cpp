@@ -8,7 +8,7 @@
 #include "../../controller/headers/gameController.h"
 #include "../../etc/utils.h"
 #include "../../etc/globals.h"
-#include "../../model/spacebar/SpaceBar.h"
+#include "../../controller/spacebar/SpaceBar.h"
 #include "../../controller/headers/actionController.h"
 #include "../headers/gamePage.h"
 

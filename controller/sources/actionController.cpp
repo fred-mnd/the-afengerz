@@ -1,8 +1,8 @@
 #ifndef ACTION_CONTROLLER_CPP
 #define ACTION_CONTROLLER_CPP
 
-#include "../../model/spacebar/SpaceBar.h"
-#include "../../model/spacebar/actions/ChangeRoom.h"
+#include "../spacebar/SpaceBar.h"
+#include "../spacebar/actions/ChangeRoom.h"
 #include "../../model/map/Room.h"
 #include "../../view/headers/gamePage.h"
 #include "../headers/gameController.h"

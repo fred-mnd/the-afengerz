@@ -5,6 +5,7 @@
 #include "../../etc/utils.h"
 #include "../../model/spacebar/actions/ChangeRoom.h"
 #include "../../model/spacebar/actions/Activities.h"
+#include "../../model/spacebar/actions/activities/Upgrade.h"
 #include "../headers/actionController.h"
 #include <iostream>
 #include <cstdlib>
@@ -20,11 +21,18 @@ namespace GameController{
         return currHero;
     }
 
+    void addSpecialty(){
+        HeroNS::getHero(HeroNS::IRON_MAN)->getBedroom()->addFeatures({22,1}, {28, 8}, new UpgradeAct());
+
+    }
+
     void init(){
         Utils::hideCursor();
         RoomNS::init();
         HeroNS::init();
-        currHero = HeroNS::getHero(std::rand() % 6);
+        addSpecialty();
+        // currHero = HeroNS::getHero(std::rand() % 6);
+        currHero = HeroNS::getHero(HeroNS::HULK);
         changeBedroom();
     }
 

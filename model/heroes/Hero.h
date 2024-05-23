@@ -33,8 +33,10 @@ public:
         this->color = color;
 
         pos = {10, 10};
-
-        bedroom->addFeatures({0,0}, {7,7}, new SleepAct());
+        if(filename.compare("hulk") == 0){
+            bedroom->addFeatures({0,0}, {12,10}, new SleepAct());
+        }
+        else bedroom->addFeatures({0,0}, {7,7}, new SleepAct());
     }
 
     int getHealth() const{

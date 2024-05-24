@@ -88,6 +88,14 @@ public:
     int getColor(){
         return color;
     }
+
+    void setAct(Activities* act){
+        this->currAct = act;
+    }
+
+    Activities* getAct(){
+        return currAct;
+    }
 };
 
 namespace HeroNS{

@@ -4,6 +4,7 @@
 #include "../../model/heroes/Hero.h"
 #include "../spacebar/SpaceBar.h"
 #include <array>
+#include <thread>
 
 namespace GameController{
     Hero* getCurrHero();
@@ -12,6 +13,7 @@ namespace GameController{
     std::array<std::array<char, 31>,15> getCurrMap();
     COORD getHeroPos(Hero* hero);
     void moveHero(short x, short y);
+    std::thread *getTimelineThread();
 }
 
 #endif

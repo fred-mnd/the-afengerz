@@ -8,10 +8,15 @@ class SleepAct : public Activities{
 public:
     SleepAct() : Activities(){
         message = "Press Space to sleep";
+        pos = {3, 2};
     }
 
     void action(){
         SleepPage::show();
+    }
+
+    void end(){
+        printf("aughhhhhhhh");
     }
 };
 

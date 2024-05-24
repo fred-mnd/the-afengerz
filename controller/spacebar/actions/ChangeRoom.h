@@ -3,7 +3,6 @@
 
 #include "../SpaceBar.h"
 #include "../../../model/map/Room.h"
-#include "../../../view/headers/gamePage.h"
 #include "../../../model/heroes/Hero.h"
 
 class ChangeRoom : public SpaceBar{
@@ -37,7 +36,6 @@ public:
         nextRoom = prevRoom;
         currHero->setPos(nextCoord);
         message = setMessage();
-        GamePage::show();
     }
 
     std::string setMessage(){

@@ -26,13 +26,13 @@ namespace GamePage{
         GameController::init();
         show();
         control();
+        GameController::getTimelineThread()->join();
     }
 
     void show(){
         Utils::cls();
         printRoom();
     }
-
 
     void moveHero(short x, short y){
         COORD pos = GameController::getCurrHero()->getPos();

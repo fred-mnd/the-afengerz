@@ -20,6 +20,10 @@ public:
         
     }
 
+    virtual void end(){
+        
+    }
+
     virtual ~Activities(){
 
     }

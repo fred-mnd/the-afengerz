@@ -6,6 +6,7 @@
 
 namespace TimelineController{
     void addEvent(int duration, Hero* hero, Activities* act);
+    void run();
     
 }
 

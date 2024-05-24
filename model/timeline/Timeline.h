@@ -75,6 +75,14 @@ public:
             curr = curr->next;
         }
     }
+
+    clock_t getHeadTime(){
+        return head->endTime;
+    }
+
+    bool isHead(){
+        return head;
+    }
 };
 
 #endif

@@ -4,6 +4,7 @@
 #include "../../model/heroes/Hero.h"
 #include "../../model/timeline/Timeline.h"
 #include <time.h>
+#include <thread>
 
 namespace TimelineController{
 
@@ -11,7 +12,20 @@ namespace TimelineController{
     void addEvent(int duration, Hero* hero, Activities* act){
         hero->setAct(act);
         timeline->pushMid(clock() + duration * CLOCKS_PER_SEC, hero);
-        timeline->view();
+    }
+
+    void endEvent(){
+        Hero* hero = timeline->popHead();
+        hero->getAct()->end();
+        hero->setAct(NULL);
+    }
+
+    void run(){
+        while(true){
+            while(timeline->isHead() && clock() >= timeline->getHeadTime()){
+                endEvent();
+            }
+        }
     }
 }
 

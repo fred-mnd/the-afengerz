@@ -14,11 +14,6 @@ struct TimeNode{
 class Timeline{
 private:
     TimeNode *head, *tail;
-public:
-    Timeline(){
-        head = NULL;
-        tail = NULL;
-    }
 
     TimeNode* createNode(clock_t endTime, Hero* hero){
         TimeNode* newNode = (TimeNode*)malloc(sizeof(TimeNode));
@@ -27,6 +22,12 @@ public:
         newNode->next = NULL;
 
         return newNode;
+    }
+
+public:
+    Timeline(){
+        head = NULL;
+        tail = NULL;
     }
 
     void pushMid(clock_t endTime, Hero* hero){
@@ -63,6 +64,16 @@ public:
             head = next;
         }
         return hero;
+    }
+
+    void view(){
+        TimeNode* curr = head;
+        while(curr){
+            printf("Name = %c\n", curr->hero->getChar());
+            printf("Act = %s\n", curr->hero->getAct()->getMessage().c_str());
+            printf("End Time = %ld", curr->endTime);
+            curr = curr->next;
+        }
     }
 };
 

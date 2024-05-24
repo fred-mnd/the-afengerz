@@ -6,12 +6,17 @@
 #include "../../model/map/Room.h"
 #include "../../view/headers/gamePage.h"
 #include "../headers/gameController.h"
+#include "../spacebar/actions/Activities.h"
 
 namespace ActionController{
     SpaceBar* spacebar;
 
     void setSpaceBar(SpaceBar* space){
         spacebar = space;
+    }
+
+    Activities* getAct(){
+        return (Activities*) spacebar;
     }
 
     COORD checkCoordinate(Room* room, Room* prevRoom){

@@ -3,6 +3,8 @@
 
 #include "../../etc/utils.h"
 #include "../../controller/headers/gameController.h"
+#include "../../controller/headers/actionController.h"
+#include "../../controller/headers/timelineController.h"
 
 namespace SleepPage{
 
@@ -15,6 +17,8 @@ namespace SleepPage{
         puts("1 hour");
         puts("6 hours");
     }
+
+    int duration[] = {20, 60, 360};
 
     void printArrow(){
         Utils::changeCursorPos({x, short(y + options-1)});
@@ -39,6 +43,7 @@ namespace SleepPage{
                 changeArrow(1);
             }
             else if(key == ' '){
+                TimelineController::addEvent(duration[options], GameController::getCurrHero(), ActionController::getAct());
                 return;
             }
         } while(true);

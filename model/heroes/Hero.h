@@ -4,6 +4,7 @@
 #include <vector>
 #include "../map/Room.h"
 #include "../../controller/spacebar/actions/activities/Sleep.h"
+#include "../../controller/spacebar/actions/Activities.h"
 #include <string>
 #include <windows.h>
 
@@ -20,6 +21,9 @@ private:
     int color;
 
     COORD pos;
+
+    Activities* currAct;
+
 public:
     Hero(std::string filename, char character, int color){
         health = 100;
@@ -37,6 +41,8 @@ public:
             bedroom->addFeatures({0,0}, {12,10}, new SleepAct());
         }
         else bedroom->addFeatures({0,0}, {7,7}, new SleepAct());
+
+        currAct = NULL;
     }
 
     int getHealth() const{
@@ -68,7 +74,7 @@ public:
     }
 
     COORD getPos(){
-        return pos;
+        return currAct ? currAct->getPos() : pos;
     }
 
     void setPos(COORD newPos){

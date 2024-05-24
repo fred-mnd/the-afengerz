@@ -2,8 +2,11 @@
 #define ACTIVITIES_H
 
 #include "../SpaceBar.h"
+#include <windows.h>
 
 class Activities : public SpaceBar{
+protected:
+    COORD pos;
 public:
     Activities() : SpaceBar(){
 
@@ -19,6 +22,14 @@ public:
 
     virtual ~Activities(){
 
+    }
+
+    COORD getPos(){
+        return pos;
+    }
+    
+    void setPos(COORD pos){
+        this->pos = pos;
     }
 };
 

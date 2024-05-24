@@ -2,11 +2,9 @@
 #define GAME_PAGE_H
 
 namespace GamePage{
-    enum CHANGE_UI_TYPE{
-        CHANGE_ROOM
-    };
 
     void init();
+    void show();
 }
 
 #endif

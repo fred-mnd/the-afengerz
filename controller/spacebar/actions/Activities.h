@@ -9,6 +9,10 @@ public:
 
     }
 
+    virtual void action(){
+        
+    }
+
     virtual void start(){
         
     }

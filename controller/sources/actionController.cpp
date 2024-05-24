@@ -23,10 +23,9 @@ namespace ActionController{
         return {0,0};
     }
 
-    int action(){
-        if(!spacebar) return -1;
-        return spacebar->action();
-        
+    void action(){
+        if(!spacebar) return;
+        spacebar->action();
     }
 
     SpaceBar* hasAction(){

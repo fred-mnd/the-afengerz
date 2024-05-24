@@ -30,14 +30,14 @@ public:
         return {0,0};
     }
 
-    int action() override {
+    void action() override {
         COORD nextCoord = checkCoordinate(nextRoom, currHero->getCurrRoom());
         Room* prevRoom = currHero->getCurrRoom();
         currHero->setCurrRoom(nextRoom);
         nextRoom = prevRoom;
         currHero->setPos(nextCoord);
         message = setMessage();
-        return GamePage::CHANGE_ROOM;
+        GamePage::show();
     }
 
     std::string setMessage(){

@@ -11,7 +11,6 @@ namespace GameController{
 
     std::array<std::array<char, 31>,15> getCurrMap();
     COORD getHeroPos(Hero* hero);
-    void getHeroPrintFormat(Hero* hero, std::string& print);
     void moveHero(short x, short y);
 }
 

@@ -13,7 +13,7 @@ public:
         return this->message;
     }
 
-    virtual int action(){
+    virtual void action(){
 
     }
 

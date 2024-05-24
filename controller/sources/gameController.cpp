@@ -31,8 +31,7 @@ namespace GameController{
         RoomNS::init();
         HeroNS::init();
         addSpecialty();
-        // currHero = HeroNS::getHero(std::rand() % 6);
-        currHero = HeroNS::getHero(HeroNS::HULK);
+        currHero = HeroNS::getHero(std::rand() % 6);
         changeBedroom();
     }
 
@@ -52,12 +51,6 @@ namespace GameController{
 
     COORD getHeroPos(Hero* hero){
         return hero->getPos();
-    }
-
-    void getHeroPrintFormat(Hero* hero, std::string& print){
-        char res[20];
-        sprintf(res, "\e[%dm%c\e[39m", hero->getColor(), hero->getChar());
-        print += res;
     }
 
     Room* checkNextRoom(short x, short y);

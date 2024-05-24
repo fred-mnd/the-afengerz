@@ -2,8 +2,6 @@
 #define GAME_PAGE_CPP
 
 #include <array>
-#include <conio.h>
-#include <ctype.h>
 #include <windows.h>
 #include "../../controller/headers/gameController.h"
 #include "../../etc/utils.h"
@@ -18,36 +16,23 @@ namespace GamePage{
     void printHero(Hero* hero);
     void control();
     void show();
-    void clearText(COORD coor);
 
     void printText(COORD coor, std::string message){
-        clearText(coor);
+        Utils::clearText(coor);
         printf("%s", message.c_str());
     }
 
     void init(){
         GameController::init();
         show();
+        control();
     }
 
     void show(){
         Utils::cls();
         printRoom();
-        control();
     }
 
-    void clearText(COORD coor){
-        Utils::changeCursorPos(coor);
-        printf("\e[K");
-    }
-
-    void updateUI(int index){
-        if(index == -1) return;
-
-        else if(index == GamePage::CHANGE_ROOM){
-            printRoom();
-        }
-    }
 
     void moveHero(short x, short y){
         COORD pos = GameController::getCurrHero()->getPos();
@@ -59,7 +44,7 @@ namespace GamePage{
     void control(){
         do{
             printHero(GameController::getCurrHero());
-            char key = tolower(getch());
+            char key = Utils::getKeyInput();
             if(key == 'd'){
                 moveHero(1, 0);
             }
@@ -73,9 +58,9 @@ namespace GamePage{
                 moveHero(0, 1);
             }
             else if(key == ' '){
-                updateUI(ActionController::action());
+                ActionController::action();
             }
-            clearText(Globals::ACTION_MESSAGE);
+            Utils::clearText(Globals::ACTION_MESSAGE);
             if(SpaceBar* mess = ActionController::hasAction()) printText(Globals::ACTION_MESSAGE, mess->getMessage());
         } while(true);
     }
@@ -92,9 +77,7 @@ namespace GamePage{
 
     void printHero(Hero* hero){
         Utils::changeCursorPos(GameController::getHeroPos(hero));
-        std::string print;
-        GameController::getHeroPrintFormat(GameController::getCurrHero(), print);
-        printf("%s", print.c_str());
+        Utils::printHeroCoded(GameController::getCurrHero(), GameController::getCurrHero()->getChar());
     }
 }
 

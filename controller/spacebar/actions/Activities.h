@@ -2,14 +2,15 @@
 #define ACTIVITIES_H
 
 class Hero;
+class Room;
 
 #include "../SpaceBar.h"
-// #include "../../../model/heroes/Hero.h"
 #include <windows.h>
 
 class Activities : public SpaceBar{
 protected:
     COORD pos;
+    Room* room;
 
 public:
     Activities() : SpaceBar(){
@@ -42,6 +43,10 @@ public:
     
     void setPos(COORD pos){
         this->pos = pos;
+    }
+
+    Room* getRoom(){
+        return room;
     }
 };
 

@@ -13,9 +13,15 @@
 namespace GamePage{
 
     void printRoom();
-    void printHero(Hero* hero);
+    void printHero(Hero* hero, COORD pos);
     void control();
     void show();
+
+    bool inUI;
+
+    bool isInUI(){
+        return inUI;
+    }
 
     void printText(COORD coor, std::string message){
         Utils::clearText(coor);
@@ -25,6 +31,7 @@ namespace GamePage{
     void init(){
         GameController::init();
         show();
+        inUI = true;
         control();
         GameController::getTimelineThread()->join();
     }
@@ -34,16 +41,21 @@ namespace GamePage{
         printRoom();
     }
 
+    void changeHeroPos(COORD oldPos, COORD newPos){
+        Utils::changeCursorPos(oldPos);
+        printf("%c", GameController::getCurrHero()->getCurrRoom()->getMap()[oldPos.Y][oldPos.X]);
+        GameController::moveHero(newPos);
+    }
+
     void moveHero(short x, short y){
         COORD pos = GameController::getCurrHero()->getPos();
-        Utils::changeCursorPos(pos);
-        printf("%c", GameController::getCurrHero()->getCurrRoom()->getMap()[pos.Y][pos.X]);
-        GameController::moveHero(x, y);
+        changeHeroPos(pos, {(short)(pos.X + x), (short)(pos.Y + y)});
     }
 
     void control(){
         do{
-            printHero(GameController::getCurrHero());
+            inUI = true;
+            if(!GameController::getCurrHero()->getAct()) printHero(GameController::getCurrHero(), GameController::getCurrHero()->getPos());
             char key = Utils::getKeyInput();
             if(GameController::getCurrHero()->getAct()) continue;
             if(key == 'd'){
@@ -59,6 +71,7 @@ namespace GamePage{
                 moveHero(0, 1);
             }
             else if(key == ' '){
+                inUI = false;
                 ActionController::action();
             }
             Utils::clearText(Globals::ACTION_MESSAGE);
@@ -72,13 +85,20 @@ namespace GamePage{
         for(int i=0;i<15;i++){
             printf("%s\n", map[i]);
         }
-
+        for(Hero* hero : GameController::getCurrHero()->getCurrRoom()->getHeroList()){
+            printHero(hero, hero->getAct()->getPos());
+        }
         printText(Globals::ROOM_NAME, GameController::getCurrHero()->getCurrRoom()->getName().c_str());
     }
 
-    void printHero(Hero* hero){
-        Utils::changeCursorPos(GameController::getHeroPos(hero));
+    void printHero(Hero* hero, COORD pos){
+        Utils::changeCursorPos(pos);
         Utils::printHeroCoded(GameController::getCurrHero(), GameController::getCurrHero()->getChar());
+    }
+
+    void refreshUI(){
+        printRoom();
+        if(!GameController::getCurrHero()->getAct()) printHero(GameController::getCurrHero(), GameController::getCurrHero()->getPos());
     }
 }
 

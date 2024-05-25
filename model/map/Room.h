@@ -6,10 +6,12 @@
 #include <string>
 #include <array>
 #include <windows.h>
+#include <algorithm>
 #include "../../controller/spacebar/actions/Activities.h"
 
 class Connection;
 class Room;
+class Hero;
 
 class Features{
 private:
@@ -48,6 +50,7 @@ private:
     std::vector<class Connection*> connList;
     std::string name;
     std::vector<Features*> featList;
+    std::vector<Hero*> heroList;
 public:
     Room(std::string filename, std::string name){
         char path[100];
@@ -90,6 +93,20 @@ public:
 
     std::vector<Features*> getFeat(){
         return featList;
+    }
+
+    std::vector<Hero*> getHeroList(){
+        return heroList;
+    }
+
+    void addHero(Hero* hero){
+        heroList.push_back(hero);
+    }
+
+    void removeHero(Hero* hero){
+        std::vector<Hero*>::iterator it = std::find(heroList.begin(), heroList.end(), hero);
+        if(it == heroList.end()) return;
+        heroList.erase(it);
     }
 };
 

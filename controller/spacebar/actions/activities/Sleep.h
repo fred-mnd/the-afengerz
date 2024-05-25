@@ -9,9 +9,10 @@ private:
     int HP;
     int HPList[3] = {15, 35, 100};
 public:
-    SleepAct() : Activities(){
+    SleepAct(Room* bedroom) : Activities(){
         message = "Press Space to sleep";
         pos = {3, 2};
+        room = bedroom;
     }
 
     void action(){

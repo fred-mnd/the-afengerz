@@ -62,28 +62,21 @@ namespace GameController{
         return GameController::getCurrHero()->getCurrRoom()->getMap();
     }
 
-    COORD getHeroPos(Hero* hero){
-        return hero->getPos();
-    }
+    Room* checkNextRoom(COORD newPos);
 
-    Room* checkNextRoom(short x, short y);
-
-    void moveHero(short x, short y){
-        COORD pos = currHero->getPos();
-        Room* nextDoor = checkNextRoom(x, y);
-        if(getCurrMap()[pos.Y + y][pos.X + x] != ' ' && !nextDoor) return;
-        pos.X += x;
-        pos.Y += y;
-        currHero->setPos(pos);
+    void moveHero(COORD newPos){
+        Room* nextDoor = checkNextRoom(newPos);
+        if(getCurrMap()[newPos.Y][newPos.X] != ' ' && !nextDoor) return;
+        currHero->setPos(newPos);
         if(nextDoor){
             ActionController::setSpaceBar(new ChangeRoom(currHero, nextDoor));
         }
         else ActionController::setSpaceBar(getAct());
     }
 
-    Room* checkNextRoom(short x, short y){
+    Room* checkNextRoom(COORD newPos){
         for(Connection* conn : currHero->getCurrRoom()->getConn()){
-            if(conn->door.X == currHero->getPos().X + x && conn->door.Y == currHero->getPos().Y + y){
+            if(conn->door.X == newPos.X && conn->door.Y == newPos.Y){
                 return conn->room;
             }
         }

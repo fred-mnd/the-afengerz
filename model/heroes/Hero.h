@@ -70,7 +70,7 @@ public:
     }
 
     COORD getPos(){
-        return currAct ? currAct->getPos() : pos;
+        return pos;
     }
 
     void setPos(COORD newPos){

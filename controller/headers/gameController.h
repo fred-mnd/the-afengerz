@@ -12,7 +12,7 @@ namespace GameController{
 
     std::array<std::array<char, 31>,15> getCurrMap();
     COORD getHeroPos(Hero* hero);
-    void moveHero(short x, short y);
+    void moveHero(COORD newPos);
     std::thread *getTimelineThread();
 }
 

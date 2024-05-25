@@ -3,8 +3,8 @@
 
 #include <vector>
 #include "../map/Room.h"
-#include "../../controller/spacebar/actions/activities/Sleep.h"
 #include "../../controller/spacebar/actions/Activities.h"
+#include "../../controller/spacebar/actions/activities/Sleep.h"
 #include <string>
 #include <windows.h>
 

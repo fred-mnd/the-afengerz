@@ -2,12 +2,13 @@
 #define ACTIVITIES_H
 
 #include "../SpaceBar.h"
-#include "../../../model/heroes/Hero.h"
+// #include "../../../model/heroes/Hero.h"
 #include <windows.h>
 
 class Activities : public SpaceBar{
 protected:
     COORD pos;
+
 public:
     Activities() : SpaceBar(){
 
@@ -21,12 +22,12 @@ public:
         
     }
 
-    virtual void end(Hero* hero){
+    virtual void end(){
         
     }
 
     virtual void start(){
-        
+
     }
 
     virtual ~Activities(){

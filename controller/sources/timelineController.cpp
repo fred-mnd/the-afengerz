@@ -16,7 +16,7 @@ namespace TimelineController{
 
     void endEvent(){
         Hero* hero = timeline->popHead();
-        hero->getAct()->end(hero);
+        hero->getAct()->end();
         hero->setAct(NULL);
     }
 

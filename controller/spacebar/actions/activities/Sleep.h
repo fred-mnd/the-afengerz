@@ -22,9 +22,9 @@ public:
         HP = HPList[options];
     }
 
-    void end(Hero* hero){
-        hero->setHealth(hero->getHealth() + HP);
-        printf("%d\n", hero->getHealth());
+    void end(){
+        // hero->setHealth(hero->getHealth() + HP);
+        // printf("%d\n", hero->getHealth());
     }
 };
 

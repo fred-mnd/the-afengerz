@@ -10,13 +10,14 @@ namespace TimelineController{
 
     Timeline* timeline = new Timeline();
     void addEvent(int duration, Hero* hero, Activities* act, int options){
+        act->start(options);
         hero->setAct(act);
         timeline->pushMid(clock() + duration * CLOCKS_PER_SEC, hero);
     }
 
     void endEvent(){
         Hero* hero = timeline->popHead();
-        hero->getAct()->end();
+        hero->getAct()->end(hero);
         hero->setAct(NULL);
     }
 

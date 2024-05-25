@@ -1,6 +1,8 @@
 #ifndef ACTIVITIES_H
 #define ACTIVITIES_H
 
+class Hero;
+
 #include "../SpaceBar.h"
 // #include "../../../model/heroes/Hero.h"
 #include <windows.h>
@@ -22,7 +24,7 @@ public:
         
     }
 
-    virtual void end(){
+    virtual void end(Hero* hero){
         
     }
 

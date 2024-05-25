@@ -4,9 +4,9 @@
 #include <vector>
 #include "../map/Room.h"
 #include "../../controller/spacebar/actions/Activities.h"
-#include "../../controller/spacebar/actions/activities/Sleep.h"
 #include <string>
 #include <windows.h>
+
 
 class Hero {
 private:
@@ -37,10 +37,6 @@ public:
         this->color = color;
 
         pos = {15, 8};
-        if(filename.compare("hulk") == 0){
-            bedroom->addFeatures({0,0}, {12,10}, new SleepAct());
-        }
-        else bedroom->addFeatures({0,0}, {7,7}, new SleepAct());
 
         currAct = NULL;
     }
@@ -50,7 +46,7 @@ public:
     }
 
     void setHealth(int newHealth){
-        health = newHealth;
+        health += newHealth;
     }
 
     int getHunger() const{

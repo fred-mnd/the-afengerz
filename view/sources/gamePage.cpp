@@ -45,6 +45,7 @@ namespace GamePage{
         do{
             printHero(GameController::getCurrHero());
             char key = Utils::getKeyInput();
+            if(GameController::getCurrHero()->getAct()) continue;
             if(key == 'd'){
                 moveHero(1, 0);
             }

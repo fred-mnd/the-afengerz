@@ -15,10 +15,11 @@ namespace SleepPage{
     void printMenu(){
         puts("20 minutes");
         puts("1 hour");
-        puts("6 hours");
+        puts("3 hours");
     }
 
-    int duration[] = {20, 60, 360};
+    // int duration[] = {20, 60, 180};
+    int duration[] = {20, 60, 5};
 
     void printArrow(){
         Utils::changeCursorPos({x, short(y + options-1)});
@@ -43,7 +44,7 @@ namespace SleepPage{
                 changeArrow(1);
             }
             else if(key == ' '){
-                TimelineController::addEvent(duration[options], GameController::getCurrHero(), ActionController::getAct());
+                TimelineController::addEvent(duration[options], GameController::getCurrHero(), ActionController::getAct(), options);
                 return;
             }
         } while(true);

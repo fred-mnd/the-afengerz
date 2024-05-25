@@ -2,6 +2,7 @@
 #define ACTIVITIES_H
 
 #include "../SpaceBar.h"
+#include "../../../model/heroes/Hero.h"
 #include <windows.h>
 
 class Activities : public SpaceBar{
@@ -16,11 +17,15 @@ public:
         
     }
 
-    virtual void start(){
+    virtual void start(int options){
         
     }
 
-    virtual void end(){
+    virtual void end(Hero* hero){
+        
+    }
+
+    virtual void start(){
         
     }
 

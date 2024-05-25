@@ -5,6 +5,9 @@
 #include "../../../../view/headers/sleepPage.h"
 
 class SleepAct : public Activities{
+private:
+    int HP;
+    int HPList[3] = {15, 35, 100};
 public:
     SleepAct() : Activities(){
         message = "Press Space to sleep";
@@ -15,8 +18,13 @@ public:
         SleepPage::show();
     }
 
-    void end(){
-        printf("aughhhhhhhh");
+    void start(int options){
+        HP = HPList[options];
+    }
+
+    void end(Hero* hero){
+        hero->setHealth(hero->getHealth() + HP);
+        printf("%d\n", hero->getHealth());
     }
 };
 

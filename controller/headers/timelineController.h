@@ -5,7 +5,7 @@
 #include <time.h>
 
 namespace TimelineController{
-    void addEvent(int duration, Hero* hero, Activities* act);
+    void addEvent(int duration, Hero* hero, Activities* act, int options);
     void run();
     
 }

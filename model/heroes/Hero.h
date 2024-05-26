@@ -24,6 +24,8 @@ private:
 
     Activities* currAct;
 
+    int xp;
+
 public:
     Hero(std::string filename, char character, int color){
         health = 100;
@@ -39,6 +41,8 @@ public:
         pos = {15, 8};
 
         currAct = NULL;
+
+        xp = 0;
     }
 
     int getHealth() const{
@@ -91,6 +95,14 @@ public:
 
     Activities* getAct(){
         return currAct;
+    }
+
+    int getXP(){
+        return xp;
+    }
+
+    void setXP(int xp){
+        this->xp += xp;
     }
 };
 

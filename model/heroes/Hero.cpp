@@ -7,6 +7,7 @@
 #include "Hero.h"
 #include "../../etc/globals.h"
 #include "../../controller/spacebar/actions/activities/Sleep.h"
+#include "../../controller/spacebar/actions/activities/Training.h"
 namespace HeroNS{
     std::array<Hero*, 6> heroes;
 

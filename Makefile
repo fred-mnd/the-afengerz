@@ -1,5 +1,5 @@
-output: hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o
-	g++ hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o main.cpp -std=c++11 -pthread -o TheAFengerZ && ./TheAFengerZ
+output: hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o
+	g++ hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o main.cpp -std=c++11 -pthread -o TheAFengerZ && ./TheAFengerZ
 
 hero.o: model/heroes/Hero.cpp
 	g++ -c model/heroes/Hero.cpp -std=c++11
@@ -22,8 +22,11 @@ gamePage.o: view/sources/gamePage.cpp
 sleepPage.o: view/sources/sleepPage.cpp
 	g++ -c view/sources/sleepPage.cpp -std=c++11
 
-utils.o: etc\utils.cpp
-	g++ -c etc\utils.cpp -std=c++11
+trainingPage.o: view/sources/trainingPage.cpp
+	g++ -c view/sources/trainingPage.cpp -std=c++11
+
+utils.o: etc/utils.cpp
+	g++ -c etc/utils.cpp -std=c++11
 
 clean:
 	rm *.o

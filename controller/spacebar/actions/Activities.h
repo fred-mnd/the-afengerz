@@ -11,7 +11,6 @@ class Activities : public SpaceBar{
 protected:
     COORD pos;
     Room* room;
-
 public:
     Activities() : SpaceBar(){
 

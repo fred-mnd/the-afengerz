@@ -26,6 +26,7 @@ public:
     void end(Hero* hero){
         hero->setHealth(HP);
     }
+
 };
 
 #endif

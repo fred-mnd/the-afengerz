@@ -15,74 +15,20 @@ class Timeline{
 private:
     TimeNode *head, *tail;
 
-    TimeNode* createNode(clock_t endTime, Hero* hero){
-        TimeNode* newNode = (TimeNode*)malloc(sizeof(TimeNode));
-        newNode->endTime = endTime;
-        newNode->hero = hero;
-        newNode->next = NULL;
-
-        return newNode;
-    }
+    TimeNode* createNode(clock_t endTime, Hero* hero);
 
 public:
-    Timeline(){
-        head = NULL;
-        tail = NULL;
-    }
+    Timeline();
 
-    void pushMid(clock_t endTime, Hero* hero){
-        TimeNode* newNode = createNode(endTime, hero);
-        if(!head && !tail) head = tail = newNode;
-        else if(endTime <= head->endTime){
-            newNode->next = head;
-            head = newNode;
-        }
-        else if(endTime >= tail->endTime){
-            tail->next = newNode;
-            tail = newNode;
-        }
-        else{
-            TimeNode* curr = head;
-            while(curr && endTime < curr->endTime){
-                curr = curr->next;
-            }
-            newNode->next = curr->next;
-            curr->next = newNode;
-        }
-    }
+    void pushMid(clock_t endTime, Hero* hero);
 
-    Hero* popHead(){
-        Hero* hero = head->hero;
-        if(head == tail){
-            free(head);
-            head = tail = NULL;
-        }
-        else{
-            TimeNode* next = head->next;
-            head->next = NULL;
-            free(head);
-            head = next;
-        }
-        return hero;
-    }
+    Hero* popHead();
 
-    void view(){
-        TimeNode* curr = head;
-        while(curr){
-            printf("Name = %c\n", curr->hero->getChar());
-            printf("Act = %s\n", curr->hero->getAct()->getMessage().c_str());
-            printf("End Time = %ld", curr->endTime);
-            curr = curr->next;
-        }
-    }
+    void view();
 
-    clock_t getHeadTime(){
-        return head->endTime;
-    }
+    clock_t getHeadTime();
 
-    bool isHead(){
-        return head;
-    }
+    bool isHead();
 };
 
 #endif

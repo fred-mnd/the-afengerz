@@ -7,11 +7,11 @@
 #include <array>
 #include <windows.h>
 #include <algorithm>
-#include "../../controller/spacebar/actions/Activities.h"
 
 class Connection;
 class Room;
 class Hero;
+class Activities;
 
 class Features{
 private:
@@ -19,18 +19,9 @@ private:
     COORD end;
     Activities* act;
 public:
-    Features(COORD start, COORD end, Activities* act){
-        this->start = start;
-        this->end = end;
-        this->act = act;
-    }
-    bool checkNear(COORD pos){
-        return (pos.X >= start.X && pos.X <= end.X && pos.Y >= start.Y && pos.Y <= end.Y);
-    }
-
-    Activities* getAct(){
-        return act;
-    }
+    Features(COORD start, COORD end, Activities* act);
+    bool checkNear(COORD pos);
+    Activities* getAct();
 };
 
 class Connection{
@@ -38,10 +29,7 @@ public:
     Room* room;
     COORD door;
 
-    Connection(short x, short y, Room* next){
-        door = {x, y};
-        this->room = next;
-    }
+    Connection(short x, short y, Room* next);
 };
 
 class Room{
@@ -52,64 +40,28 @@ private:
     std::vector<Features*> featList;
     std::vector<Hero*> heroList;
 public:
-    Room(std::string filename, std::string name){
-        char path[100];
-        sprintf(path, "model/map/map-assets/%s.txt", filename.c_str());
-        FILE* import = fopen(path, "r");
-        char scanned[40];
-        for(int i=0; fscanf(import, "%[^\n]\n", scanned) != -1;i++){
-            map[i][30] = 0;
-            for(int j=0;j<31;j++){
-                map[i][j] = scanned[j];
-            }
-        }
-
-        this->name = name;
-    }
+    Room(std::string filename, std::string name);
     
-    void addFeatures(COORD start, COORD end, Activities* act){
-        featList.push_back(new Features(start, end, act));
-    }
+    void addFeatures(COORD start, COORD end, Activities* act);
 
-    void addRelationship(int x, int y, Room* nextRoom){
-        connList.push_back(new Connection(x, y, nextRoom));
-    }
+    void addRelationship(int x, int y, Room* nextRoom);
 
-    void changeRelationship(std::vector<Connection*>::size_type idx, Room* nextRoom){
-        connList[idx]->room = nextRoom;
-    }
+    void changeRelationship(std::vector<Connection*>::size_type idx, Room* nextRoom);
 
-    std::array<std::array<char, 31>, 15> getMap(){
-        return this->map;
-    }
+    std::array<std::array<char, 31>, 15> getMap();
 
-    std::vector<class Connection*> getConn(){
-        return connList;
-    }
+    std::vector<class Connection*> getConn();
 
-    std::string getName(){
-        return name;
-    }
+    std::string getName();
 
-    std::vector<Features*> getFeat(){
-        return featList;
-    }
+    std::vector<Features*> getFeat();
 
-    std::vector<Hero*> getHeroList(){
-        return heroList;
-    }
+    std::vector<Hero*> getHeroList();
 
-    void addHero(Hero* hero){
-        heroList.push_back(hero);
-    }
+    void addHero(Hero* hero);
 
-    void removeHero(Hero* hero){
-        std::vector<Hero*>::iterator it = std::find(heroList.begin(), heroList.end(), hero);
-        if(it == heroList.end()) return;
-        heroList.erase(it);
-    }
+    void removeHero(Hero* hero);
 };
-
 
 namespace RoomNS{
     enum roomName{

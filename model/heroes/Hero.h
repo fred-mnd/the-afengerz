@@ -2,11 +2,12 @@
 #define HERO_H
 
 #include <vector>
-#include "../map/Room.h"
-#include "../../controller/spacebar/actions/Activities.h"
 #include <string>
 #include <windows.h>
+#include <array>
 
+class Room;
+class Activities;
 
 class Hero {
 private:
@@ -27,83 +28,37 @@ private:
     int xp;
 
 public:
-    Hero(std::string filename, char character, int color){
-        health = 100;
-        hunger = 100;
-        level = 1;
-        bedroom = new Room(filename, "Bedroom");
-        bedroom->addRelationship(17, 14, RoomNS::getRoom(RoomNS::LIVING_ROOM));
-        currRoom = bedroom;
+    Hero(std::string filename, char character, int color);
 
-        this->character = character;
-        this->color = color;
+    int getHealth();
 
-        pos = {15, 8};
+    void setHealth(int newHealth);
 
-        currAct = NULL;
+    int getHunger();
 
-        xp = 0;
-    }
+    void setHunger(int newHunger);
 
-    int getHealth() const{
-        return health;
-    }
+    Room* getBedroom();
 
-    void setHealth(int newHealth){
-        health += newHealth;
-    }
+    Room* getCurrRoom();
 
-    int getHunger() const{
-        return hunger;
-    }
+    void setCurrRoom(Room* room);
 
-    void setHunger(int newHunger){
-        hunger = newHunger;
-    }
+    COORD getPos();
 
-    Room* getBedroom() const{
-        return bedroom;
-    }
+    void setPos(COORD newPos);
 
-    Room* getCurrRoom() const{
-        return currRoom;
-    }
+    char getChar();
 
-    void setCurrRoom(Room* room){
-        currRoom = room;
-    }
+    int getColor();
 
-    COORD getPos(){
-        return pos;
-    }
+    void setAct(Activities* act);
 
-    void setPos(COORD newPos){
-        pos = newPos;
-    }
+    Activities* getAct();
 
-    char getChar(){
-        return character;
-    }
+    int getXP();
 
-    int getColor(){
-        return color;
-    }
-
-    void setAct(Activities* act){
-        this->currAct = act;
-    }
-
-    Activities* getAct(){
-        return currAct;
-    }
-
-    int getXP(){
-        return xp;
-    }
-
-    void setXP(int xp){
-        this->xp += xp;
-    }
+    void setXP(int xp);
 };
 
 namespace HeroNS{

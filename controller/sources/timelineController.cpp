@@ -4,7 +4,9 @@
 #include "../../model/heroes/Hero.h"
 #include "../../model/timeline/Timeline.h"
 #include "../../view/headers/gamePage.h"
+#include "../../model/map/Room.h"
 #include "../headers/gameController.h"
+#include "../spacebar/actions/Activities.h"
 #include <time.h>
 #include <thread>
 

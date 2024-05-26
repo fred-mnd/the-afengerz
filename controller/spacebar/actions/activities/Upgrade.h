@@ -5,9 +5,7 @@
 
 class UpgradeAct : public Activities{
 public:
-    UpgradeAct() : Activities(){
-        message = "Press Space to upgrade equipment";
-    }
+    UpgradeAct();
 };
 
 #endif

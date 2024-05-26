@@ -1,13 +1,91 @@
 #ifndef HERO_CPP
 #define HERO_CPP
 
-#include <vector>
-#include <array>
-
 #include "Hero.h"
+#include "../map/Room.h"
+#include "../../controller/spacebar/actions/Activities.h"
 #include "../../etc/globals.h"
 #include "../../controller/spacebar/actions/activities/Sleep.h"
 #include "../../controller/spacebar/actions/activities/Training.h"
+
+Hero::Hero(std::string filename, char character, int color){
+    health = 100;
+    hunger = 100;
+    level = 1;
+    bedroom = new Room(filename, "Bedroom");
+    bedroom->addRelationship(17, 14, RoomNS::getRoom(RoomNS::LIVING_ROOM));
+    currRoom = bedroom;
+
+    this->character = character;
+    this->color = color;
+
+    pos = {15, 8};
+
+    currAct = NULL;
+
+    xp = 0;
+}
+
+int Hero::getHealth(){
+    return health;
+}
+
+void Hero::setHealth(int newHealth){
+    health += newHealth;
+}
+
+int Hero::getHunger(){
+    return hunger;
+}
+
+void Hero::setHunger(int newHunger){
+    hunger = newHunger;
+}
+
+Room* Hero::getBedroom(){
+    return bedroom;
+}
+
+Room* Hero::getCurrRoom(){
+    return currRoom;
+}
+
+void Hero::setCurrRoom(Room* room){
+    currRoom = room;
+}
+
+COORD Hero::getPos(){
+    return pos;
+}
+
+void Hero::setPos(COORD newPos){
+    pos = newPos;
+}
+
+char Hero::getChar(){
+    return character;
+}
+
+int Hero::getColor(){
+    return color;
+}
+
+void Hero::setAct(Activities* act){
+    this->currAct = act;
+}
+
+Activities* Hero::getAct(){
+    return currAct;
+}
+
+int Hero::getXP(){
+    return xp;
+}
+
+void Hero::setXP(int xp){
+    this->xp += xp;
+}
+
 namespace HeroNS{
     std::array<Hero*, 6> heroes;
 

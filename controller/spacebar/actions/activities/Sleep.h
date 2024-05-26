@@ -2,30 +2,19 @@
 #define SLEEP_H
 
 #include "../Activities.h"
-#include "../../../../view/headers/sleepPage.h"
 
 class SleepAct : public Activities{
 private:
     int HP;
     int HPList[3] = {15, 35, 100};
 public:
-    SleepAct(Room* bedroom) : Activities(){
-        message = "Press Space to sleep";
-        pos = {3, 2};
-        room = bedroom;
-    }
+    SleepAct(Room* bedroom);
 
-    void action(){
-        SleepPage::show();
-    }
+    void action();
 
-    void start(int options){
-        HP = HPList[options];
-    }
+    void start(int options);
 
-    void end(Hero* hero){
-        hero->setHealth(HP);
-    }
+    void end(Hero* hero);
 
 };
 

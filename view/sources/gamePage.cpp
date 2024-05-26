@@ -8,6 +8,7 @@
 #include "../../etc/globals.h"
 #include "../../controller/spacebar/SpaceBar.h"
 #include "../../controller/headers/actionController.h"
+#include "../../model/map/Room.h"
 #include "../headers/gamePage.h"
 
 namespace GamePage{

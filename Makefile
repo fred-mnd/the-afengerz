@@ -1,5 +1,5 @@
-output: hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o Training.o Sleep.o Upgrade.o timeline.o
-	g++ hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o Training.o Sleep.o Upgrade.o timeline.o main.cpp -std=c++11 -pthread -o TheAFengerZ && ./TheAFengerZ
+output: hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o Training.o Sleep.o Upgrade.o timeline.o upgradePage.o
+	g++ hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o Training.o Sleep.o Upgrade.o timeline.o upgradePage.o main.cpp -std=c++11 -pthread -o TheAFengerZ && ./TheAFengerZ
 
 # MODEL
 hero.o: model/heroes/Hero.cpp
@@ -43,6 +43,9 @@ sleepPage.o: view/sources/sleepPage.cpp
 
 trainingPage.o: view/sources/trainingPage.cpp
 	g++ -c view/sources/trainingPage.cpp -std=c++11
+
+upgradePage.o: view/sources/upgradePage.cpp
+	g++ -c view/sources/upgradePage.cpp -std=c++11
 
 
 # ETC

@@ -8,8 +8,11 @@
 
 TrainingAct::TrainingAct() : Activities(){
     message = "Press Space to start training";
-    pos = {10, 8};
+    pos = {10, 10};
     room = RoomNS::getRoom(RoomNS::TRAINING_ROOM);
+    duration[0] = 15;
+    duration[1] = 45;
+    duration[2] = 90;
 }
 
 void TrainingAct::action(){

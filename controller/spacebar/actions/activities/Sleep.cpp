@@ -9,6 +9,9 @@ SleepAct::SleepAct(Room* bedroom) : Activities(){
     message = "Press Space to sleep";
     pos = {3, 2};
     room = bedroom;
+    duration[0] = 20;
+    duration[1] = 60;
+    duration[2] = 180;
 }
 
 void SleepAct::action(){

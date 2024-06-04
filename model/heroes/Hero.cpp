@@ -7,6 +7,7 @@
 #include "../../etc/globals.h"
 #include "../../controller/spacebar/actions/activities/Sleep.h"
 #include "../../controller/spacebar/actions/activities/Training.h"
+#include "../../controller/spacebar/actions/activities/Upgrade.h"
 
 Hero::Hero(std::string filename, char character, int color){
     health = 100;
@@ -24,6 +25,8 @@ Hero::Hero(std::string filename, char character, int color){
     currAct = NULL;
 
     xp = 0;
+
+    equipmentHealth = 95;
 }
 
 int Hero::getHealth(){
@@ -86,6 +89,18 @@ void Hero::setXP(int xp){
     this->xp += xp;
 }
 
+void Hero::resetEquipmentHealth(){
+    equipmentHealth = 100;
+}
+
+void Hero::decreaseEquipmentHealth(int number){
+    equipmentHealth -= number;
+}
+
+int Hero::getEqHealth(){
+    return equipmentHealth;
+}
+
 namespace HeroNS{
     std::array<Hero*, 6> heroes;
 
@@ -108,6 +123,7 @@ namespace HeroNS{
 
         heroes[4] = new Hero("iron-man", 'I', Globals::RED);
         heroes[4]->getBedroom()->addFeatures({0,0}, {7,7}, new SleepAct(heroes[4]->getBedroom()));
+        heroes[4]->getBedroom()->addFeatures({22,1}, {28,8}, new UpgradeAct({25, 1}, heroes[4]->getBedroom()));
 
         heroes[5] = new Hero("thor", 'T', Globals::GRAY);
         heroes[5]->getBedroom()->addFeatures({0,0}, {7,7}, new SleepAct(heroes[5]->getBedroom()));

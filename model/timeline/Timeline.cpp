@@ -19,6 +19,7 @@ Timeline::Timeline(){
 }
 
 void Timeline::pushMid(clock_t endTime, Hero* hero){
+    printf("augh");
     TimeNode* newNode = createNode(endTime, hero);
     if(!head && !tail) head = tail = newNode;
     else if(endTime <= head->endTime){

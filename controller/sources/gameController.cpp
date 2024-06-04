@@ -29,7 +29,7 @@ namespace GameController{
     }
 
     void addSpecialty(){
-        HeroNS::getHero(HeroNS::IRON_MAN)->getBedroom()->addFeatures({22,1}, {28, 8}, new UpgradeAct());
+        HeroNS::getHero(HeroNS::IRON_MAN)->getBedroom()->addFeatures({22,1}, {28, 8}, new UpgradeAct({25, 1}, HeroNS::getHero(HeroNS::IRON_MAN)->getBedroom()));
 
     }
 

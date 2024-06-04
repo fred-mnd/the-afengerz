@@ -27,7 +27,10 @@ private:
 
     int xp;
 
+    int equipmentHealth;
+
 public:
+
     Hero(std::string filename, char character, int color);
 
     int getHealth();
@@ -59,6 +62,12 @@ public:
     int getXP();
 
     void setXP(int xp);
+
+    void resetEquipmentHealth();
+
+    void decreaseEquipmentHealth(int number);
+
+    int getEqHealth();
 };
 
 namespace HeroNS{

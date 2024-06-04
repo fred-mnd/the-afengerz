@@ -18,8 +18,6 @@ namespace TrainingPage{
         puts("Simulation");
     }
 
-    int duration[] = {15, 45, 90};
-
     void printArrow(){
         Utils::changeCursorPos({x, short(y + options-1)});
         Utils::printHeroCoded(GameController::getCurrHero(), '<');
@@ -43,7 +41,7 @@ namespace TrainingPage{
                 changeArrow(1);
             }
             else if(key == ' '){
-                TimelineController::addEvent(duration[options], GameController::getCurrHero(), ActionController::getAct(), options);
+                TimelineController::addEvent(GameController::getCurrHero(), ActionController::getAct(), options);
                 return;
             }
             else if(key == 27){

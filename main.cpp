@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "view/headers/gamePage.h"
+#include "etc/utils.h"
 #include <iostream>
 
 using namespace std;

@@ -1,9 +1,10 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+class Hero;
+
 #include <windows.h>
 #include <string>
-#include "../model/heroes/Hero.h"
 
 namespace Utils{
     void changeCursorPos(COORD pos);
@@ -14,6 +15,7 @@ namespace Utils{
     void printHeroCoded(Hero* hero, std::string message);
     void printHeroCoded(Hero* hero, char character);
     void clearText(COORD coor);
+    std::string printTime(int minute);
 }
 
 #endif

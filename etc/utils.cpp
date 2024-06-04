@@ -43,6 +43,20 @@ namespace Utils{
         printf("\e[%dm%c\e[39m", hero->getColor(), character);
     }
 
+    std::string printTime(int minute){
+        int hours = minute / 60;
+        int mins = minute % 60;
+
+        std::string text;
+
+        if(hours > 0) text += std::to_string(hours) + " hour(s)";
+        if(mins > 0){
+            text += " " + std::to_string(mins) + " minute(s)";
+        }
+
+        return text;
+    }
+
     void clearText(COORD coor){
         changeCursorPos(coor);
         printf("\e[K");

@@ -11,9 +11,14 @@ class Activities : public SpaceBar{
 protected:
     COORD pos;
     Room* room;
+    int duration[3];
 public:
     Activities() : SpaceBar(){
 
+    }
+
+    int getDuration(int idx){
+        return duration[idx];
     }
 
     virtual void action(){
@@ -25,11 +30,7 @@ public:
     }
 
     virtual void end(Hero* hero){
-        
-    }
-
-    virtual void start(){
-
+    
     }
 
     virtual ~Activities(){

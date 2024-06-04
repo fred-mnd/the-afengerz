@@ -7,6 +7,7 @@
 #include "../../model/map/Room.h"
 #include "../headers/gameController.h"
 #include "../spacebar/actions/Activities.h"
+#include "../spacebar/actions/activities/Upgrade.h"
 #include <time.h>
 #include <thread>
 
@@ -19,11 +20,12 @@ namespace TimelineController{
     }
 
     Timeline* timeline = new Timeline();
-    void addEvent(int duration, Hero* hero, Activities* act, int options){
+    void addEvent(Hero* hero, Activities* act, int options){
         act->start(options);
-        act->getRoom()->addHero(hero);
         hero->setAct(act);
-        timeline->pushMid(clock() + duration * CLOCKS_PER_SEC, hero);
+        act->getRoom()->addHero(hero);
+        printf("aigh");
+        timeline->pushMid(clock() + act->getDuration(options) * CLOCKS_PER_SEC, hero);
         refreshUI(act);
     }
 

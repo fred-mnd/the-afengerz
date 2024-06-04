@@ -19,14 +19,14 @@ namespace ActionController{
         return (Activities*) spacebar;
     }
 
-    COORD checkCoordinate(Room* room, Room* prevRoom){
-        for(Connection* conn : room->getConn()){
-            if(conn->room == prevRoom){
-                return conn->door;
-            }
-        }
-        return {0,0};
-    }
+    // COORD checkCoordinate(Room* room, Room* prevRoom){
+    //     for(Connection* conn : room->getConn()){
+    //         if(conn->room == prevRoom){
+    //             return conn->door;
+    //         }
+    //     }
+    //     return {0,0};
+    // }
 
     void action(){
         if(!spacebar) return;

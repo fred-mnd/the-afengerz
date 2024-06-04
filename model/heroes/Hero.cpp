@@ -11,7 +11,9 @@
 
 Hero::Hero(std::string filename, char character, int color){
     health = 100;
+    maxHealth = 100;
     hunger = 100;
+    maxHunger = 100;
     level = 1;
     bedroom = new Room(filename, "Bedroom");
     bedroom->addRelationship(17, 14, RoomNS::getRoom(RoomNS::LIVING_ROOM));
@@ -25,8 +27,9 @@ Hero::Hero(std::string filename, char character, int color){
     currAct = NULL;
 
     xp = 0;
+    int maxXP = 100;
 
-    equipmentHealth = 95;
+    equipmentHealth = 100;
 }
 
 int Hero::getHealth(){
@@ -35,6 +38,7 @@ int Hero::getHealth(){
 
 void Hero::setHealth(int newHealth){
     health += newHealth;
+    if(health > maxHealth) health = maxHealth;
 }
 
 int Hero::getHunger(){
@@ -42,7 +46,8 @@ int Hero::getHunger(){
 }
 
 void Hero::setHunger(int newHunger){
-    hunger = newHunger;
+    hunger += newHunger;
+    if(hunger > maxHunger) hunger = maxHunger;
 }
 
 Room* Hero::getBedroom(){
@@ -87,6 +92,7 @@ int Hero::getXP(){
 
 void Hero::setXP(int xp){
     this->xp += xp;
+    if(this->xp >= maxXp) this->xp = maxXp;
 }
 
 void Hero::resetEquipmentHealth(){

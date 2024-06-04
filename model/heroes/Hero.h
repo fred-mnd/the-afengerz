@@ -12,7 +12,11 @@ class Activities;
 class Hero {
 private:
     int health;
+    int maxHealth;
+
     int hunger;
+    int maxHunger;
+
     int level;
 
     Room *bedroom;
@@ -26,6 +30,7 @@ private:
     Activities* currAct;
 
     int xp;
+    int maxXp;
 
     int equipmentHealth;
 

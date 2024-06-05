@@ -36,7 +36,6 @@ Room::Room(std::string filename, std::string name){
             map[i][j] = scanned[j];
         }
     }
-
     this->name = name;
 }
 

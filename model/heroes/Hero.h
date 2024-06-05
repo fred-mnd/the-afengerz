@@ -24,6 +24,7 @@ private:
 
     char character;
     int color;
+    std::string fullName;
 
     COORD pos;
 
@@ -36,7 +37,7 @@ private:
 
 public:
 
-    Hero(std::string filename, char character, int color);
+    Hero(std::string filename, char character, int color, std::string fullName);
 
     int getHealth();
 

@@ -7,7 +7,7 @@
 #include "../../controller/spacebar/actions/activities/Eat.h"
 #include "../../controller/spacebar/actions/Activities.h"
 
-Features::Features(COORD start, COORD end, Activities* act){
+Features::Features(COORD start, COORD end, SpaceBar* act){
     this->start = start;
     this->end = end;
     this->act = act;
@@ -16,7 +16,7 @@ bool Features::checkNear(COORD pos){
     return (pos.X >= start.X && pos.X <= end.X && pos.Y >= start.Y && pos.Y <= end.Y);
 }
 
-Activities* Features::getAct(){
+SpaceBar* Features::getAct(){
     return act;
 }
 
@@ -39,7 +39,7 @@ Room::Room(std::string filename, std::string name){
     this->name = name;
 }
 
-void Room::addFeatures(COORD start, COORD end, Activities* act){
+void Room::addFeatures(COORD start, COORD end, SpaceBar* act){
     featList.push_back(new Features(start, end, act));
 }
 

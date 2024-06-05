@@ -28,9 +28,12 @@ namespace GameController{
         return currHero;
     }
 
+    void setCurrHero(Hero* hero){
+        currHero = hero;
+    }
+
     void addSpecialty(){
         HeroNS::getHero(HeroNS::IRON_MAN)->getBedroom()->addFeatures({22,1}, {28, 8}, new UpgradeAct({25, 1}, HeroNS::getHero(HeroNS::IRON_MAN)->getBedroom()));
-
     }
 
     void test(){
@@ -49,7 +52,7 @@ namespace GameController{
         changeBedroom();
     }
 
-    Activities* getAct(){
+    SpaceBar* getAct(){
         COORD pos = currHero->getPos();
         for(Features* feat : currHero->getCurrRoom()->getFeat()){
             if(feat->checkNear(pos)){

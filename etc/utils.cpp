@@ -49,9 +49,9 @@ namespace Utils{
 
         std::string text;
 
-        if(hours > 0) text += std::to_string(hours) + " hour(s)";
+        if(hours > 0) text += std::to_string(hours) + " hour(s) ";
         if(mins > 0){
-            text += " " + std::to_string(mins) + " minute(s)";
+            text += std::to_string(mins) + " minute(s)";
         }
 
         return text;

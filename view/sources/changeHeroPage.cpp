@@ -8,14 +8,16 @@
 
 namespace ChangeHeroPage{
 
-    short x = 17;
+    short x = 21;
     short y = 4;
     short options = 0;
 
     void printMenu(){
-        puts("Dessert");
-        puts("A-la Carte");
-        puts("All You Can Eat");
+        for(int i=0;i<6;i++){
+            Hero* currHero = HeroNS::getHero(i);
+            Utils::printHeroCoded(currHero, currHero->getChar());
+            printf(" - %s\n", currHero->getName().c_str());
+        }
     }
 
     void printArrow(){
@@ -31,6 +33,11 @@ namespace ChangeHeroPage{
         printArrow();
     }
 
+    void changeHero(){
+        GameController::setCurrHero(HeroNS::getHero(options));
+        GameController::changeBedroom();
+    }
+
     void control(){
         do{
             char key = Utils::getKeyInput();
@@ -41,7 +48,7 @@ namespace ChangeHeroPage{
                 changeArrow(1);
             }
             else if(key == ' '){
-                TimelineController::addEvent(GameController::getCurrHero(), ActionController::getAct(), options);
+                changeHero();
                 return;
             }
             else if(key == 27){

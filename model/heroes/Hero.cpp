@@ -109,6 +109,10 @@ int Hero::getEqHealth(){
     return equipmentHealth;
 }
 
+std::string Hero::getName(){
+    return fullName;
+}
+
 namespace HeroNS{
     std::array<Hero*, 6> heroes;
 
@@ -132,6 +136,7 @@ namespace HeroNS{
         heroes[4] = new Hero("iron-man", 'I', Globals::RED, "Iron Man");
         heroes[4]->getBedroom()->addFeatures({0,0}, {7,7}, new SleepAct(heroes[4]->getBedroom()));
         heroes[4]->getBedroom()->addFeatures({22,1}, {28,8}, new UpgradeAct({25, 1}, heroes[4]->getBedroom()));
+        heroes[4]->getBedroom()->addFeatures({2,10}, {2,10}, new ChangeHero());
 
         heroes[5] = new Hero("thor", 'T', Globals::GRAY, "Thor");
         heroes[5]->getBedroom()->addFeatures({0,0}, {7,7}, new SleepAct(heroes[5]->getBedroom()));

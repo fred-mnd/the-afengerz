@@ -8,12 +8,13 @@
 
 namespace GameController{
     Hero* getCurrHero();
+    void setCurrHero(Hero* hero);
     void init();
 
     std::array<std::array<char, 31>,15> getCurrMap();
-    COORD getHeroPos(Hero* hero);
     void moveHero(COORD newPos);
     std::thread *getTimelineThread();
+    void changeBedroom();
 }
 
 #endif

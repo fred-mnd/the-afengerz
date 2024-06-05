@@ -11,17 +11,17 @@
 class Connection;
 class Room;
 class Hero;
-class Activities;
+class SpaceBar;
 
 class Features{
 private:
     COORD start;
     COORD end;
-    Activities* act;
+    SpaceBar* act;
 public:
-    Features(COORD start, COORD end, Activities* act);
+    Features(COORD start, COORD end, SpaceBar* act);
     bool checkNear(COORD pos);
-    Activities* getAct();
+    SpaceBar* getAct();
 };
 
 class Connection{
@@ -42,7 +42,7 @@ private:
 public:
     Room(std::string filename, std::string name);
     
-    void addFeatures(COORD start, COORD end, Activities* act);
+    void addFeatures(COORD start, COORD end, SpaceBar* act);
 
     void addRelationship(int x, int y, Room* nextRoom);
 

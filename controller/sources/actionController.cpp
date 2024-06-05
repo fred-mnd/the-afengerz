@@ -22,13 +22,13 @@ namespace ActionController{
     void action(){
         if(!spacebar) return;
         spacebar->action();
+        spacebar = NULL;
         GamePage::show();
     }
 
     SpaceBar* hasAction(){
         return spacebar;
     }
-
 }
 
 #endif

@@ -74,6 +74,8 @@ public:
     void decreaseEquipmentHealth(int number);
 
     int getEqHealth();
+
+    std::string getName();
 };
 
 namespace HeroNS{

@@ -15,7 +15,7 @@ TrainingAct::TrainingAct() : Activities(){
     duration[2] = 90;
 }
 
-void TrainingAct::action(){
+bool TrainingAct::action(){
     TrainingPage::show();
 }
 

@@ -2,6 +2,8 @@
 #define GAME_CONTROLLER_CPP
 
 #include "../../model/heroes/Hero.h"
+#include "../../view/headers/changeHeroPage.h"
+#include "../../view/headers/gamePage.h"
 #include "../../etc/utils.h"
 #include "../spacebar/actions/ChangeRoom.h"
 #include "../spacebar/actions/Activities.h"
@@ -47,8 +49,8 @@ namespace GameController{
         RoomNS::init();
         HeroNS::init();
         addSpecialty();
-        // currHero = HeroNS::getHero(std::rand() % 6);
-        currHero = HeroNS::getHero(4);
+        currHero = HeroNS::getHero(std::rand() % 6);
+        // currHero = HeroNS::getHero(4);
         changeBedroom();
     }
 
@@ -89,6 +91,15 @@ namespace GameController{
 
     void changeBedroom(){
         RoomNS::getRoom(RoomNS::LIVING_ROOM)->changeRelationship(0, GameController::getCurrHero()->getBedroom());
+    }
+
+    bool changeHero(){
+        if(currHero->getCurrRoom() == currHero->getBedroom() || currHero->getAct()){
+            ChangeHeroPage::show();
+            GamePage::show();
+            return true;
+        }
+        return false;
     }
 
 }

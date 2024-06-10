@@ -13,7 +13,7 @@ public:
         return this->message;
     }
 
-    virtual void action(){
+    virtual bool action(){
 
     }
 

@@ -24,7 +24,6 @@ namespace TimelineController{
         act->start(options);
         hero->setAct(act);
         act->getRoom()->addHero(hero);
-        printf("aigh");
         timeline->pushMid(clock() + act->getDuration(options) * CLOCKS_PER_SEC, hero);
         refreshUI(act);
     }

@@ -29,7 +29,7 @@ public:
         return {0,0};
     }
 
-    void action() override {
+    bool action() override {
         COORD nextCoord = checkCoordinate(nextRoom, currHero->getCurrRoom());
         Room* prevRoom = currHero->getCurrRoom();
         currHero->setCurrRoom(nextRoom);

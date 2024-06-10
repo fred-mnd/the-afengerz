@@ -1,14 +1,11 @@
-#ifndef SLEEP_H
-#define SLEEP_H
+#ifndef MEETING_H
+#define MEETING_H
 
 #include "../Activities.h"
 
-class SleepAct : public Activities{
-private:
-    int HP;
-    int HPList[3] = {15, 35, 100};
+class MeetingAct : public Activities{
 public:
-    SleepAct(Room* bedroom);
+    MeetingAct();
 
     bool action();
 
@@ -17,7 +14,6 @@ public:
     void end(Hero* hero);
 
     bool checkEligibility(Hero* hero);
-
 };
 
 #endif

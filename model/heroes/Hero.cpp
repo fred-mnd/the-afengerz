@@ -8,12 +8,11 @@
 #include "../../controller/spacebar/actions/activities/Sleep.h"
 #include "../../controller/spacebar/actions/activities/Training.h"
 #include "../../controller/spacebar/actions/activities/Upgrade.h"
-#include "../../controller/spacebar/actions/ChangeHero.h"
 
 Hero::Hero(std::string filename, char character, int color, std::string fullName){
     health = 100;
     maxHealth = 100;
-    hunger = 100;
+    hunger = 10;
     maxHunger = 100;
     level = 1;
     bedroom = new Room(filename, "Bedroom");
@@ -50,6 +49,22 @@ int Hero::getHunger(){
 void Hero::setHunger(int newHunger){
     hunger += newHunger;
     if(hunger > maxHunger) hunger = maxHunger;
+}
+
+int Hero::getMaxHealth(){
+    return maxHealth;
+}
+
+void Hero::setMaxHealth(int newHealth){
+    maxHealth = newHealth;
+}
+
+int Hero::getMaxHunger(){
+    return maxHunger;
+}
+
+void Hero::setMaxHunger(int newHunger){
+    maxHunger += newHunger;
 }
 
 Room* Hero::getBedroom(){
@@ -136,7 +151,6 @@ namespace HeroNS{
         heroes[4] = new Hero("iron-man", 'I', Globals::RED, "Iron Man");
         heroes[4]->getBedroom()->addFeatures({0,0}, {7,7}, new SleepAct(heroes[4]->getBedroom()));
         heroes[4]->getBedroom()->addFeatures({22,1}, {28,8}, new UpgradeAct({25, 1}, heroes[4]->getBedroom()));
-        heroes[4]->getBedroom()->addFeatures({2,10}, {2,10}, new ChangeHero());
 
         heroes[5] = new Hero("thor", 'T', Globals::GRAY, "Thor");
         heroes[5]->getBedroom()->addFeatures({0,0}, {7,7}, new SleepAct(heroes[5]->getBedroom()));

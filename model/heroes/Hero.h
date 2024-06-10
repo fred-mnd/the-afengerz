@@ -47,6 +47,14 @@ public:
 
     void setHunger(int newHunger);
 
+    int getMaxHealth();
+
+    void setMaxHealth(int newHealth);
+
+    int getMaxHunger();
+
+    void setMaxHunger(int newHunger);
+
     Room* getBedroom();
 
     Room* getCurrRoom();

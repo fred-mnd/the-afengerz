@@ -21,9 +21,10 @@ namespace ActionController{
 
     void action(){
         if(!spacebar) return;
-        spacebar->action();
-        spacebar = NULL;
-        GamePage::show();
+        if(spacebar->action()){
+            spacebar = NULL;
+            GamePage::show();
+        }
     }
 
     SpaceBar* hasAction(){

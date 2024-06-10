@@ -58,8 +58,14 @@ namespace GamePage{
             inUI = true;
             if(!GameController::getCurrHero()->getAct()) printHero(GameController::getCurrHero(), GameController::getCurrHero()->getPos());
             char key = Utils::getKeyInput();
-            if(GameController::getCurrHero()->getAct()) continue;
-            if(key == 'd'){
+            if(key == 'p'){
+                inUI = false;
+                if(!GameController::changeHero()){
+                    printText(Globals::ACTION_MESSAGE, "You currently can't switch hero");
+                }
+            }
+            else if(GameController::getCurrHero()->getAct()) continue;
+            else if(key == 'd'){
                 moveHero(1, 0);
             }
             else if(key == 'a'){

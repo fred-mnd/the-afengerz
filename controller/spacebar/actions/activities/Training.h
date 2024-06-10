@@ -10,11 +10,12 @@ private:
 public:
     TrainingAct();
 
-    void action();
+    bool action();
 
     void start(int options);
 
     void end(Hero* hero);
+
 };
 
 #endif

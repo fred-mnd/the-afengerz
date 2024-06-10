@@ -21,8 +21,8 @@ public:
         return duration[idx];
     }
 
-    virtual void action(){
-        
+    virtual bool action(){
+
     }
 
     virtual void start(int options){
@@ -34,6 +34,10 @@ public:
     }
 
     virtual ~Activities(){
+
+    }
+
+    virtual bool checkEligibility(Hero* hero){
 
     }
 

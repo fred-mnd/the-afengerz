@@ -13,11 +13,13 @@ private:
 public:
     EatAct();
 
-    void action();
+    bool action();
 
     void start(int options);
 
     void end(Hero* hero);
+
+    bool checkEligibility(Hero* hero);
 };
 
 #endif

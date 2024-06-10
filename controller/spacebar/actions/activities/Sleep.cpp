@@ -4,6 +4,7 @@
 #include "Sleep.h"
 #include "../../../../view/headers/sleepPage.h"
 #include "../../../../model/heroes/Hero.h"
+#include "../../../headers/gameController.h"
 
 SleepAct::SleepAct(Room* bedroom) : Activities(){
     message = "Press Space to sleep";
@@ -14,8 +15,15 @@ SleepAct::SleepAct(Room* bedroom) : Activities(){
     duration[2] = 180;
 }
 
-void SleepAct::action(){
-    SleepPage::show();
+bool SleepAct::action(){
+    if(checkEligibility(GameController::getCurrHero())){
+        SleepPage::show();
+        return true;
+    }
+    else{
+        message = "Your health is currently full";
+    }
+    return false;
 }
 
 void SleepAct::start(int options){
@@ -24,6 +32,10 @@ void SleepAct::start(int options){
 
 void SleepAct::end(Hero* hero){
     hero->setHealth(HP);
+}
+
+bool SleepAct::checkEligibility(Hero* hero){
+    return hero->getHealth() < hero->getMaxHealth();
 }
 
 #endif

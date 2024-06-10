@@ -4,6 +4,7 @@
 #include "Eat.h"
 #include "../../../../model/heroes/Hero.h"
 #include "../../../../view/headers/eatPage.h"
+#include "../../../headers/gameController.h"
 #include "../../../../model/map/Room.h"
 
 COORD EatAct::posList[4] = {{9, 4}, {19, 4}, {9, 9}, {19, 9}};
@@ -18,8 +19,15 @@ EatAct::EatAct() : Activities(){
     duration[2] = 90;
 }
 
-void EatAct::action(){
-    EatPage::show();
+bool EatAct::action(){
+    if(checkEligibility(GameController::getCurrHero())){
+        EatPage::show();
+        return true;
+    }
+    else{
+        message = "Your hunger is currently full";
+    }
+    return false;
 }
 
 void EatAct::start(int options){
@@ -36,6 +44,10 @@ void EatAct::start(int options){
 
 void EatAct::end(Hero* hero){
     hero->setHealth(HP);
+}
+
+bool EatAct::checkEligibility(Hero* hero){
+    return hero->getHunger() < hero->getMaxHunger();
 }
 
 #endif

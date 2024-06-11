@@ -5,22 +5,26 @@
 #include <stdlib.h>
 #include "../heroes/Hero.h"
 
+class Activities;
+
 struct TimeNode{
     clock_t endTime;
     Hero* hero;
+    Activities* act;
     TimeNode* next;
+    COORD pos;
 };
 
 class Timeline{
 private:
     TimeNode *head, *tail;
 
-    TimeNode* createNode(clock_t endTime, Hero* hero);
+    TimeNode* createNode(clock_t endTime, Hero* hero, Activities* act);
 
 public:
     Timeline();
 
-    void pushMid(clock_t endTime, Hero* hero);
+    TimeNode* pushMid(clock_t endTime, Hero* hero, Activities* act);
 
     Hero* popHead();
 

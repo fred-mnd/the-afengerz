@@ -95,11 +95,11 @@ int Hero::getColor(){
     return color;
 }
 
-void Hero::setAct(Activities* act){
+void Hero::setAct(TimeNode* act){
     this->currAct = act;
 }
 
-Activities* Hero::getAct(){
+TimeNode* Hero::getAct(){
     return currAct;
 }
 

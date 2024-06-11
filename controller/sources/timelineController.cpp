@@ -22,15 +22,14 @@ namespace TimelineController{
     Timeline* timeline = new Timeline();
     void addEvent(Hero* hero, Activities* act, int options){
         act->start(options);
-        hero->setAct(act);
+        hero->setAct(timeline->pushMid(clock() + act->getDuration(options) * CLOCKS_PER_SEC, hero, act));
         act->getRoom()->addHero(hero);
-        timeline->pushMid(clock() + act->getDuration(options) * CLOCKS_PER_SEC, hero);
         refreshUI(act);
     }
 
     void endEvent(){
         Hero* hero = timeline->popHead();
-        Activities* act = hero->getAct();
+        Activities* act = hero->getAct()->act;
         act->end(hero);
         act->getRoom()->removeHero(hero);
         hero->setAct(NULL);

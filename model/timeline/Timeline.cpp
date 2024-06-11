@@ -4,10 +4,11 @@
 #include "Timeline.h"
 #include "../../controller/spacebar/actions/Activities.h"
 
-TimeNode* Timeline::createNode(clock_t endTime, Hero* hero){
+TimeNode* Timeline::createNode(clock_t endTime, Hero* hero, Activities* act){
     TimeNode* newNode = (TimeNode*)malloc(sizeof(TimeNode));
     newNode->endTime = endTime;
     newNode->hero = hero;
+    newNode->act = act;
     newNode->next = NULL;
 
     return newNode;
@@ -18,9 +19,9 @@ Timeline::Timeline(){
     tail = NULL;
 }
 
-void Timeline::pushMid(clock_t endTime, Hero* hero){
+TimeNode* Timeline::pushMid(clock_t endTime, Hero* hero, Activities* act){
     printf("augh");
-    TimeNode* newNode = createNode(endTime, hero);
+    TimeNode* newNode = createNode(endTime, hero, act);
     if(!head && !tail) head = tail = newNode;
     else if(endTime <= head->endTime){
         newNode->next = head;
@@ -38,6 +39,10 @@ void Timeline::pushMid(clock_t endTime, Hero* hero){
         newNode->next = curr->next;
         curr->next = newNode;
     }
+
+    newNode->pos = act->getPos();
+
+    return newNode;
 }
 
 Hero* Timeline::popHead(){
@@ -59,7 +64,7 @@ void Timeline::view(){
     TimeNode* curr = head;
     while(curr){
         printf("Name = %c\n", curr->hero->getChar());
-        printf("Act = %s\n", curr->hero->getAct()->getMessage().c_str());
+        printf("Act = %s\n", curr->hero->getAct()->act->getMessage().c_str());
         printf("End Time = %ld", curr->endTime);
         curr = curr->next;
     }

@@ -8,6 +8,7 @@
 #include "../../etc/globals.h"
 #include "../../controller/spacebar/SpaceBar.h"
 #include "../../controller/headers/actionController.h"
+#include "../../model/timeline/Timeline.h"
 #include "../../model/map/Room.h"
 #include "../headers/gamePage.h"
 
@@ -93,14 +94,14 @@ namespace GamePage{
             printf("%s\n", map[i]);
         }
         for(Hero* hero : GameController::getCurrHero()->getCurrRoom()->getHeroList()){
-            printHero(hero, hero->getAct()->getPos());
+            printHero(hero, hero->getAct()->pos);
         }
         printText(Globals::ROOM_NAME, GameController::getCurrHero()->getCurrRoom()->getName().c_str());
     }
 
     void printHero(Hero* hero, COORD pos){
         Utils::changeCursorPos(pos);
-        Utils::printHeroCoded(GameController::getCurrHero(), GameController::getCurrHero()->getChar());
+        Utils::printHeroCoded(hero, hero->getChar());
     }
 
     void refreshUI(){

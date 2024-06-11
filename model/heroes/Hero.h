@@ -7,7 +7,7 @@
 #include <array>
 
 class Room;
-class Activities;
+class TimeNode;
 
 class Hero {
 private:
@@ -28,7 +28,7 @@ private:
 
     COORD pos;
 
-    Activities* currAct;
+    TimeNode* currAct;
 
     int xp;
     int maxXp;
@@ -69,9 +69,9 @@ public:
 
     int getColor();
 
-    void setAct(Activities* act);
+    void setAct(TimeNode* act);
 
-    Activities* getAct();
+    TimeNode* getAct();
 
     int getXP();
 

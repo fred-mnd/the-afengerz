@@ -19,12 +19,12 @@ bool TrainingAct::action(){
     TrainingPage::show();
 }
 
-void TrainingAct::start(int options){
-    XP = XPList[options];
+int TrainingAct::start(int options){
+    return XPList[options];
 }
 
-void TrainingAct::end(Hero* hero){
-    hero->setXP(XP);
+void TrainingAct::end(Hero* hero, int change){
+    hero->setXP(change);
 }
 
 #endif

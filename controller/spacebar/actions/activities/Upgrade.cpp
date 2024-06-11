@@ -36,11 +36,11 @@ bool UpgradeAct::action(){
     return false;
 }
 
-void UpgradeAct::start(int options){
+int UpgradeAct::start(int options){
 
 }
 
-void UpgradeAct::end(Hero* hero){
+void UpgradeAct::end(Hero* hero, int change){
     hero->resetEquipmentHealth();
 }
 

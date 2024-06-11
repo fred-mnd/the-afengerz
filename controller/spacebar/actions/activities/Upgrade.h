@@ -10,9 +10,9 @@ public:
 
     bool action();
 
-    void start(int options);
+    int start(int options);
 
-    void end(Hero* hero);
+    void end(Hero* hero, int change);
 
     bool checkEligibility(Hero* hero);
 };

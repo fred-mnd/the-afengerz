@@ -25,11 +25,11 @@ public:
 
     }
 
-    virtual void start(int options){
+    virtual int start(int options){
         
     }
 
-    virtual void end(Hero* hero){
+    virtual void end(Hero* hero, int change){
     
     }
 

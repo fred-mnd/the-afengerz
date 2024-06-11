@@ -30,20 +30,20 @@ bool EatAct::action(){
     return false;
 }
 
-void EatAct::start(int options){
+int EatAct::start(int options){
     for(int i=0;i<4;i++){
         if(!roomOcc[i]){
             posIdx = i;
             pos = posList[i];
             roomOcc[i] = true;
-            return;
+            return addHP[options];
         }
     }
-    HP = addHP[options];
+    return addHP[options];
 }
 
-void EatAct::end(Hero* hero){
-    hero->setHealth(HP);
+void EatAct::end(Hero* hero, int change){
+    hero->setHunger(change);
 }
 
 bool EatAct::checkEligibility(Hero* hero){

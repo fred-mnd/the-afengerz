@@ -26,12 +26,12 @@ bool SleepAct::action(){
     return false;
 }
 
-void SleepAct::start(int options){
-    HP = HPList[options];
+int SleepAct::start(int options){
+    return HPList[options];
 }
 
-void SleepAct::end(Hero* hero){
-    hero->setHealth(HP);
+void SleepAct::end(Hero* hero, int change){
+    hero->setHealth(change);
 }
 
 bool SleepAct::checkEligibility(Hero* hero){

@@ -5,16 +5,15 @@
 
 class TrainingAct : public Activities{
 private:
-    int XP;
     int XPList[3] = {20, 35, 50};
 public:
     TrainingAct();
 
     bool action();
 
-    void start(int options);
+    int start(int options);
 
-    void end(Hero* hero);
+    void end(Hero* hero, int change);
 
 };
 

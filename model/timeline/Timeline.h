@@ -11,8 +11,9 @@ struct TimeNode{
     clock_t endTime;
     Hero* hero;
     Activities* act;
-    TimeNode* next;
+    TimeNode* next, *prev;
     COORD pos;
+    int change;
 };
 
 class Timeline{
@@ -26,7 +27,7 @@ public:
 
     TimeNode* pushMid(clock_t endTime, Hero* hero, Activities* act);
 
-    Hero* popHead();
+    Activities* popHead();
 
     void view();
 

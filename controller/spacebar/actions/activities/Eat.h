@@ -9,15 +9,14 @@ private:
     static bool roomOcc[4];
     int posIdx;
     int addHP[3] = {20, 50, 95};
-    int HP;
 public:
     EatAct();
 
     bool action();
 
-    void start(int options);
+    int start(int options);
 
-    void end(Hero* hero);
+    void end(Hero* hero, int change);
 
     bool checkEligibility(Hero* hero);
 };

@@ -12,7 +12,7 @@
 Hero::Hero(std::string filename, char character, int color, std::string fullName){
     health = 100;
     maxHealth = 100;
-    hunger = 10;
+    hunger = 75;
     maxHunger = 100;
     level = 1;
     bedroom = new Room(filename, "Bedroom");

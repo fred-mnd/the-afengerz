@@ -3,13 +3,14 @@
 
 #include "Timeline.h"
 #include "../../controller/spacebar/actions/Activities.h"
+#include "../map/Room.h"
 
 TimeNode* Timeline::createNode(clock_t endTime, Hero* hero, Activities* act){
     TimeNode* newNode = (TimeNode*)malloc(sizeof(TimeNode));
     newNode->endTime = endTime;
     newNode->hero = hero;
     newNode->act = act;
-    newNode->next = NULL;
+    newNode->next = newNode->prev = NULL;
 
     return newNode;
 }
@@ -25,10 +26,12 @@ TimeNode* Timeline::pushMid(clock_t endTime, Hero* hero, Activities* act){
     if(!head && !tail) head = tail = newNode;
     else if(endTime <= head->endTime){
         newNode->next = head;
+        head->prev = newNode;
         head = newNode;
     }
     else if(endTime >= tail->endTime){
         tail->next = newNode;
+        newNode->prev = tail;
         tail = newNode;
     }
     else{
@@ -37,7 +40,9 @@ TimeNode* Timeline::pushMid(clock_t endTime, Hero* hero, Activities* act){
             curr = curr->next;
         }
         newNode->next = curr->next;
+        curr->next->prev = newNode;
         curr->next = newNode;
+        newNode->prev = curr;
     }
 
     newNode->pos = act->getPos();
@@ -45,8 +50,9 @@ TimeNode* Timeline::pushMid(clock_t endTime, Hero* hero, Activities* act){
     return newNode;
 }
 
-Hero* Timeline::popHead(){
+Activities* Timeline::popHead(){
     Hero* hero = head->hero;
+    int change = head->change;
     if(head == tail){
         free(head);
         head = tail = NULL;
@@ -56,8 +62,13 @@ Hero* Timeline::popHead(){
         head->next = NULL;
         free(head);
         head = next;
+        next->prev = NULL;
     }
-    return hero;
+    Activities* act = hero->getAct()->act;
+    act->end(hero, change);
+    act->getRoom()->removeHero(hero);
+    hero->setAct(NULL);
+    return act;
 }
 
 void Timeline::view(){

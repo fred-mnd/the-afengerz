@@ -21,18 +21,16 @@ namespace TimelineController{
 
     Timeline* timeline = new Timeline();
     void addEvent(Hero* hero, Activities* act, int options){
-        act->start(options);
-        hero->setAct(timeline->pushMid(clock() + act->getDuration(options) * CLOCKS_PER_SEC, hero, act));
+        int change = act->start(options);
+        TimeNode* newNode = timeline->pushMid(clock() + act->getDuration(options) * CLOCKS_PER_SEC, hero, act);
+        newNode->change = change;
+        hero->setAct(newNode);
         act->getRoom()->addHero(hero);
         refreshUI(act);
     }
 
     void endEvent(){
-        Hero* hero = timeline->popHead();
-        Activities* act = hero->getAct()->act;
-        act->end(hero);
-        act->getRoom()->removeHero(hero);
-        hero->setAct(NULL);
+        Activities* act = timeline->popHead();
         refreshUI(act);
     }
 

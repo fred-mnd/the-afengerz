@@ -4,33 +4,38 @@
 #include "Meeting.h"
 #include "../../../../model/heroes/Hero.h"
 #include "../../../headers/gameController.h"
-#include "../../../../view/headers/upgradePage.h"
+#include "../../../../view/headers/meetingPage.h"
 #include "../../../../model/map/Room.h"
 
+COORD MeetingAct::poses[6] = {{10, 4}, {10, 8}, {14, 8}, {14, 4}, {18, 4}, {18, 8}};
+
 MeetingAct::MeetingAct() : Activities(){
-    message = "Press Space to repair equipment";
-    duration[0] = 60;
+    prompt = "Press Space to initiate meeting";
+    fail = "Not all heroas are idle";
+    duration = 60;
     room = RoomNS::getRoom(RoomNS::MEETING_ROOM);
-    pos = {10, 10};
 }
 
 bool MeetingAct::action(){
     if(checkEligibility(GameController::getCurrHero())){
-        UpgradePage::show();
+        MeetingPage::show();
         return true;
     }
     else{
-        message = "Not all heroes are idle.";
+        setFail();
     }
     return false;
 }
 
-void MeetingAct::start(int options){
-    
+int MeetingAct::start(int options){
+    pos = poses[options];
+    return 0;
 }
 
-void MeetingAct::end(Hero* hero){
-    hero->resetEquipmentHealth();
+void MeetingAct::end(Hero* hero, int change){
+    if(hero->getXP() == hero->getMaxXP()){
+        hero->levelUp();
+    }
 }
 
 bool MeetingAct::checkEligibility(Hero* hero){

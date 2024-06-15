@@ -21,7 +21,6 @@ Timeline::Timeline(){
 }
 
 TimeNode* Timeline::pushMid(clock_t endTime, Hero* hero, Activities* act){
-    printf("augh");
     TimeNode* newNode = createNode(endTime, hero, act);
     if(!head && !tail) head = tail = newNode;
     else if(endTime <= head->endTime){

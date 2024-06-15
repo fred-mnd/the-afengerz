@@ -58,6 +58,7 @@ namespace GameController{
         COORD pos = currHero->getPos();
         for(Features* feat : currHero->getCurrRoom()->getFeat()){
             if(feat->checkNear(pos)){
+                feat->getAct()->setPrompt();
                 return feat->getAct();
             }
         }

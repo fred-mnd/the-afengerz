@@ -18,7 +18,7 @@ namespace UpgradePage{
 
         if(health >= 80) options = 0;
         else if(health >= 50) options = 1;
-        printf("Repair Time : %s\n\n", Utils::printTime(ActionController::getAct()->getDuration(options)).c_str());
+        printf("Repair Time : %s\n\n", Utils::printTime(ActionController::getAct()->getDurationFromArray(options)).c_str());
         printf("Press Space to confirm repair");
         puts("");
     }

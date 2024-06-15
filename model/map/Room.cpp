@@ -5,6 +5,7 @@
 #include "../../controller/spacebar/actions/activities/Training.h"
 #include "../../controller/spacebar/actions/activities/Upgrade.h"
 #include "../../controller/spacebar/actions/activities/Eat.h"
+#include "../../controller/spacebar/actions/activities/Meeting.h"
 #include "../../controller/spacebar/actions/Activities.h"
 
 Features::Features(COORD start, COORD end, SpaceBar* act){
@@ -115,6 +116,7 @@ namespace RoomNS{
         rooms[RoomNS::TRAINING_ROOM]->addFeatures({22, 7}, {22, 7}, new TrainingAct());
         rooms[RoomNS::WORKSHOP]->addFeatures({16, 7}, {16, 7}, new UpgradeAct());
         rooms[RoomNS::RESTAURANT]->addFeatures({27, 12}, {27, 12}, new EatAct());
+        rooms[RoomNS::MEETING_ROOM]->addFeatures({8, 4}, {20, 10}, new MeetingAct());
 
     }
 }

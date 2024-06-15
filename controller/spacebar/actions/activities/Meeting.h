@@ -4,14 +4,16 @@
 #include "../Activities.h"
 
 class MeetingAct : public Activities{
+private:
+    static COORD poses[6];
 public:
     MeetingAct();
 
     bool action();
 
-    void start(int options);
+    int start(int options);
 
-    void end(Hero* hero);
+    void end(Hero* hero, int change);
 
     bool checkEligibility(Hero* hero);
 };

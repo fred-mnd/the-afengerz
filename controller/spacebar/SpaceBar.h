@@ -5,7 +5,7 @@
 
 class SpaceBar{
 protected:
-    std::string message;
+    std::string message, prompt, fail;
 public:
     SpaceBar(){
     }
@@ -15,6 +15,14 @@ public:
 
     virtual bool action(){
 
+    }
+
+    void setPrompt(){
+        message = prompt;
+    }
+
+    void setFail(){
+        message = fail;
     }
 
     virtual ~SpaceBar(){}

@@ -7,12 +7,13 @@
 #include "../../../headers/gameController.h"
 
 SleepAct::SleepAct(Room* bedroom) : Activities(){
-    message = "Press Space to sleep";
+    prompt = "Press Space to sleep";
+    fail = "Your health is currently full";
     pos = {3, 2};
     room = bedroom;
-    duration[0] = 20;
-    duration[1] = 60;
-    duration[2] = 180;
+    durations[0] = 20;
+    durations[1] = 60;
+    durations[2] = 180;
 }
 
 bool SleepAct::action(){
@@ -21,12 +22,13 @@ bool SleepAct::action(){
         return true;
     }
     else{
-        message = "Your health is currently full";
+        setFail();
     }
     return false;
 }
 
 int SleepAct::start(int options){
+    duration = durations[options];
     return HPList[options];
 }
 
@@ -35,7 +37,7 @@ void SleepAct::end(Hero* hero, int change){
 }
 
 bool SleepAct::checkEligibility(Hero* hero){
-    return hero->getHealth() < hero->getMaxHealth();
+    return !hero->getAct() && hero->getHealth() < hero->getMaxHealth();
 }
 
 #endif

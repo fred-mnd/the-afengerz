@@ -12,10 +12,10 @@ class TimeNode;
 class Hero {
 private:
     int health;
-    int maxHealth;
+    int maxHealth[6] = {0, 100, 150, 200, 300, 500};
 
     int hunger;
-    int maxHunger;
+    int maxHunger[6] = {0, 100, 150, 200, 250, 300};
 
     int level;
 
@@ -31,7 +31,7 @@ private:
     TimeNode* currAct;
 
     int xp;
-    int maxXp;
+    int maxXp[6] = {0, 100, 200, 350, 500, 1000};
 
     int equipmentHealth;
 
@@ -49,11 +49,7 @@ public:
 
     int getMaxHealth();
 
-    void setMaxHealth(int newHealth);
-
     int getMaxHunger();
-
-    void setMaxHunger(int newHunger);
 
     Room* getBedroom();
 
@@ -77,11 +73,15 @@ public:
 
     void setXP(int xp);
 
+    int getMaxXP();
+
     void resetEquipmentHealth();
 
     void decreaseEquipmentHealth(int number);
 
     int getEqHealth();
+
+    void levelUp();
 
     std::string getName();
 };

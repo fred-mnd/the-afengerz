@@ -10,10 +10,8 @@
 #include "../../controller/spacebar/actions/activities/Upgrade.h"
 
 Hero::Hero(std::string filename, char character, int color, std::string fullName){
-    health = 100;
-    maxHealth = 100;
+    health = 75;
     hunger = 75;
-    maxHunger = 100;
     level = 1;
     bedroom = new Room(filename, "Bedroom");
     bedroom->addRelationship(17, 14, RoomNS::getRoom(RoomNS::LIVING_ROOM));
@@ -28,9 +26,8 @@ Hero::Hero(std::string filename, char character, int color, std::string fullName
     currAct = NULL;
 
     xp = 0;
-    int maxXP = 100;
 
-    equipmentHealth = 100;
+    equipmentHealth = 75;
 }
 
 int Hero::getHealth(){
@@ -39,7 +36,7 @@ int Hero::getHealth(){
 
 void Hero::setHealth(int newHealth){
     health += newHealth;
-    if(health > maxHealth) health = maxHealth;
+    if(health > maxHealth[level]) health = maxHealth[level];
 }
 
 int Hero::getHunger(){
@@ -48,23 +45,15 @@ int Hero::getHunger(){
 
 void Hero::setHunger(int newHunger){
     hunger += newHunger;
-    if(hunger > maxHunger) hunger = maxHunger;
+    if(hunger > maxHunger[level]) hunger = maxHunger[level];
 }
 
 int Hero::getMaxHealth(){
-    return maxHealth;
-}
-
-void Hero::setMaxHealth(int newHealth){
-    maxHealth = newHealth;
+    return maxHealth[level];
 }
 
 int Hero::getMaxHunger(){
-    return maxHunger;
-}
-
-void Hero::setMaxHunger(int newHunger){
-    maxHunger += newHunger;
+    return maxHunger[level];
 }
 
 Room* Hero::getBedroom(){
@@ -109,7 +98,11 @@ int Hero::getXP(){
 
 void Hero::setXP(int xp){
     this->xp += xp;
-    if(this->xp >= maxXp) this->xp = maxXp;
+    if(this->xp >= maxXp[level]) this->xp = maxXp[level];
+}
+
+int Hero::getMaxXP(){
+    return maxXp[level];
 }
 
 void Hero::resetEquipmentHealth(){
@@ -126,6 +119,11 @@ int Hero::getEqHealth(){
 
 std::string Hero::getName(){
     return fullName;
+}
+
+void Hero::levelUp(){
+    level++;
+    xp = 0;
 }
 
 namespace HeroNS{

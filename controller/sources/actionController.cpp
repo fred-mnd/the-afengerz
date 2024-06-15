@@ -25,6 +25,9 @@ namespace ActionController{
             spacebar = NULL;
             GamePage::show();
         }
+        else{
+            spacebar->setFail();
+        }
     }
 
     SpaceBar* hasAction(){

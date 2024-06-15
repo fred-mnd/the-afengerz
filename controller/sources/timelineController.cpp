@@ -22,7 +22,7 @@ namespace TimelineController{
     Timeline* timeline = new Timeline();
     void addEvent(Hero* hero, Activities* act, int options){
         int change = act->start(options);
-        TimeNode* newNode = timeline->pushMid(clock() + act->getDuration(options) * CLOCKS_PER_SEC, hero, act);
+        TimeNode* newNode = timeline->pushMid(clock() + act->getDuration() * CLOCKS_PER_SEC, hero, act);
         newNode->change = change;
         hero->setAct(newNode);
         act->getRoom()->addHero(hero);

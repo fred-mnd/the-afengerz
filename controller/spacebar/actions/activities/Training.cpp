@@ -11,7 +11,7 @@
 
 TrainingAct::TrainingAct() : Activities(){
     prompt = "Press Space to start training";
-    fail = "Someone else is curently training";
+    
     pos = {10, 10};
     room = RoomNS::getRoom(RoomNS::TRAINING_ROOM);
     durations[0] = 15;
@@ -20,14 +20,19 @@ TrainingAct::TrainingAct() : Activities(){
 }
 
 bool TrainingAct::action(){
-    if(checkEligibility(GameController::getCurrHero())){
+    int elig = checkEligibility(GameController::getCurrHero());
+    if(elig == 0){
         TrainingPage::show();
         return true;
     }
-    else{
-        message = "Your health is currently full";
+    else if(elig == 1){
+        fail = "You're not idle";
     }
-    return false;    
+    else if(elig == 2){
+        fail = "Someone else is curently training";
+    }
+    setFail();
+    return false;  
 }
 
 int TrainingAct::start(int options){
@@ -39,8 +44,11 @@ void TrainingAct::end(Hero* hero, int change){
     hero->setXP(change);
 }
 
-bool TrainingAct::checkEligibility(Hero* hero){
-    return !hero->getAct() && RoomNS::getRoom(RoomNS::TRAINING_ROOM)->getHeroList().size() == 0;
+int TrainingAct::checkEligibility(Hero* hero){
+    if(hero->getAct()) return 1;
+    if(RoomNS::getRoom(RoomNS::TRAINING_ROOM)->getHeroList().size() != 0) return 2;
+
+    return 0;
 }
 
 #endif

@@ -11,19 +11,20 @@ COORD MeetingAct::poses[6] = {{10, 4}, {10, 8}, {14, 8}, {14, 4}, {18, 4}, {18, 
 
 MeetingAct::MeetingAct() : Activities(){
     prompt = "Press Space to initiate meeting";
-    fail = "Not all heroas are idle";
-    duration = 10;
+    duration = 60;
     room = RoomNS::getRoom(RoomNS::MEETING_ROOM);
 }
 
 bool MeetingAct::action(){
-    if(checkEligibility(GameController::getCurrHero())){
+    int elig = checkEligibility(GameController::getCurrHero());
+    if(elig == 0){
         MeetingPage::show();
         return true;
     }
     else{
-        setFail();
+        fail = "Not all heroas are idle";
     }
+    setFail();
     return false;
 }
 
@@ -38,13 +39,13 @@ void MeetingAct::end(Hero* hero, int change){
     }
 }
 
-bool MeetingAct::checkEligibility(Hero* hero){
+int MeetingAct::checkEligibility(Hero* hero){
     for(int i=0;i<6;i++){
         if(HeroNS::getHero(i)->getAct()){
-            return false;
+            return 1;
         }
     }
-    return true;
+    return 0;
 }
 
 #endif

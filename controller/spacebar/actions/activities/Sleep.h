@@ -15,7 +15,7 @@ public:
 
     void end(Hero* hero, int change);
 
-    bool checkEligibility(Hero* hero);
+    int checkEligibility(Hero* hero);
 
 };
 

@@ -8,7 +8,7 @@
 
 SleepAct::SleepAct(Room* bedroom) : Activities(){
     prompt = "Press Space to sleep";
-    fail = "Your health is currently full";
+    
     pos = {3, 2};
     room = bedroom;
     durations[0] = 20;
@@ -17,13 +17,18 @@ SleepAct::SleepAct(Room* bedroom) : Activities(){
 }
 
 bool SleepAct::action(){
-    if(checkEligibility(GameController::getCurrHero())){
+    int elig = checkEligibility(GameController::getCurrHero());
+    if(elig == 0){
         SleepPage::show();
         return true;
     }
-    else{
-        setFail();
+    else if(elig == 1){
+        fail = "You're not idle";
     }
+    else if(elig == 2){
+        fail = "Your health is currently full";
+    }
+    setFail();
     return false;
 }
 
@@ -36,8 +41,11 @@ void SleepAct::end(Hero* hero, int change){
     hero->setHealth(change);
 }
 
-bool SleepAct::checkEligibility(Hero* hero){
-    return !hero->getAct() && hero->getHealth() < hero->getMaxHealth();
+int SleepAct::checkEligibility(Hero* hero){
+    if(hero->getAct()) return 1;
+    if(hero->getHealth() >= hero->getMaxHealth()) return 2;
+
+    return 0;
 }
 
 #endif

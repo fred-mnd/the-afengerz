@@ -13,7 +13,6 @@ bool EatAct::roomOcc[4] = {false, false, false, false};
 
 EatAct::EatAct() : Activities(){
     prompt = "Press Space to eat";
-    fail = "Your hunger is currently full";
     room = RoomNS::getRoom(RoomNS::RESTAURANT);
     
     durations[0] = 10;
@@ -22,13 +21,21 @@ EatAct::EatAct() : Activities(){
 }
 
 bool EatAct::action(){
-    if(checkEligibility(GameController::getCurrHero())){
+    int elig = checkEligibility(GameController::getCurrHero());
+    if(elig == 0){
         EatPage::show();
         return true;
     }
-    else{
-        setFail();
+    else if(elig == 1){
+        fail = "You're not idle";
     }
+    else if(elig == 2){
+        fail = "Your hunger is currently full";
+    }
+    else if(elig == 3){
+        fail = "The restaurant is full";
+    }
+    setFail();
     return false;
 }
 
@@ -49,8 +56,18 @@ void EatAct::end(Hero* hero, int change){
     hero->setHunger(change);
 }
 
-bool EatAct::checkEligibility(Hero* hero){
-    return !hero->getAct() && hero->getHunger() < hero->getMaxHunger() && RoomNS::getRoom(RoomNS::RESTAURANT)->getHeroList().size() < 4;
+int EatAct::checkEligibility(Hero* hero){
+    if(hero->getAct()){
+        return 1;
+    }
+    if(hero->getHunger() >= hero->getMaxHunger()){
+        return 2;
+    }
+    if(RoomNS::getRoom(RoomNS::RESTAURANT)->getHeroList().size() >= 4){
+        return 3;
+    }
+
+    return 0;
 }
 
 #endif

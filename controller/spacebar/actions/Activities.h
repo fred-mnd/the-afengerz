@@ -42,7 +42,7 @@ public:
 
     }
 
-    virtual bool checkEligibility(Hero* hero){
+    virtual int checkEligibility(Hero* hero){
 
     }
 

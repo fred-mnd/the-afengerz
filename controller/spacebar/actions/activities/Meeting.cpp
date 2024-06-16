@@ -12,7 +12,7 @@ COORD MeetingAct::poses[6] = {{10, 4}, {10, 8}, {14, 8}, {14, 4}, {18, 4}, {18, 
 MeetingAct::MeetingAct() : Activities(){
     prompt = "Press Space to initiate meeting";
     fail = "Not all heroas are idle";
-    duration = 60;
+    duration = 10;
     room = RoomNS::getRoom(RoomNS::MEETING_ROOM);
 }
 

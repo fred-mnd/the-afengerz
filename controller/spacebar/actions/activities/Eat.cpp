@@ -38,7 +38,7 @@ int EatAct::start(int options){
             posIdx = i;
             pos = posList[i];
             roomOcc[i] = true;
-            return addHP[options];
+            break;
         }
     }
     duration = durations[options];

@@ -61,6 +61,10 @@ public:
     void addHero(Hero* hero);
 
     void removeHero(Hero* hero);
+
+    COORD getSafePos();
+
+    bool isSafe(COORD pos);
 };
 
 namespace RoomNS{

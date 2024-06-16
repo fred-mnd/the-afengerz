@@ -67,6 +67,10 @@ Activities* Timeline::popHead(){
     act->end(hero, change);
     act->getRoom()->removeHero(hero);
     hero->setAct(NULL);
+    if(hero->getCurrRoom() != act->getRoom()){
+        hero->setCurrRoom(act->getRoom());
+        hero->setPos(hero->getCurrRoom()->getSafePos());
+    }
     return act;
 }
 

@@ -36,6 +36,7 @@ bool UpgradeAct::action(){
 
 int UpgradeAct::start(int options){
     duration = durations[options];
+    return -1;
 }
 
 void UpgradeAct::end(Hero* hero, int change){

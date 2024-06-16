@@ -82,6 +82,24 @@ void Room::removeHero(Hero* hero){
     heroList.erase(it);
 }
 
+bool Room::isSafe(COORD pos){
+    if(getMap()[pos.Y][pos.X] != ' ') return false;
+    for(Features* feat : featList){
+        if(feat->checkNear(pos)) return false;
+    }
+    return true;
+}
+
+COORD Room::getSafePos(){
+    COORD pos;
+    do{
+        pos.X = rand() % 30;
+        pos.Y = rand() % 15;
+    }while(!isSafe(pos));
+
+    return pos;
+}
+
 
 namespace RoomNS{
     std::array<Room*, 6> rooms;
@@ -116,7 +134,7 @@ namespace RoomNS{
         rooms[RoomNS::TRAINING_ROOM]->addFeatures({22, 7}, {22, 7}, new TrainingAct());
         rooms[RoomNS::WORKSHOP]->addFeatures({16, 7}, {16, 7}, new UpgradeAct());
         rooms[RoomNS::RESTAURANT]->addFeatures({27, 12}, {27, 12}, new EatAct());
-        rooms[RoomNS::MEETING_ROOM]->addFeatures({8, 4}, {20, 10}, new MeetingAct());
+        rooms[RoomNS::MEETING_ROOM]->addFeatures({8, 4}, {20, 8}, new MeetingAct());
 
     }
 }

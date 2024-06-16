@@ -8,6 +8,7 @@
 #include "../../controller/spacebar/actions/activities/Sleep.h"
 #include "../../controller/spacebar/actions/activities/Training.h"
 #include "../../controller/spacebar/actions/activities/Upgrade.h"
+#include "../timeline/Timeline.h"
 
 Hero::Hero(std::string filename, char character, int color, std::string fullName){
     health = 75;
@@ -61,7 +62,7 @@ Room* Hero::getBedroom(){
 }
 
 Room* Hero::getCurrRoom(){
-    return currRoom;
+    return getAct() ? getAct()->act->getRoom() : currRoom;
 }
 
 void Hero::setCurrRoom(Room* room){

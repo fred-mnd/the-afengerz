@@ -11,7 +11,7 @@
 #include "../timeline/Timeline.h"
 
 Hero::Hero(std::string filename, char character, int color, std::string fullName){
-    health = 75;
+    health = 95;
     hunger = 75;
     level = 1;
     bedroom = new Room(filename, "Bedroom");

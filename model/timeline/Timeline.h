@@ -16,11 +16,17 @@ struct TimeNode{
     int change;
 };
 
+struct MasterTime{
+    TimeNode *head, *tail;
+    MasterTime *prev, *next;
+};
+
 class Timeline{
 private:
-    TimeNode *head, *tail;
+    MasterTime *head, *tail;
 
     TimeNode* createNode(clock_t endTime, Hero* hero, Activities* act);
+    MasterTime* createNode();
 
 public:
     Timeline();
@@ -29,11 +35,13 @@ public:
 
     Activities* popHead();
 
-    void view();
+    void cleanUp();
 
     clock_t getHeadTime();
 
     bool isHead();
+
+    bool isEmpty();
 };
 
 #endif

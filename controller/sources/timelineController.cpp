@@ -36,6 +36,8 @@ namespace TimelineController{
 
     void run(){
         while(true){
+            if(timeline->isEmpty()) continue;
+            timeline->cleanUp();
             while(timeline->isHead() && clock() >= timeline->getHeadTime()){
                 endEvent();
             }

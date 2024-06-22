@@ -20,7 +20,8 @@ namespace SupController{
     }
 
     Room* getRoom(Hero* hero){
-        int idx = rand() % 4 + 1;
+        // int idx = rand() % 4 + 1;
+        int idx = RoomNS::RESTAURANT;
         Room* room;
         if(idx == RoomNS::MEETING_ROOM) room = hero->getBedroom();
         else room = RoomNS::getRoom(idx);
@@ -42,7 +43,8 @@ namespace SupController{
         Activities* act = getAct(room);
         if(act->checkEligibility(hero) != 0) return;
 
-        TimelineController::addEvent(hero, act, rand() % 3);
+        // TimelineController::addEvent(hero, act, rand() % 3);
+        TimelineController::addEvent(hero, act, 0);
     }
 
     void run(){

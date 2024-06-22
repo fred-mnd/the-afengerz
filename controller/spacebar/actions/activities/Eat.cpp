@@ -6,6 +6,7 @@
 #include "../../../../view/headers/eatPage.h"
 #include "../../../headers/gameController.h"
 #include "../../../../model/map/Room.h"
+#include "../../../../model/timeline/Timeline.h"
 #include <vector>
 
 COORD EatAct::posList[4] = {{9, 4}, {20, 4}, {9, 10}, {20, 10}};
@@ -54,6 +55,14 @@ int EatAct::start(int options){
 
 void EatAct::end(Hero* hero, int change){
     hero->setHunger(change);
+    COORD pos = hero->getAct()->pos;
+    for(int i=0;i<4;i++){
+        COORD check = posList[i];
+        if(check.X == pos.X && check.Y && pos.Y){
+            roomOcc[i] = false;
+            return;
+        }
+    }
 }
 
 int EatAct::checkEligibility(Hero* hero){

@@ -11,8 +11,11 @@
 #include "../../model/timeline/Timeline.h"
 #include "../../model/map/Room.h"
 #include "../headers/gamePage.h"
+#include "mutex"
 
 namespace GamePage{
+
+    std::mutex m;
 
     void printRoom();
     void printHero(Hero* hero, COORD pos);
@@ -45,9 +48,11 @@ namespace GamePage{
     }
 
     void changeHeroPos(COORD oldPos, COORD newPos){
+        m.lock();
         Utils::changeCursorPos(oldPos);
         printf("%c", GameController::getCurrHero()->getCurrRoom()->getMap()[oldPos.Y][oldPos.X]);
         GameController::moveHero(newPos);
+        m.unlock();
     }
 
     void moveHero(short x, short y){
@@ -89,6 +94,7 @@ namespace GamePage{
     }
 
     void printRoom(){
+        m.lock();
         Utils::changeCursorPos(Globals::UP_LEFT);
         std::array<std::array<char, 31>, 15> map = GameController::getCurrMap();
         for(int i=0;i<15;i++){
@@ -98,6 +104,7 @@ namespace GamePage{
             printHero(hero, hero->getAct()->pos);
         }
         printText(Globals::ROOM_NAME, GameController::getCurrHero()->getCurrRoom()->getName().c_str());
+        m.unlock();
     }
 
     void printHero(Hero* hero, COORD pos){

@@ -14,6 +14,7 @@ namespace GameController{
     std::array<std::array<char, 31>,15> getCurrMap();
     void moveHero(COORD newPos);
     std::thread *getTimelineThread();
+    std::thread *getSupThread();
     void changeBedroom();
     bool changeHero();
     

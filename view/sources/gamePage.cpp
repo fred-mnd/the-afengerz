@@ -36,6 +36,7 @@ namespace GamePage{
         inUI = true;
         control();
         GameController::getTimelineThread()->join();
+        GameController::getSupThread()->join();
     }
 
     void show(){

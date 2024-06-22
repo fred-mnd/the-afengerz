@@ -10,6 +10,7 @@
 #include "../spacebar/actions/activities/Upgrade.h"
 #include "../headers/actionController.h"
 #include "../headers/timelineController.h"
+#include "../headers/superheroController.h"
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -21,9 +22,14 @@ namespace GameController{
 
     Hero* currHero;
     std::thread *timelineThread;
+    std::thread *supThread;
 
     std::thread *getTimelineThread(){
         return timelineThread;
+    }
+
+    std::thread *getSupThread(){
+        return supThread;
     }
 
     Hero* getCurrHero(){
@@ -44,7 +50,7 @@ namespace GameController{
 
     void init(){
         timelineThread = new std::thread(TimelineController::run);
-        // timelineThread = new std::thread(test);
+        supThread = new std::thread(SupController::run);
         Utils::hideCursor();
         RoomNS::init();
         HeroNS::init();

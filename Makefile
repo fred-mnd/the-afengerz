@@ -1,5 +1,5 @@
-output: hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o Training.o Sleep.o Upgrade.o timeline.o upgradePage.o eatPage.o Eat.o changeHeroPage.o Meeting.o meetingPage.o
-	g++ hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o Training.o Sleep.o Upgrade.o timeline.o upgradePage.o eatPage.o Eat.o changeHeroPage.o Meeting.o meetingPage.o main.cpp -std=c++11 -pthread -o TheAFengerZ && ./TheAFengerZ
+output: hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o Training.o Sleep.o Upgrade.o timeline.o upgradePage.o eatPage.o Eat.o changeHeroPage.o Meeting.o meetingPage.o superheroController.o globals.o
+	g++ hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o Training.o Sleep.o Upgrade.o timeline.o upgradePage.o eatPage.o Eat.o changeHeroPage.o Meeting.o meetingPage.o superheroController.o globals.o main.cpp -std=c++11 -pthread -o TheAFengerZ && ./TheAFengerZ
 
 # MODEL
 hero.o: model/heroes/Hero.cpp
@@ -21,6 +21,9 @@ actionController.o: controller/sources/actionController.cpp
 
 timelineController.o: controller/sources/timelineController.cpp
 	g++ -c controller/sources/timelineController.cpp -std=c++11
+
+superheroController.o: controller/sources/superheroController.cpp
+	g++ -c controller/sources/superheroController.cpp -std=c++11
 
 
 # SPACEBAR
@@ -66,6 +69,9 @@ meetingPage.o: view/sources/meetingPage.cpp
 # ETC
 utils.o: etc/utils.cpp
 	g++ -c etc/utils.cpp -std=c++11
+
+globals.o: etc/globals.cpp
+	g++ -c etc/globals.cpp -std=c++11
 
 clean:
 	rm *.o

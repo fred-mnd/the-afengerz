@@ -8,7 +8,7 @@
 #include "../../../../model/map/Room.h"
 #include <vector>
 
-COORD EatAct::posList[4] = {{9, 4}, {19, 4}, {9, 9}, {19, 9}};
+COORD EatAct::posList[4] = {{9, 4}, {20, 4}, {9, 10}, {20, 10}};
 bool EatAct::roomOcc[4] = {false, false, false, false};
 
 EatAct::EatAct() : Activities(){

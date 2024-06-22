@@ -131,9 +131,9 @@ namespace RoomNS{
         rooms[RoomNS::RESTAURANT]->addRelationship(0, 11, rooms[RoomNS::LIVING_ROOM]);
 
         // features
-        rooms[RoomNS::TRAINING_ROOM]->addFeatures({22, 7}, {22, 7}, new TrainingAct());
-        rooms[RoomNS::WORKSHOP]->addFeatures({16, 7}, {16, 7}, new UpgradeAct());
-        rooms[RoomNS::RESTAURANT]->addFeatures({27, 12}, {27, 12}, new EatAct());
+        rooms[RoomNS::TRAINING_ROOM]->addFeatures({0, 0}, {22, 14}, new TrainingAct());
+        rooms[RoomNS::WORKSHOP]->addFeatures({0, 0}, {16, 14}, new UpgradeAct());
+        rooms[RoomNS::RESTAURANT]->addFeatures({0, 0}, {28, 3}, new EatAct());
         rooms[RoomNS::MEETING_ROOM]->addFeatures({8, 4}, {20, 8}, new MeetingAct());
 
     }

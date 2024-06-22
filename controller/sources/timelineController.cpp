@@ -27,7 +27,7 @@ namespace TimelineController{
         newNode->change = change;
         hero->setAct(newNode);
         act->getRoom()->addHero(hero);
-        refreshUI(act);
+            refreshUI(act);
     }
 
     void endEvent(){

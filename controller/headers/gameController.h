@@ -15,6 +15,7 @@ namespace GameController{
     void moveHero(COORD newPos);
     std::thread *getTimelineThread();
     std::thread *getSupThread();
+    std::thread *getNickThread();
     void changeBedroom();
     bool changeHero();
     

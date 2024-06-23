@@ -4,7 +4,7 @@
 #include "globals.h"
 
 namespace Globals{
-    bool gameOver = false;
+    std::atomic<bool> gameOver{false};
 }
 
 #endif

@@ -61,6 +61,16 @@ namespace Utils{
         changeCursorPos(coor);
         printf("\e[K");
     }
+
+    bool threadSleep(int sec){
+        for(int i=0;i<sec;i++){
+            if(Globals::gameOver == true){
+                return false;
+            }
+            Sleep(1000);
+        }
+        return true;
+    }
 }
 
 #endif

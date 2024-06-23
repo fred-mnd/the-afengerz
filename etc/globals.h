@@ -2,6 +2,7 @@
 #define GLOBALS_H
 
 #include <windows.h>
+#include <atomic>
 
 namespace Globals{
     enum COLORS{
@@ -19,8 +20,7 @@ namespace Globals{
     const COORD ROOM_NAME = {35, 2};
     const COORD ACTION_MESSAGE = {35, 5};
 
-    extern bool gameOver;
-    
+    extern std::atomic<bool> gameOver;
 }
 
 #endif

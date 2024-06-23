@@ -5,12 +5,14 @@
 #include "../../../../model/heroes/Hero.h"
 #include "../../../../model/timeline/Timeline.h"
 #include "../../../../model/map/Room.h"
+#include "../../../../view/headers/gamePage.h"
+#include "../../../headers/gameController.h"
 #include <stdlib.h>
 
 NickAct::NickAct(){
     pos = {12, 6};
     room = new Room("battlefield", "Battlefield");
-    duration = 240;
+    duration = 200;
 }
 
 bool NickAct::action(){
@@ -34,10 +36,15 @@ void NickAct::end(Hero* hero, int change){
     hero->setHealth(health);
     hero->setHunger(hunger);
     hero->decreaseEquipmentHealth(eq);
+
+    hero->setAct(NULL);
+    if(GameController::getCurrHero() == hero){
+        GamePage::refreshUI();
+    }
 }
 
 int NickAct::checkEligibility(Hero* hero){
-    if(hero->getAct() && (hero->getAct()->change == 0 || room->getFeat().size() >= 1)) return 1;
+    if((hero->getAct() && hero->getAct()->change == 0) || room->getFeat().size() >= 1) return 1;
     return 0;
 }
 

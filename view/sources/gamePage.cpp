@@ -40,6 +40,7 @@ namespace GamePage{
         control();
         GameController::getTimelineThread()->join();
         GameController::getSupThread()->join();
+        GameController::getNickThread()->join();
     }
 
     void show(){

@@ -93,12 +93,8 @@ Activities* Timeline::popHead(){
     }
     Activities* act = hero->getAct()->act;
     act->end(hero, change);
-    act->getRoom()->removeHero(hero);
     hero->setAct(NULL);
-    if(hero->getCurrRoom() != act->getRoom()){
-        hero->setCurrRoom(act->getRoom());
-        hero->setPos(hero->getCurrRoom()->getSafePos());
-    }
+    act->getRoom()->removeHero(hero);
 
     return act;
 }
@@ -127,6 +123,40 @@ void Timeline::cleanUp(){
         head = next;
         head->prev = NULL;
     }
+}
+
+void Timeline::popMid(TimeNode* tn){
+    MasterTime* curr = head;
+    while(curr){
+        if(!curr->head) continue;
+        if(curr->head->endTime == tn->endTime) break;
+        curr = curr->next;
+    }
+
+    if(tn == curr->head){
+        if(curr->head == curr->tail){
+            free(tn);
+            curr->head = curr->tail = NULL;
+        }
+        else{
+            TimeNode* next = tn->next;
+            free(tn);
+            next->prev = NULL;
+            curr->head = next;
+        }
+    }
+    else if(tn == curr->tail){
+        TimeNode* prev = tn->prev;
+        free(tn);
+        prev->next = NULL;
+        curr->tail = prev;
+    }
+    else{
+        tn->prev->next = tn->next;
+        tn->next->prev = tn->prev;
+        free(tn);
+    }
+    
 }
 
 #endif

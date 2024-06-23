@@ -42,6 +42,8 @@ public:
     bool isHead();
 
     bool isEmpty();
+
+    void popMid(TimeNode* tn);
 };
 
 #endif

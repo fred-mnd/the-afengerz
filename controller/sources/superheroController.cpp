@@ -2,6 +2,7 @@
 #define SUPERHERO_CONTROLLER_CPP
 
 #include "../../etc/globals.h"
+#include "../../etc/utils.h"
 #include "../../model/heroes/Hero.h"
 #include "../../model/map/Room.h"
 #include "../headers/gameController.h"
@@ -20,8 +21,7 @@ namespace SupController{
     }
 
     Room* getRoom(Hero* hero){
-        // int idx = rand() % 4 + 1;
-        int idx = RoomNS::RESTAURANT;
+        int idx = rand() % 4 + 1;
         Room* room;
         if(idx == RoomNS::MEETING_ROOM) room = hero->getBedroom();
         else room = RoomNS::getRoom(idx);
@@ -37,22 +37,20 @@ namespace SupController{
         Hero* hero = getHero();
         if(hero->getAct()) return;
 
-
         Room* room = getRoom(hero);
         
         Activities* act = getAct(room);
         if(act->checkEligibility(hero) != 0) return;
 
-        // TimelineController::addEvent(hero, act, rand() % 3);
-        TimelineController::addEvent(hero, act, 0);
+        TimelineController::addEvent(hero, act, rand() % 3);
     }
 
     void run(){
         srand(time(0));
-        Sleep(15000);
+        if(!Utils::threadSleep(15)) return;
         while(!Globals::gameOver){
             act();
-            Sleep(30000);
+            if(!Utils::threadSleep(30)) return;
         }
     }
 }

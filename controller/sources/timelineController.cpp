@@ -25,9 +25,13 @@ namespace TimelineController{
         int change = act->start(options);
         TimeNode* newNode = timeline->pushMid(clock() + act->getDuration() * CLOCKS_PER_SEC, hero, act);
         newNode->change = change;
+        if(hero->getCurrRoom() != act->getRoom() && newNode->change != -10){
+            hero->setCurrRoom(act->getRoom());
+            hero->setPos(hero->getCurrRoom()->getSafePos());
+        }
         hero->setAct(newNode);
         act->getRoom()->addHero(hero);
-            refreshUI(act);
+        refreshUI(act);
     }
 
     void endEvent(){
@@ -43,6 +47,10 @@ namespace TimelineController{
                 endEvent();
             }
         }
+    }
+
+    void popMid(TimeNode* tn){
+        timeline->popMid(tn);
     }
 }
 

@@ -11,6 +11,7 @@
 #include "../headers/actionController.h"
 #include "../headers/timelineController.h"
 #include "../headers/superheroController.h"
+#include "../headers/nickController.h"
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -23,6 +24,7 @@ namespace GameController{
     Hero* currHero;
     std::thread *timelineThread;
     std::thread *supThread;
+    std::thread *nickThread;
 
     std::thread *getTimelineThread(){
         return timelineThread;
@@ -30,6 +32,10 @@ namespace GameController{
 
     std::thread *getSupThread(){
         return supThread;
+    }
+
+    std::thread *getNickThread(){
+        return nickThread;
     }
 
     Hero* getCurrHero(){
@@ -51,6 +57,7 @@ namespace GameController{
     void init(){
         timelineThread = new std::thread(TimelineController::run);
         supThread = new std::thread(SupController::run);
+        nickThread = new std::thread(NickController::run);
         Utils::hideCursor();
         RoomNS::init();
         HeroNS::init();

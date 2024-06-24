@@ -14,10 +14,10 @@ namespace Utils{
     }
 
     void hideCursor(){
-        // CONSOLE_CURSOR_INFO cursorInfo;
-        // GetConsoleCursorInfo(Globals::handle, &cursorInfo);
-        // cursorInfo.bVisible = false;
-        // SetConsoleCursorInfo(Globals::handle, &cursorInfo);
+        CONSOLE_CURSOR_INFO cursorInfo;
+        GetConsoleCursorInfo(Globals::handle, &cursorInfo);
+        cursorInfo.bVisible = false;
+        SetConsoleCursorInfo(Globals::handle, &cursorInfo);
     }
 
     void showCursor(){
@@ -78,6 +78,7 @@ namespace Utils{
     }
 
     bool isInput(){
+        Sleep(10);
         return kbhit();
     }
 }

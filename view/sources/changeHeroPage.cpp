@@ -2,6 +2,7 @@
 #define CHANGE_HERO_PAGE_CPP
 
 #include "../../etc/utils.h"
+#include "../../etc/globals.h"
 #include "../../controller/headers/gameController.h"
 #include "../../controller/headers/actionController.h"
 #include "../../controller/headers/timelineController.h"
@@ -40,21 +41,23 @@ namespace ChangeHeroPage{
 
     void control(){
         do{
-            char key = Utils::getKeyInput();
-            if(key == 'w'){
-               changeArrow(-1);
+            if(Utils::isInput()){
+                char key = Utils::getKeyInput();
+                if(key == 'w'){
+                    changeArrow(-1);
+                }
+                else if(key == 's'){
+                    changeArrow(1);
+                }
+                else if(key == ' '){
+                    changeHero();
+                    return;
+                }
+                else if(key == 27){
+                    return;
+                }
             }
-            else if(key == 's'){
-                changeArrow(1);
-            }
-            else if(key == ' '){
-                changeHero();
-                return;
-            }
-            else if(key == 27){
-                return;
-            }
-        } while(true);
+        } while(!Globals::gameOver);
     }
 
     void show(){

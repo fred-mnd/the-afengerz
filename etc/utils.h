@@ -18,6 +18,7 @@ namespace Utils{
     void clearBlock(COORD coor);
     std::string printTime(int minute);
     bool threadSleep(int sec);
+    bool isInput();
 }
 
 #endif

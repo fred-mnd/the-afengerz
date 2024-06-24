@@ -50,7 +50,7 @@ namespace TrainingPage{
             else if(key == 27){
                 return;
             }
-        } while(true);
+        } while(!Globals::gameOver);
     }
 
     void show(){

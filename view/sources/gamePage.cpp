@@ -38,6 +38,7 @@ namespace GamePage{
         GameController::init();
         show();
         inUI = true;
+        printHero(GameController::getCurrHero(), GameController::getCurrHero()->getPos());
         control();
         GameController::getTimelineThread()->join();
         GameController::getSupThread()->join();
@@ -74,44 +75,52 @@ namespace GamePage{
     }
 
     void printStatus(){
+        m.lock();
         Utils::clearBlock(Globals::STATUS);
         printf("%-20s %-10s %-6s %-8s %-8s %-8s\n----------------------------------------------------------\n", "Heroes", "Status", "Level", "Health", "Hunger", "XP");
         for(int i=0;i<6;i++){
             printHeroStatus(HeroNS::getHero(i));
         }
+        m.unlock();
     }
 
     void control(){
         do{
             inUI = true;
-            if(!GameController::getCurrHero()->getAct()) printHero(GameController::getCurrHero(), GameController::getCurrHero()->getPos());
-            char key = Utils::getKeyInput();
-            Utils::clearText(Globals::ACTION_MESSAGE);
-            if(key == 'p'){
-                inUI = false;
-                if(!GameController::changeHero()){
-                    printText(Globals::ACTION_MESSAGE, "You currently can't switch hero");
+            if(Utils::isInput()){
+                char key = Utils::getKeyInput();
+                Utils::clearText(Globals::ACTION_MESSAGE);
+                if(key == 'p'){
+                    inUI = false;
+                    if(!GameController::changeHero()){
+                        printText(Globals::ACTION_MESSAGE, "You currently can't switch hero");
+                    }
+                }
+                else if(GameController::getCurrHero()->getAct()) continue;
+                else if(key == 'd'){
+                    moveHero(1, 0);
+                }
+                else if(key == 'a'){
+                    moveHero(-1, 0);
+                }
+                else if(key == 'w'){
+                    moveHero(0, -1);
+                }
+                else if(key == 's'){
+                    moveHero(0, 1);
+                }
+                else if(key == ' '){
+                    inUI = false;
+                    ActionController::action();
+                }
+                if(SpaceBar* mess = ActionController::hasAction()) printText(Globals::ACTION_MESSAGE, mess->getMessage());
+                if(!GameController::getCurrHero()->getAct()){
+                    m.lock();
+                    printHero(GameController::getCurrHero(), GameController::getCurrHero()->getPos());
+                    m.unlock();
                 }
             }
-            else if(GameController::getCurrHero()->getAct()) continue;
-            else if(key == 'd'){
-                moveHero(1, 0);
-            }
-            else if(key == 'a'){
-                moveHero(-1, 0);
-            }
-            else if(key == 'w'){
-                moveHero(0, -1);
-            }
-            else if(key == 's'){
-                moveHero(0, 1);
-            }
-            else if(key == ' '){
-                inUI = false;
-                ActionController::action();
-            }
-            if(SpaceBar* mess = ActionController::hasAction()) printText(Globals::ACTION_MESSAGE, mess->getMessage());
-        } while(true);
+        } while(!Globals::gameOver);
     }
 
     void printRoom(){
@@ -125,8 +134,8 @@ namespace GamePage{
             printHero(hero, hero->getAct()->pos);
         }
         printText(Globals::ROOM_NAME, GameController::getCurrHero()->getCurrRoom()->getName().c_str());
-        printStatus();
         m.unlock();
+        printStatus();
     }
 
     void printHero(Hero* hero, COORD pos){
@@ -136,7 +145,9 @@ namespace GamePage{
 
     void refreshUI(){
         printRoom();
-        if(!GameController::getCurrHero()->getAct()) printHero(GameController::getCurrHero(), GameController::getCurrHero()->getPos());
+        if(!GameController::getCurrHero()->getAct()){
+            printHero(GameController::getCurrHero(), GameController::getCurrHero()->getPos());
+        }
     }
 
 }

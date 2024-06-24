@@ -17,20 +17,22 @@ namespace MeetingPage{
 
     void control(){
         do{
-            char key = Utils::getKeyInput();
-            if(key == ' '){
-                Globals::timeline_mutex.lock();
-                for(int i=0;i<6;i++){
-                    printf("%d", i);
-                    TimelineController::addEvent(HeroNS::getHero(i), ActionController::getAct(), i);
+            if(Utils::isInput()){
+                char key = Utils::getKeyInput();
+                if(key == ' '){
+                    Globals::timeline_mutex.lock();
+                    for(int i=0;i<6;i++){
+                        printf("%d", i);
+                        TimelineController::addEvent(HeroNS::getHero(i), ActionController::getAct(), i);
+                    }
+                    Globals::timeline_mutex.unlock();
+                    return;
                 }
-                Globals::timeline_mutex.unlock();
-                return;
+                else if(key == 27){
+                    return;
+                }
             }
-            else if(key == 27){
-                return;
-            }
-        } while(true);
+        } while(!Globals::gameOver);
     }
 
     void show(){

@@ -16,6 +16,7 @@ namespace NickController{
 
     Activities* act = new NickAct();
     void action(){
+        
         Hero* hero = HeroNS::getHero(rand() % 6);
         if(GameController::getCurrHero() == hero) return;
         if(hero->getAct()){
@@ -30,7 +31,9 @@ namespace NickController{
         if(!Utils::threadSleep(30)) return;
         while(!Globals::gameOver){
             if(rand() % 4 <= 1){
+                Globals::timeline_mutex.lock();
                 action();
+                Globals::timeline_mutex.unlock();
             }
             if(!Utils::threadSleep(60)) return;
         }

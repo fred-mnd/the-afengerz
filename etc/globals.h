@@ -3,6 +3,7 @@
 
 #include <windows.h>
 #include <atomic>
+#include <mutex>
 
 namespace Globals{
     enum COLORS{
@@ -21,6 +22,8 @@ namespace Globals{
     const COORD ACTION_MESSAGE = {35, 5};
 
     extern std::atomic<bool> gameOver;
+
+    extern std::mutex timeline_mutex;
 }
 
 #endif

@@ -2,6 +2,7 @@
 #define MEETING_PAGE_CPP
 
 #include "../../etc/utils.h"
+#include "../../etc/globals.h"
 #include "../../controller/headers/gameController.h"
 #include "../../controller/headers/actionController.h"
 #include "../../controller/headers/timelineController.h"
@@ -18,10 +19,12 @@ namespace MeetingPage{
         do{
             char key = Utils::getKeyInput();
             if(key == ' '){
+                Globals::timeline_mutex.lock();
                 for(int i=0;i<6;i++){
                     printf("%d", i);
                     TimelineController::addEvent(HeroNS::getHero(i), ActionController::getAct(), i);
                 }
+                Globals::timeline_mutex.unlock();
                 return;
             }
             else if(key == 27){

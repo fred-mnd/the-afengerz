@@ -35,7 +35,7 @@ public:
 
     Activities* popHead();
 
-    void cleanUp();
+    void cleanUp(MasterTime* node);
 
     clock_t getHeadTime();
 
@@ -43,7 +43,7 @@ public:
 
     bool isEmpty();
 
-    void popMid(TimeNode* tn);
+    Activities* popMid(TimeNode* tn);
 };
 
 #endif

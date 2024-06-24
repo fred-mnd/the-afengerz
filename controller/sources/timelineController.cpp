@@ -41,16 +41,21 @@ namespace TimelineController{
 
     void run(){
         while(!Globals::gameOver){
-            if(timeline->isEmpty()) continue;
-            timeline->cleanUp();
+            Globals::timeline_mutex.lock();
+            if(timeline->isEmpty()){
+                Globals::timeline_mutex.unlock();
+                continue;
+            }
             while(timeline->isHead() && clock() >= timeline->getHeadTime()){
                 endEvent();
             }
+            Globals::timeline_mutex.unlock();
         }
     }
 
     void popMid(TimeNode* tn){
-        timeline->popMid(tn);
+        Activities* act = timeline->popMid(tn);
+        refreshUI(act);
     }
 }
 

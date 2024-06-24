@@ -10,7 +10,6 @@ namespace TimelineController{
     void addEvent(Hero* hero, Activities* act, int options);
     void run();
     void popMid(TimeNode* tn);
-    
 }
 
 #endif

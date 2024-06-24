@@ -2,6 +2,7 @@
 #define EAT_PAGE_CPP
 
 #include "../../etc/utils.h"
+#include "../../etc/globals.h"
 #include "../../controller/headers/gameController.h"
 #include "../../controller/headers/actionController.h"
 #include "../../controller/headers/timelineController.h"
@@ -41,7 +42,9 @@ namespace EatPage{
                 changeArrow(1);
             }
             else if(key == ' '){
+                Globals::timeline_mutex.lock();
                 TimelineController::addEvent(GameController::getCurrHero(), ActionController::getAct(), options);
+                Globals::timeline_mutex.unlock();
                 return;
             }
             else if(key == 27){

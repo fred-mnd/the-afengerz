@@ -3,6 +3,7 @@
 
 #include "Timeline.h"
 #include "../../controller/spacebar/actions/Activities.h"
+#include "../../etc/globals.h"
 #include "../map/Room.h"
 
 TimeNode* Timeline::createNode(clock_t endTime, Hero* hero, Activities* act){
@@ -71,7 +72,6 @@ TimeNode* Timeline::pushMid(clock_t endTime, Hero* hero, Activities* act){
 
     newNode->pos = act->getPos();
 
-
     return newNode;
 }
 
@@ -79,10 +79,12 @@ Activities* Timeline::popHead(){
     TimeNode *head = this->head->head;
     TimeNode *tail = this->head->tail;
     Hero* hero = head->hero;
+    Activities* act = hero->getAct()->act;
     int change = head->change;
     if(head == tail){
         free(head);
         this->head->head = this->head->tail = NULL;
+        cleanUp(this->head);
     }
     else{
         TimeNode* next = head->next;
@@ -91,7 +93,6 @@ Activities* Timeline::popHead(){
         this->head->head = next;
         next->prev = NULL;
     }
-    Activities* act = hero->getAct()->act;
     act->end(hero, change);
     hero->setAct(NULL);
     act->getRoom()->removeHero(hero);
@@ -111,22 +112,40 @@ bool Timeline::isHead(){
     return head && head->head;
 }
 
-void Timeline::cleanUp(){
-    while(head && !isHead()){
+void Timeline::cleanUp(MasterTime* node){
+    if(node == head){
         if(head == tail){
             free(head);
             head = tail = NULL;
-            return;
         }
-        MasterTime* next = head->next;
-        free(head);
-        head = next;
-        head->prev = NULL;
+        else{
+            MasterTime* next = head->next;
+            head->next = NULL;
+            free(head);
+            head = next;
+            head->prev = NULL;
+        }
+    }
+    else if(node == tail){
+        MasterTime* prev = tail->prev;
+        tail->prev = NULL;
+        free(tail);
+        tail = prev;
+        tail->next = NULL;
+
+
+    }
+    else{
+        node->prev->next = node->next;
+        node->next->prev = node->prev;
+        free(node);
     }
 }
 
-void Timeline::popMid(TimeNode* tn){
+Activities* Timeline::popMid(TimeNode* tn){
     MasterTime* curr = head;
+    tn->act->getRoom()->removeHero(tn->hero);
+    Activities* act = tn->act;
     while(curr){
         if(!curr->head) continue;
         if(curr->head->endTime == tn->endTime) break;
@@ -137,6 +156,7 @@ void Timeline::popMid(TimeNode* tn){
         if(curr->head == curr->tail){
             free(tn);
             curr->head = curr->tail = NULL;
+            cleanUp(curr);
         }
         else{
             TimeNode* next = tn->next;
@@ -156,7 +176,8 @@ void Timeline::popMid(TimeNode* tn){
         tn->next->prev = tn->prev;
         free(tn);
     }
-    
+
+    return act;
 }
 
 #endif

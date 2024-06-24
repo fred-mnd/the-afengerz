@@ -49,7 +49,9 @@ namespace SupController{
         srand(time(0));
         if(!Utils::threadSleep(15)) return;
         while(!Globals::gameOver){
+            Globals::timeline_mutex.lock();
             act();
+            Globals::timeline_mutex.unlock();
             if(!Utils::threadSleep(30)) return;
         }
     }

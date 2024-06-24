@@ -47,7 +47,6 @@ namespace GamePage{
     void show(){
         Utils::cls();
         printRoom();
-        printStatus();
     }
 
     void changeHeroPos(COORD oldPos, COORD newPos){
@@ -126,6 +125,7 @@ namespace GamePage{
             printHero(hero, hero->getAct()->pos);
         }
         printText(Globals::ROOM_NAME, GameController::getCurrHero()->getCurrRoom()->getName().c_str());
+        printStatus();
         m.unlock();
     }
 

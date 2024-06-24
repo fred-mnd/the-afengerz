@@ -65,7 +65,13 @@ namespace GamePage{
 
     void printHeroStatus(Hero* hero){
         Utils::printHeroCoded(hero, hero->getChar());
-        printf(" - %-16s %-10s %-6d %-8d %-8d %-8d\n", hero->getName().c_str(), hero->getStatus().c_str(), hero->getLevel(), hero->getHealth(), hero->getHunger(), hero->getXP());
+        printf(" - ");
+        if(GameController::getCurrHero() == hero){
+            printf("\e[33m%-16s\e[39m", hero->getName().c_str());
+        }
+        else printf("%-16s", hero->getName().c_str());
+
+        printf(" %-10s %-6d %-8d %-8d %-8d\n", hero->getStatus().c_str(), hero->getLevel(), hero->getHealth(), hero->getHunger(), hero->getXP());
     }
 
     void printStatus(){

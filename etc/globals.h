@@ -25,6 +25,7 @@ namespace Globals{
     extern std::atomic<bool> gameOver;
 
     extern std::mutex timeline_mutex;
+    extern std::mutex view_mutex;
 }
 
 #endif

@@ -51,11 +51,9 @@ namespace GamePage{
     }
 
     void changeHeroPos(COORD oldPos, COORD newPos){
-        m.lock();
         Utils::changeCursorPos(oldPos);
         printf("%c", GameController::getCurrHero()->getCurrRoom()->getMap()[oldPos.Y][oldPos.X]);
         GameController::moveHero(newPos);
-        m.unlock();
     }
 
     void moveHero(short x, short y){
@@ -75,13 +73,13 @@ namespace GamePage{
     }
 
     void printStatus(){
-        m.lock();
+        bool isLocked = m.try_lock();
         Utils::clearBlock(Globals::STATUS);
         printf("%-20s %-10s %-6s %-8s %-8s %-8s\n----------------------------------------------------------\n", "Heroes", "Status", "Level", "Health", "Hunger", "XP");
         for(int i=0;i<6;i++){
             printHeroStatus(HeroNS::getHero(i));
         }
-        m.unlock();
+        if(isLocked) m.unlock();
     }
 
     void control(){
@@ -89,6 +87,7 @@ namespace GamePage{
             inUI = true;
             if(Utils::isInput()){
                 char key = Utils::getKeyInput();
+                m.lock();
                 Utils::clearText(Globals::ACTION_MESSAGE);
                 if(key == 'p'){
                     inUI = false;
@@ -96,7 +95,10 @@ namespace GamePage{
                         printText(Globals::ACTION_MESSAGE, "You currently can't switch hero");
                     }
                 }
-                else if(GameController::getCurrHero()->getAct()) continue;
+                else if(GameController::getCurrHero()->getAct()){
+                    m.unlock();
+                    continue;
+                }
                 else if(key == 'd'){
                     moveHero(1, 0);
                 }
@@ -115,16 +117,15 @@ namespace GamePage{
                 }
                 if(SpaceBar* mess = ActionController::hasAction()) printText(Globals::ACTION_MESSAGE, mess->getMessage());
                 if(!GameController::getCurrHero()->getAct()){
-                    m.lock();
                     printHero(GameController::getCurrHero(), GameController::getCurrHero()->getPos());
-                    m.unlock();
                 }
+                m.unlock();
             }
         } while(!Globals::gameOver);
     }
 
     void printRoom(){
-        m.lock();
+        bool isLocked = m.try_lock();
         Utils::changeCursorPos(Globals::UP_LEFT);
         std::array<std::array<char, 31>, 15> map = GameController::getCurrMap();
         for(int i=0;i<15;i++){
@@ -134,8 +135,8 @@ namespace GamePage{
             printHero(hero, hero->getAct()->pos);
         }
         printText(Globals::ROOM_NAME, GameController::getCurrHero()->getCurrRoom()->getName().c_str());
-        m.unlock();
         printStatus();
+        if(isLocked) m.unlock();
     }
 
     void printHero(Hero* hero, COORD pos){

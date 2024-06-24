@@ -15,6 +15,7 @@
 namespace TimelineController{
 
     void refreshUI(Activities* act){
+        GamePage::printStatus();
         if(act->getRoom() == GameController::getCurrHero()->getCurrRoom() && GamePage::isInUI()){
             GamePage::refreshUI();
         }
@@ -31,13 +32,11 @@ namespace TimelineController{
         }
         hero->setAct(newNode);
         act->getRoom()->addHero(hero);
-        GamePage::printStatus();
         refreshUI(act);
     }
 
     void endEvent(){
         Activities* act = timeline->popHead();
-        GamePage::printStatus();
         refreshUI(act);
     }
 

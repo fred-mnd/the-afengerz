@@ -127,6 +127,14 @@ void Hero::levelUp(){
     xp = 0;
 }
 
+int Hero::getLevel(){
+    return level;
+}
+
+std::string Hero::getStatus(){
+    return currAct ? currAct->act->getStatus() : "Idle";
+}
+
 namespace HeroNS{
     std::array<Hero*, 6> heroes;
 

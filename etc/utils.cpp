@@ -62,6 +62,11 @@ namespace Utils{
         printf("\e[K");
     }
 
+    void clearBlock(COORD coor){
+        changeCursorPos(coor);
+        printf("\e[J");
+    }
+
     bool threadSleep(int sec){
         for(int i=0;i<sec;i++){
             if(Globals::gameOver == true){

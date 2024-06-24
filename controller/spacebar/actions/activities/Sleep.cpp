@@ -14,6 +14,7 @@ SleepAct::SleepAct(Room* bedroom) : Activities(){
     durations[0] = 20;
     durations[1] = 60;
     durations[2] = 180;
+    status = "Sleeping";
 }
 
 bool SleepAct::action(){

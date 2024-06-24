@@ -16,6 +16,7 @@ UpgradeAct::UpgradeAct() : Activities(){
     durations[2] = 150;
     room = RoomNS::getRoom(RoomNS::WORKSHOP);
     pos = {10, 10};
+    status = "Repairing";
 }
 
 UpgradeAct::UpgradeAct(COORD pos, Room* room) : UpgradeAct(){

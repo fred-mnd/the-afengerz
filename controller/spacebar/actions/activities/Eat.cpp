@@ -19,6 +19,7 @@ EatAct::EatAct() : Activities(){
     durations[0] = 10;
     durations[1] = 45;
     durations[2] = 90;
+    status = "Eating";
 }
 
 bool EatAct::action(){

@@ -110,6 +110,7 @@ namespace GameController{
     bool changeHero(){
         if(currHero->getCurrRoom() == currHero->getBedroom() || currHero->getAct()){
             ChangeHeroPage::show();
+            ActionController::setSpaceBar(NULL);
             GamePage::show();
             return true;
         }

@@ -13,6 +13,7 @@ NickAct::NickAct(){
     pos = {12, 6};
     room = new Room("battlefield", "Battlefield");
     duration = 200;
+    status = "On Duty";
 }
 
 bool NickAct::action(){
@@ -44,7 +45,7 @@ void NickAct::end(Hero* hero, int change){
 }
 
 int NickAct::checkEligibility(Hero* hero){
-    if((hero->getAct() && hero->getAct()->change == 0) || room->getFeat().size() >= 1) return 1;
+    if((hero->getAct() && hero->getAct()->change == 0) || room->getHeroList().size() >= 1) return 1;
     return 0;
 }
 

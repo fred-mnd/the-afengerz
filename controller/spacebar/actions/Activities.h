@@ -13,6 +13,7 @@ protected:
     Room* room;
     int durations[3];
     int duration;
+    std::string status;
 public:
     Activities() : SpaceBar(){
 
@@ -56,6 +57,10 @@ public:
 
     Room* getRoom(){
         return room;
+    }
+
+    std::string getStatus(){
+        return status;
     }
 };
 

@@ -84,6 +84,10 @@ public:
     void levelUp();
 
     std::string getName();
+
+    std::string getStatus();
+
+    int getLevel();
 };
 
 namespace HeroNS{

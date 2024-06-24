@@ -20,6 +20,7 @@ namespace Globals{
     const COORD UP_LEFT = {0, 0};
     const COORD ROOM_NAME = {35, 2};
     const COORD ACTION_MESSAGE = {35, 5};
+    const COORD STATUS = {0, 18};
 
     extern std::atomic<bool> gameOver;
 

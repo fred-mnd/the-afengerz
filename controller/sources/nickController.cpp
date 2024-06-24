@@ -19,10 +19,8 @@ namespace NickController{
         
         Hero* hero = HeroNS::getHero(rand() % 6);
         if(GameController::getCurrHero() == hero) return;
-        if(hero->getAct()){
-            TimelineController::popMid(hero->getAct());
-        }
         if(act->checkEligibility(hero) != 0) return;
+        TimelineController::popMid(hero->getAct());
         TimelineController::addEvent(hero, act, 0);
     }
 

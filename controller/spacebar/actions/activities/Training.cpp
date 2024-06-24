@@ -17,6 +17,7 @@ TrainingAct::TrainingAct() : Activities(){
     durations[0] = 15;
     durations[1] = 45;
     durations[2] = 90;
+    status = "Training";
 }
 
 bool TrainingAct::action(){

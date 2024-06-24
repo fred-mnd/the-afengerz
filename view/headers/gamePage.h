@@ -5,6 +5,7 @@ namespace GamePage{
     void init();
     void show();
     void refreshUI();
+    void printStatus();
     bool isInUI();
 }
 

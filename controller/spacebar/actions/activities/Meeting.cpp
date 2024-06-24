@@ -13,6 +13,7 @@ MeetingAct::MeetingAct() : Activities(){
     prompt = "Press Space to initiate meeting";
     duration = 60;
     room = RoomNS::getRoom(RoomNS::MEETING_ROOM);
+    status = "Meeting";
 }
 
 bool MeetingAct::action(){

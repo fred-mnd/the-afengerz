@@ -18,6 +18,7 @@ namespace GamePage{
     std::mutex m;
 
     void printRoom();
+    void printStatus();
     void printHero(Hero* hero, COORD pos);
     void control();
     void show();
@@ -46,6 +47,7 @@ namespace GamePage{
     void show(){
         Utils::cls();
         printRoom();
+        printStatus();
     }
 
     void changeHeroPos(COORD oldPos, COORD newPos){
@@ -61,11 +63,25 @@ namespace GamePage{
         changeHeroPos(pos, {(short)(pos.X + x), (short)(pos.Y + y)});
     }
 
+    void printHeroStatus(Hero* hero){
+        Utils::printHeroCoded(hero, hero->getChar());
+        printf(" - %-16s %-10s %-6d %-8d %-8d %-8d\n", hero->getName().c_str(), hero->getStatus().c_str(), hero->getLevel(), hero->getHealth(), hero->getHunger(), hero->getXP());
+    }
+
+    void printStatus(){
+        Utils::clearBlock(Globals::STATUS);
+        printf("%-20s %-10s %-6s %-8s %-8s %-8s\n----------------------------------------------------------\n", "Heroes", "Status", "Level", "Health", "Hunger", "XP");
+        for(int i=0;i<6;i++){
+            printHeroStatus(HeroNS::getHero(i));
+        }
+    }
+
     void control(){
         do{
             inUI = true;
             if(!GameController::getCurrHero()->getAct()) printHero(GameController::getCurrHero(), GameController::getCurrHero()->getPos());
             char key = Utils::getKeyInput();
+            Utils::clearText(Globals::ACTION_MESSAGE);
             if(key == 'p'){
                 inUI = false;
                 if(!GameController::changeHero()){
@@ -89,7 +105,6 @@ namespace GamePage{
                 inUI = false;
                 ActionController::action();
             }
-            Utils::clearText(Globals::ACTION_MESSAGE);
             if(SpaceBar* mess = ActionController::hasAction()) printText(Globals::ACTION_MESSAGE, mess->getMessage());
         } while(true);
     }
@@ -117,6 +132,7 @@ namespace GamePage{
         printRoom();
         if(!GameController::getCurrHero()->getAct()) printHero(GameController::getCurrHero(), GameController::getCurrHero()->getPos());
     }
+
 }
 
 #endif

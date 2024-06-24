@@ -31,11 +31,13 @@ namespace TimelineController{
         }
         hero->setAct(newNode);
         act->getRoom()->addHero(hero);
+        GamePage::printStatus();
         refreshUI(act);
     }
 
     void endEvent(){
         Activities* act = timeline->popHead();
+        GamePage::printStatus();
         refreshUI(act);
     }
 

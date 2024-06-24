@@ -15,6 +15,7 @@ namespace Utils{
     void printHeroCoded(Hero* hero, std::string message);
     void printHeroCoded(Hero* hero, char character);
     void clearText(COORD coor);
+    void clearBlock(COORD coor);
     std::string printTime(int minute);
     bool threadSleep(int sec);
 }

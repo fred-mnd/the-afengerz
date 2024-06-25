@@ -2,7 +2,7 @@
 #define MENU_H
 
 namespace Menu{
-    void show();
+    bool show();
 }
 
 #endif

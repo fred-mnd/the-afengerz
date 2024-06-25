@@ -48,7 +48,7 @@ namespace Menu{
         } while(true);
     }
 
-    void show();
+    bool show();
 
     void exit(){
         Utils::cls();
@@ -60,7 +60,7 @@ namespace Menu{
         Utils::getKeyInput();
     }
 
-    void control(){
+    bool control(){
         do{
             char key = Utils::getKeyInput();
             if(key == 'w'){
@@ -78,21 +78,21 @@ namespace Menu{
                 }
                 else{
                     exit();
-                    return;
+                    return false;
                 }
-                show();
+                return true;
             }
         } while(true);
     }
 
-    void show(){
+    bool show(){
         Utils::cls();
         Utils::hideCursor();
         puts("Welcome to The AFengerZ!\n");
 
         printMenu();
         printArrow();
-        control();
+        return control();
     }
 }
 

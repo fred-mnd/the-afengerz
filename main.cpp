@@ -11,6 +11,6 @@ int main(){
     system(" ");
     srand(time(0));
     ScoreController::init();
-    Menu::show();
+    while(Menu::show());
     
 }

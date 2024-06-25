@@ -38,6 +38,7 @@ namespace ScoreController{
 
     void view(bool options){
         printf("%-20s | %s\n", "Name", "Score");
+        puts("---------------------------------------");
         if(!options){
             hts->print();
         }

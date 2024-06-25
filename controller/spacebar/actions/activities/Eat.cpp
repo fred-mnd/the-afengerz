@@ -51,11 +51,16 @@ int EatAct::start(int options){
         }
     }
     duration = durations[options];
+    score = scores[options];
     return addHP[options];
 }
 
 void EatAct::end(Hero* hero, int change){
     hero->setHunger(change);
+    forceRemove(hero);
+}
+
+void EatAct::forceRemove(Hero* hero){
     COORD pos = hero->getAct()->pos;
     for(int i=0;i<4;i++){
         COORD check = posList[i];

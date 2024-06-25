@@ -6,6 +6,7 @@
 class SleepAct : public Activities{
 private:
     int HPList[3] = {15, 35, 100};
+    int scores[3] = {20, 30, 50};
 public:
     SleepAct(Room* bedroom);
 

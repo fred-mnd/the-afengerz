@@ -38,6 +38,7 @@ bool TrainingAct::action(){
 
 int TrainingAct::start(int options){
     duration = durations[options];
+    score = scores[options];
     return XPList[options];
 }
 

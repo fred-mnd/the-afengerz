@@ -45,6 +45,7 @@ bool UpgradeAct::action(){
 
 int UpgradeAct::start(int options){
     duration = durations[options];
+    score = 40;
     return -1;
 }
 

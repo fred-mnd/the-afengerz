@@ -27,6 +27,7 @@ namespace TimelineController{
         int change = act->start(options);
         TimeNode* newNode = timeline->pushMid(clock() + act->getDuration() * CLOCKS_PER_SEC, hero, act);
         newNode->change = change;
+        newNode->score = act->getScore();
         if(hero->getCurrRoom() != act->getRoom() && newNode->change != -10){
             hero->setCurrRoom(act->getRoom());
             hero->setPos(hero->getCurrRoom()->getSafePos());

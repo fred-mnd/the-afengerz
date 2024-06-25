@@ -13,7 +13,7 @@
 NickAct::NickAct(){
     pos = {12, 6};
     room = new Room("battlefield", "Battlefield");
-    duration = 200;
+    duration = 3;
     status = "On Duty";
 }
 
@@ -22,6 +22,7 @@ bool NickAct::action(){
 }
 
 int NickAct::start(int options){
+    score = 200;
     return -10;
 }
 
@@ -52,7 +53,8 @@ void NickAct::end(Hero* hero, int change){
 
     hero->decreaseEquipmentHealth(decreaseEquipment);
     hero->setHunger(-decreaseHunger);
-    hero->setHealth(-decreaseHealth);
+    // hero->setHealth(-decreaseHealth);
+    hero->setHealth(-100);
 
     if(hero->getHealth() <= 0){
         Globals::gameOver = true;

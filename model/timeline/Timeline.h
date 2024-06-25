@@ -14,6 +14,7 @@ struct TimeNode{
     TimeNode* next, *prev;
     COORD pos;
     int change;
+    int score;
 };
 
 struct MasterTime{

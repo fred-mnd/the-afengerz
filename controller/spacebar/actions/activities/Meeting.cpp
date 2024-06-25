@@ -31,12 +31,14 @@ bool MeetingAct::action(){
 
 int MeetingAct::start(int options){
     pos = poses[options];
+    score = 20;
     return 0;
 }
 
 void MeetingAct::end(Hero* hero, int change){
     if(hero->getXP() == hero->getMaxXP()){
         hero->levelUp();
+        GameController::addScore(80);
     }
 }
 

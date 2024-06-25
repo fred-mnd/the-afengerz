@@ -9,6 +9,7 @@ private:
     static bool roomOcc[4];
     int posIdx;
     int addHP[3] = {20, 50, 95};
+    int scores[3] = {15, 30, 50};
 public:
     EatAct();
 
@@ -19,6 +20,8 @@ public:
     void end(Hero* hero, int change);
 
     int checkEligibility(Hero* hero);
+
+    void forceRemove(Hero* hero);
 };
 
 #endif

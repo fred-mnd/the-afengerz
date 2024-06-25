@@ -5,6 +5,7 @@
 #include "../../view/headers/changeHeroPage.h"
 #include "../../view/headers/gamePage.h"
 #include "../../etc/utils.h"
+#include "../../etc/globals.h"
 #include "../spacebar/actions/ChangeRoom.h"
 #include "../spacebar/actions/Activities.h"
 #include "../spacebar/actions/activities/Upgrade.h"
@@ -25,6 +26,16 @@ namespace GameController{
     std::thread *timelineThread;
     std::thread *supThread;
     std::thread *nickThread;
+
+    int score;
+
+    int getScore(){
+        return score;
+    }
+
+    int addScore(int add){
+        score += add;
+    }
 
     std::thread *getTimelineThread(){
         return timelineThread;
@@ -55,9 +66,11 @@ namespace GameController{
     }
 
     void init(){
+        Globals::gameOver = false;
         timelineThread = new std::thread(TimelineController::run);
         supThread = new std::thread(SupController::run);
         nickThread = new std::thread(NickController::run);
+        score = 0;
         Utils::hideCursor();
         RoomNS::init();
         HeroNS::init();

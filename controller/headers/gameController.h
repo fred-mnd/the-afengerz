@@ -18,6 +18,8 @@ namespace GameController{
     std::thread *getNickThread();
     void changeBedroom();
     bool changeHero();
+    int getScore();
+    int addScore(int add);
     
 }
 

@@ -10,7 +10,7 @@
 #include "../../controller/headers/actionController.h"
 #include "../../model/timeline/Timeline.h"
 #include "../../model/map/Room.h"
-#include "../headers/gamePage.h"
+#include "../headers/gameOverPage.h"
 #include "mutex"
 
 namespace GamePage{
@@ -43,6 +43,7 @@ namespace GamePage{
         GameController::getTimelineThread()->join();
         GameController::getSupThread()->join();
         GameController::getNickThread()->join();
+        GameOverPage::init();
     }
 
     void show(){

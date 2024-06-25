@@ -13,6 +13,7 @@ protected:
     Room* room;
     int durations[3];
     int duration;
+    int score;
     std::string status;
 public:
     Activities() : SpaceBar(){
@@ -21,6 +22,10 @@ public:
 
     int getDuration(){
         return duration;
+    }
+
+    int getScore(){
+        return score;
     }
 
     int getDurationFromArray(int options){
@@ -41,6 +46,10 @@ public:
 
     virtual ~Activities(){
 
+    }
+
+    virtual void forceRemove(Hero* hero){
+        
     }
 
     virtual int checkEligibility(Hero* hero){

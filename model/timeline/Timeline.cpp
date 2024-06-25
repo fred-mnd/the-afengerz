@@ -3,6 +3,7 @@
 
 #include "Timeline.h"
 #include "../../controller/spacebar/actions/Activities.h"
+#include "../../controller/headers/gameController.h"
 #include "../../etc/globals.h"
 #include "../map/Room.h"
 
@@ -82,6 +83,7 @@ Activities* Timeline::popHead(){
     Hero* hero = head->hero;
     Activities* act = hero->getAct()->act;
     int change = head->change;
+    int score = head->score;
     if(head == tail){
         free(head);
         this->head->head = this->head->tail = NULL;
@@ -94,6 +96,7 @@ Activities* Timeline::popHead(){
         this->head->head = next;
         next->prev = NULL;
     }
+    GameController::addScore(score);
     act->end(hero, change);
     hero->setAct(NULL);
     act->getRoom()->removeHero(hero);
@@ -146,6 +149,7 @@ void Timeline::cleanUp(MasterTime* node){
 Activities* Timeline::popMid(TimeNode* tn){
     MasterTime* curr = head;
     tn->act->getRoom()->removeHero(tn->hero);
+    tn->act->forceRemove(tn->hero);
     Activities* act = tn->act;
     while(curr){
         if(!curr->head) continue;

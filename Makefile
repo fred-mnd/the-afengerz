@@ -1,5 +1,5 @@
-output: hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o Training.o Sleep.o Upgrade.o timeline.o upgradePage.o eatPage.o Eat.o changeHeroPage.o Meeting.o meetingPage.o superheroController.o globals.o Nick.o nickController.o gameOverPage.o
-	g++ hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o Training.o Sleep.o Upgrade.o timeline.o upgradePage.o eatPage.o Eat.o changeHeroPage.o Meeting.o meetingPage.o superheroController.o globals.o Nick.o nickController.o gameOverPage.o main.cpp -std=c++11 -pthread -o TheAFengerZ && ./TheAFengerZ
+output: hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o Training.o Sleep.o Upgrade.o timeline.o upgradePage.o eatPage.o Eat.o changeHeroPage.o Meeting.o meetingPage.o superheroController.o globals.o Nick.o nickController.o gameOverPage.o scoreController.o
+	g++ hero.o gameController.o room.o gamePage.o utils.o actionController.o sleepPage.o timelineController.o trainingPage.o Training.o Sleep.o Upgrade.o timeline.o upgradePage.o eatPage.o Eat.o changeHeroPage.o Meeting.o meetingPage.o superheroController.o globals.o Nick.o nickController.o gameOverPage.o scoreController.o main.cpp -std=c++11 -pthread -o TheAFengerZ && ./TheAFengerZ
 
 # MODEL
 hero.o: model/heroes/Hero.cpp
@@ -27,6 +27,9 @@ superheroController.o: controller/sources/superheroController.cpp
 
 nickController.o: controller/sources/nickController.cpp
 	g++ -c controller/sources/nickController.cpp -std=c++11
+
+scoreController.o: controller/sources/scoreController.cpp
+	g++ -c controller/sources/scoreController.cpp -std=c++11
 
 
 # SPACEBAR

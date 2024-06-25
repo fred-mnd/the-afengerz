@@ -35,7 +35,7 @@ public:
     void print(){
         ScoreNode* temp = head;
         while(temp){
-            // print hereee
+            ScoreNS::print(temp);
             temp = temp->lnext;
         }
     }

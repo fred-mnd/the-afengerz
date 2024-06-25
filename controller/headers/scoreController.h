@@ -9,6 +9,7 @@ namespace ScoreController{
     void insertData(std::string name, int score);
     void init();
     void writeData(std::string name, int score);
+    void view(bool options);
 } 
 
 

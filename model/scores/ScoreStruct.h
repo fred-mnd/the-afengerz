@@ -12,11 +12,15 @@ struct ScoreNode{
 
 namespace ScoreNS{
     ScoreNode* createNode(std::string name, int score){
-        ScoreNode* newNode = (ScoreNode*)malloc(sizeof(ScoreNode));
+        ScoreNode* newNode = new ScoreNode;
         newNode->name = name;
         newNode->score = score;
         newNode->hnext = newNode->lnext = NULL;
         return newNode;
+    }
+
+    void print(ScoreNode* node){
+        printf("%-20s | %d\n", node->name.c_str(), node->score);
     }
 }
 

@@ -4,6 +4,7 @@
 #include <string>
 #include "../../etc/utils.h"
 #include "../../controller/headers/gameController.h"
+#include "../../controller/headers/scoreController.h"
 #include "ctype.h"
 
 namespace GameOverPage{
@@ -12,8 +13,8 @@ namespace GameOverPage{
 
     bool checkName(std::string name){
         int len = name.length();
-        if(len < 3){
-            printf("Name must be at least 3 characters long.\n");
+        if(len < 3 || len > 20){
+            printf("Name must be between 3 and 20 characters long.\n");
             return false;
         }
 
@@ -29,6 +30,7 @@ namespace GameOverPage{
     void show(){
         Utils::cls();
         puts("Game Over!");
+        int score = GameController::getScore();
         printf("Your Score : %d\n\n", GameController::getScore());
         puts("Input your name:");
         char temp[200];
@@ -37,6 +39,9 @@ namespace GameOverPage{
             scanf("%[^\n]", temp); getchar();
             name = temp;
         } while(!checkName(name));
+        ScoreController::writeData(name, score);
+        printf("Data succesfully added! Press any key to continue...");
+        Utils::getKeyInput();
     }
 
     void init(){

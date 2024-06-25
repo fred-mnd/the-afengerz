@@ -1,7 +1,6 @@
 #ifndef SCORE_CONTROLLER_CPP
 #define SCORE_CONTROLLER_CPP
 
-#include "../headers/scoreController.h"
 #include "../../model/scores/ScoreStruct.h"
 #include "../../model/scores/HashTableScore.h"
 #include "../../model/scores/LinkedListScore.h"
@@ -24,14 +23,27 @@ namespace ScoreController{
         }
         char name[256];
         int score;
-        for(;fscanf(fp, "%[^`]`%d\n", name, score) != -1;){
+        for(;fscanf(fp, "%[^`]`%d\n", name, &score) != -1;){
             insertData(name, score);
         }
+        fclose(fp);
     }
 
     void writeData(std::string name, int score){
         FILE* fp = fopen("scores/score.txt", "a");
         fprintf(fp, "%s`%d\n", name.c_str(), score);
+        fclose(fp);
+        insertData(name, score);
+    }
+
+    void view(bool options){
+        printf("%-20s | %s\n", "Name", "Score");
+        if(!options){
+            hts->print();
+        }
+        else{
+            lls->print();
+        }
     }
 } 
 

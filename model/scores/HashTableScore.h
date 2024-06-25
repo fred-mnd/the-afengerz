@@ -29,9 +29,21 @@ public:
         if(!head[idx]){
             head[idx] = tail[idx] = node;
         }
-        else{
+        else if(node->name <= head[idx]->name){
+            node->hnext = head[idx];
+            head[idx] = node;
+        }
+        else if(node->name >= tail[idx]->name){
             tail[idx]->hnext = node;
             tail[idx] = node;
+        }
+        else{
+            ScoreNode* curr = head[idx];
+            while(node->name > curr->hnext->name){
+                curr = curr->hnext;
+            }
+            node->hnext = curr->hnext;
+            curr->hnext = node;
         }
     }
 
@@ -39,7 +51,7 @@ public:
         for(int i = 0; i < 26; i++){
             ScoreNode* temp = head[i];
             while(temp){
-                // print
+                ScoreNS::print(temp);
                 temp = temp->hnext;
             }
         }

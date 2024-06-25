@@ -56,8 +56,7 @@ void UpgradeAct::end(Hero* hero, int change){
 int UpgradeAct::checkEligibility(Hero* hero){
     if(hero->getAct()) return 1;
     if(hero->getEqHealth() >= 100) return 2;
-    if(!(RoomNS::getRoom(RoomNS::WORKSHOP)->getHeroList().size() == 0 ||
-    (hero == HeroNS::getHero(HeroNS::IRON_MAN) && hero->getCurrRoom() == hero->getBedroom()))) return 3;
+    if(room->getHeroList().size() != 0) return 3;
 
     return 0;
 }

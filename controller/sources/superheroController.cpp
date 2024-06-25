@@ -15,7 +15,6 @@ namespace SupController{
         Hero* hero;
         do{
             hero = HeroNS::getHero(rand() % 6);
- 
         } while(hero == GameController::getCurrHero());
         return hero;
     }
@@ -47,7 +46,7 @@ namespace SupController{
 
     void run(){
         srand(time(0));
-        if(!Utils::threadSleep(15)) return;
+        if(!Utils::threadSleep(10)) return;
         while(!Globals::gameOver){
             Globals::timeline_mutex.lock();
             act();

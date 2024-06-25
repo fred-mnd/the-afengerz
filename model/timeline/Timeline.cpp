@@ -32,6 +32,7 @@ Timeline::Timeline(){
 TimeNode* Timeline::pushMid(clock_t endTime, Hero* hero, Activities* act){
     TimeNode* newNode = createNode(endTime, hero, act);
     MasterTime* node;
+
     if(!head && !tail){
         head = tail = createNode();
         node = head;

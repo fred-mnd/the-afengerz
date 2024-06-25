@@ -6,6 +6,7 @@
 #include "../../../../model/timeline/Timeline.h"
 #include "../../../../model/map/Room.h"
 #include "../../../../view/headers/gamePage.h"
+#include "../../../../etc/globals.h"
 #include "../../../headers/gameController.h"
 #include <stdlib.h>
 
@@ -26,18 +27,38 @@ int NickAct::start(int options){
 
 void NickAct::end(Hero* hero, int change){
     srand(time(0));
-    int decrease = rand() % 21 + 40; // 40-60
+    int decreaseHealth = rand() % 21 + 60; // 60-80
     int coverPercent = rand() % 21 + 30; // 30-50
+    int cover = decreaseHealth * coverPercent / 100;
 
-    int cover = decrease * coverPercent / 100;
-    int eq = hero->getEqHealth() > cover ? cover : eq;
-    int health = decrease - cover;
-    int hunger = rand() % 31 + 30; // 30-60
+    int decreaseEquipment = cover;
+    int remainingCover = 0;
 
-    hero->setHealth(health);
-    hero->setHunger(hunger);
-    hero->decreaseEquipmentHealth(eq);
+    if (hero->getEqHealth() <= cover) {
+        remainingCover = cover - hero->getEqHealth();
+        decreaseEquipment = hero->getEqHealth();
+    }
+    decreaseHealth -= decreaseEquipment;
+    decreaseHealth -= remainingCover;
 
+    int decreaseHunger = rand() % 31 + 30; // 30-60
+    int remainingHungerDecrease = 0;
+
+    if (hero->getHunger() <= decreaseHunger) {
+        remainingHungerDecrease = decreaseHunger - hero->getHunger();
+        decreaseHunger = hero->getHunger();
+    }
+    decreaseHealth += remainingHungerDecrease;
+
+    hero->decreaseEquipmentHealth(decreaseEquipment);
+    hero->setHunger(-decreaseHunger);
+    hero->setHealth(-decreaseHealth);
+
+    if(hero->getHealth() <= 0){
+        Globals::gameOver = true;
+        return;
+    }
+    
     hero->setAct(NULL);
     if(GameController::getCurrHero() == hero){
         GamePage::refreshUI();

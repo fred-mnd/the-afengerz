@@ -38,6 +38,7 @@ int Hero::getHealth(){
 void Hero::setHealth(int newHealth){
     health += newHealth;
     if(health > maxHealth[level]) health = maxHealth[level];
+    else if(health < 0) health = 0;
 }
 
 int Hero::getHunger(){

@@ -63,7 +63,6 @@ namespace GameController{
         HeroNS::init();
         addSpecialty();
         currHero = HeroNS::getHero(std::rand() % 6);
-        // currHero = HeroNS::getHero(4);
         changeBedroom();
     }
 

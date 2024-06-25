@@ -14,17 +14,18 @@
 
 namespace NickController{
 
-    Activities* act = new NickAct();
+    Activities* act;
     void action(){
         
         Hero* hero = HeroNS::getHero(rand() % 6);
         if(GameController::getCurrHero() == hero) return;
         if(act->checkEligibility(hero) != 0) return;
-        TimelineController::popMid(hero->getAct());
+        if(hero->getAct()) TimelineController::popMid(hero->getAct());
         TimelineController::addEvent(hero, act, 0);
     }
 
     void run(){
+        act = new NickAct();
         srand(time(0));
         if(!Utils::threadSleep(30)) return;
         while(!Globals::gameOver){
@@ -33,7 +34,7 @@ namespace NickController{
                 action();
                 Globals::timeline_mutex.unlock();
             }
-            if(!Utils::threadSleep(60)) return;
+            if(!Utils::threadSleep(30)) return;
         }
     }
 }

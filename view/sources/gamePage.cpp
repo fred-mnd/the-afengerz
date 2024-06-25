@@ -69,13 +69,13 @@ namespace GamePage{
         }
         else printf("%-16s", hero->getName().c_str());
 
-        printf(" %-10s %-6d %-8d %-8d %-8d\n", hero->getStatus().c_str(), hero->getLevel(), hero->getHealth(), hero->getHunger(), hero->getXP());
+        printf(" %-10s %-7d %-3d/%-5d %-3d/%-5d %-4d/%d\n", hero->getStatus().c_str(), hero->getLevel(), hero->getHealth(), hero->getMaxHealth(), hero->getHunger(), hero->getMaxHunger(), hero->getXP(), hero->getMaxXP());
     }
 
     void printStatus(){
         bool isLocked = m.try_lock();
         Utils::clearBlock(Globals::STATUS);
-        printf("%-20s %-10s %-6s %-8s %-8s %-8s\n----------------------------------------------------------\n", "Heroes", "Status", "Level", "Health", "Hunger", "XP");
+        printf("%-20s %-10s %-7s %-9s %-9s %-8s\n---------------------------------------------------------------------\n", "Heroes", "Status", "Level", "Health", "Hunger", "XP");
         for(int i=0;i<6;i++){
             printHeroStatus(HeroNS::getHero(i));
         }

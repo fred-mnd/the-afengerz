@@ -23,7 +23,7 @@ bool MeetingAct::action(){
         return true;
     }
     else{
-        fail = "Not all heroas are idle";
+        fail = "Not all heroes are idle";
     }
     setFail();
     return false;

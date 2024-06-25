@@ -30,7 +30,7 @@ bool TrainingAct::action(){
         fail = "You're not idle";
     }
     else if(elig == 2){
-        fail = "Someone else is curently training";
+        fail = "Someone else is currently training";
     }
     setFail();
     return false;  

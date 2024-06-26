@@ -5,7 +5,6 @@
 
 namespace Globals{
     std::atomic<bool> gameOver{false};
-    std::mutex view_mutex;
     std::mutex timeline_mutex;
 }
 

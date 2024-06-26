@@ -35,7 +35,7 @@ bool SleepAct::action(){
 
 int SleepAct::start(int options){
     duration = durations[options];
-    score = scores[duration];
+    score = scores[options];
     return HPList[options];
 }
 

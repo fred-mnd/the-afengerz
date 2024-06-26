@@ -21,11 +21,11 @@ namespace Globals{
     const COORD ROOM_NAME = {35, 2};
     const COORD ACTION_MESSAGE = {35, 5};
     const COORD STATUS = {0, 18};
+    const COORD SCORE = {0, 16};
 
     extern std::atomic<bool> gameOver;
 
     extern std::mutex timeline_mutex;
-    extern std::mutex view_mutex;
 
     const char logo[][100] = {
     "                            ............:::::::::::...........                            ",

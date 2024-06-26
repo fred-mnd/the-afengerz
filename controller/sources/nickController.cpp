@@ -33,12 +33,10 @@ namespace NickController{
         srand(time(0));
         if(!Utils::threadSleep(30)) return;
         while(!Globals::gameOver){
-            if(rand() % 4 <= 1){
-                Globals::timeline_mutex.lock();
-                action();
-                Globals::timeline_mutex.unlock();
-            }
-            if(!Utils::threadSleep(30)) return;
+            Globals::timeline_mutex.lock();
+            action();
+            Globals::timeline_mutex.unlock();
+            if(!Utils::threadSleep(90)) return;
         }
     }
 }

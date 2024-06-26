@@ -40,7 +40,7 @@ void NickAct::end(Hero* hero, int change){
         decreaseEquipment = hero->getEqHealth();
     }
     decreaseHealth -= decreaseEquipment;
-    decreaseHealth -= remainingCover;
+    decreaseHealth += remainingCover;
 
     int decreaseHunger = rand() % 31 + 30; // 30-60
     int remainingHungerDecrease = 0;
